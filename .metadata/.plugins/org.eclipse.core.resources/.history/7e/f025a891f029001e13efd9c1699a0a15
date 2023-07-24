@@ -55,7 +55,11 @@ typedef struct{
 
 #define LOG_RECODE_MAX	100
 
-
+typedef enum{
+	NON_STOP = 0,
+	IMMMEDIATE_STOP,
+	MAX_DATA_STOP
+} LOG_FLAG;
 
 typedef struct{
 	uint16_t 	wptr;
@@ -81,20 +85,6 @@ LOG_DATA	log;
 //
 //
 //=============================================================================
-void Set_logflg(LOG_FLAG flg)
-{
-
-	if( flg < LF_MAX){
-		log.flg = flg;
-		SKprintf("log.flg=%d \r\n",log.flg);
-	}
-}
-
-
-//=============================================================================
-//
-//
-//=============================================================================
 void Set_logInfo(const char *string, ...)
 {
 	RTC_TimeTypeDef sTime;
@@ -106,12 +96,12 @@ void Set_logInfo(const char *string, ...)
 
 
 	switch(log.flg){
-	case LF_NON_STOP:
+	case NON_STOP:
 		break;
-	case LF_IMMMEDIATE_STOP:
+	case IMMMEDIATE_STOP:
 		flg = 1;
 		break;
-	case LF_MAX_DATA_STOP:
+	case MAX_DATA_STOP:
 		if( log.num >= LOG_RECODE_MAX)
 			flg = 1;
 		break;
@@ -171,33 +161,23 @@ void LogInfo_display(void)
 	uint16_t	rptr = log.rptr;
 
 
-	if( log.num != 0 ){
-		for(i=0; i<LOG_RECODE_MAX; i++){
-			SKprintf("%02d:%02d:%02d.", log.rec[rptr].Hours, log.rec[rptr].Minutes, log.rec[rptr].Seconds);
+	for(i=0; i<LOG_RECODE_MAX; i++){
+		SKprintf("%02d:%02d:%02d.", log.rec[rptr].Hours, log.rec[rptr].Minutes, log.rec[rptr].Seconds);
 
-			if(log.rec[rptr].dt <= log.rec[rptr].dt_av){
-				dt = 1000000 * log.rec[rptr].dt / log.rec[rptr].dt_av;
-			}
-			else{
-				dt = 1000000 * log.rec[rptr].dt / (log.rec[rptr].dt + 1 );
-			}
-			msec = (uint16_t)( dt / 1000 );
-			usec = (uint16_t)( dt % 1000 );
-			SKprintf("%03d %03d ", msec,usec);
+		dt = 1000000 * log.rec[rptr].dt / log.rec[rptr].dt_av;
+		msec = (uint16_t)( dt / 1000 );
+		usec = (uint16_t)( dt % 1000 );
+		SKprintf("%03d %03d ", msec,usec);
 
-			SKprintf("%s\r\n", &log.rec[log.wptr].string[0]);
+		SKprintf("%s\r\n", &log.rec[log.wptr].string[0]);
 
-			rptr ++;
-			if( rptr > LOG_RECODE_MAX ){
-				rptr = 0;
-			}
-			if( log.wptr == rptr ){
-				break;
-			}
+		rptr ++;
+		if( rptr > LOG_RECODE_MAX ){
+			rptr = 0;
 		}
-	}
-	else{
-		SKprintf("LOG NONE\r\n");
+		if( log.wptr == rptr ){
+			break;
+		}
 	}
 }
 
@@ -212,5 +192,4 @@ void LogInfo_clear(void)
 	log.wptr = 0;
 	log.num = 0;
 
-	SKprintf("LOG CLEAR \r\n");
 }

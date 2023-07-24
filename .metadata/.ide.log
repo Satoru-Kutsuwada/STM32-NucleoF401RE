@@ -2163,3 +2163,81 @@
 2023-07-24 14:14:55,942 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.
 2023-07-24 14:14:55,942 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.
 2023-07-24 14:48:44,951 [INFO] Gpio:273 - dependency for GPIO [RCC, SYS, USART2]
+2023-07-24 15:13:11,904 [INFO] Gpio:273 - dependency for GPIO [RCC, SYS, USART2]
+2023-07-24 15:13:11,966 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-07-24 15:16:10,314 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 821020888 Bytes (995098624)
+2023-07-24 15:16:12,957 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 842234248 Bytes (995098624)
+2023-07-24 15:16:14,903 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 679742704 Bytes (995098624)
+2023-07-24 15:16:15,276 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RTC
+2023-07-24 15:16:15,276 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-07-24 15:16:15,276 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2023-07-24 15:16:15,276 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2023-07-24 15:16:15,276 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2023-07-24 15:16:15,276 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-07-24 15:16:15,276 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-07-24 15:16:15,281 [INFO] CodeGenerator:793 - code generatio: config db path: C:\ST\STM32CubeIDE_1.12.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.8.0.202302231600\\db\
+2023-07-24 15:16:15,476 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\license.tmp_save
+2023-07-24 15:16:15,613 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\license.tmp
+2023-07-24 15:16:15,649 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\gpio.tmp_save
+2023-07-24 15:16:15,751 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\gpio.tmp
+2023-07-24 15:16:15,982 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_it.c_save
+2023-07-24 15:16:16,198 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_it.c
+2023-07-24 15:16:16,246 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_it.h_save
+2023-07-24 15:16:16,314 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_it.h
+2023-07-24 15:16:16,334 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_hal_msp.c_save
+2023-07-24 15:16:16,488 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_hal_msp.c
+2023-07-24 15:16:16,488 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\system.tmp_save
+2023-07-24 15:16:16,538 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\system.tmp
+2023-07-24 15:16:16,563 [INFO] CodeEngine:311 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_hal_conf.h_save
+2023-07-24 15:16:16,711 [INFO] CodeEngine:335 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_hal_conf.h
+2023-07-24 15:16:16,746 [WARN] IPConfigManager:3431 - IP not found : TIM
+2023-07-24 15:16:16,746 [WARN] CodeGenerator:3754 - IP not found : null
+2023-07-24 15:16:16,771 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\main.h_save
+2023-07-24 15:16:16,921 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\main.h
+2023-07-24 15:16:16,934 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\main.c_save
+2023-07-24 15:16:17,112 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\main.c
+2023-07-24 15:16:18,093 [INFO] ProjectBuilder:2996 - Time for Copy HAL[1] : 522mS.
+2023-07-24 15:16:18,104 [INFO] ProjectBuilder:4304 - Project Generator version: 3.19.2
+2023-07-24 15:16:18,362 [INFO] ConfigFileManager:1483 - The Die is : DIE433
+2023-07-24 15:16:20,604 [INFO] ProjectBuilder:4505 - Time for Generating toolchain IDE Files: 2500mS.
+2023-07-24 15:16:20,605 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.
+2023-07-24 15:16:20,605 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.
+2023-07-24 15:48:43,872 [INFO] Gpio:273 - dependency for GPIO [RCC, SYS, USART2]
+2023-07-24 15:49:23,983 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-07-24 15:49:56,736 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 652336840 Bytes (1012924416)
+2023-07-24 15:49:58,996 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 671211208 Bytes (1012924416)
+2023-07-24 15:50:00,923 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 737797832 Bytes (1012924416)
+2023-07-24 15:50:01,446 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RTC
+2023-07-24 15:50:01,446 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-07-24 15:50:01,446 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2023-07-24 15:50:01,446 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2023-07-24 15:50:01,446 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2023-07-24 15:50:01,446 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-07-24 15:50:01,446 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-07-24 15:50:01,463 [INFO] CodeGenerator:793 - code generatio: config db path: C:\ST\STM32CubeIDE_1.12.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.8.0.202302231600\\db\
+2023-07-24 15:50:01,728 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\license.tmp_save
+2023-07-24 15:50:01,874 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\license.tmp
+2023-07-24 15:50:01,895 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\gpio.tmp_save
+2023-07-24 15:50:01,996 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\gpio.tmp
+2023-07-24 15:50:02,152 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_it.c_save
+2023-07-24 15:50:02,345 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_it.c
+2023-07-24 15:50:02,356 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_it.h_save
+2023-07-24 15:50:02,433 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_it.h
+2023-07-24 15:50:02,463 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_hal_msp.c_save
+2023-07-24 15:50:02,570 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_hal_msp.c
+2023-07-24 15:50:02,570 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\system.tmp_save
+2023-07-24 15:50:02,620 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\system.tmp
+2023-07-24 15:50:02,652 [INFO] CodeEngine:311 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_hal_conf.h_save
+2023-07-24 15:50:02,754 [INFO] CodeEngine:335 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_hal_conf.h
+2023-07-24 15:50:02,778 [WARN] IPConfigManager:3431 - IP not found : TIM
+2023-07-24 15:50:02,778 [WARN] CodeGenerator:3754 - IP not found : null
+2023-07-24 15:50:02,807 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\main.h_save
+2023-07-24 15:50:02,910 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\main.h
+2023-07-24 15:50:02,933 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\main.c_save
+2023-07-24 15:50:03,039 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\main.c
+2023-07-24 15:50:03,821 [INFO] ProjectBuilder:2996 - Time for Copy HAL[1] : 310mS.
+2023-07-24 15:50:03,821 [INFO] ProjectBuilder:4304 - Project Generator version: 3.19.2
+2023-07-24 15:50:04,059 [INFO] ConfigFileManager:1483 - The Die is : DIE433
+2023-07-24 15:50:06,855 [INFO] ProjectBuilder:4505 - Time for Generating toolchain IDE Files: 3034mS.
+2023-07-24 15:50:06,865 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 10mS.
+2023-07-24 15:50:06,865 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.

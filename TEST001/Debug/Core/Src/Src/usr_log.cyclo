@@ -1,3 +1,4 @@
-usr_log.c:88:6:Set_logInfo	13
-usr_log.c:155:6:LogInfo_display	4
-usr_log.c:188:6:LogInfo_clear	1
+usr_log.c:84:6:Set_logflg	2
+usr_log.c:98:6:Set_logInfo	13
+usr_log.c:165:6:LogInfo_display	6
+usr_log.c:208:6:LogInfo_clear	1

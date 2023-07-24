@@ -1,8 +1,8 @@
 usr_debug_tool.c:161:6:debu_main	6
 usr_debug_tool.c:190:6:DispMenue	3
 usr_debug_tool.c:205:6:DBmanue_prompt	5
-usr_debug_tool.c:225:6:DBmanue_log	7
-usr_debug_tool.c:251:6:DBmanue_rs485	5
-usr_debug_tool.c:277:15:input2menu	3
-usr_debug_tool.c:295:6:command_split	25
-usr_debug_tool.c:372:18:read_line_streem	9
+usr_debug_tool.c:225:6:DBmanue_log	10
+usr_debug_tool.c:254:6:DBmanue_rs485	5
+usr_debug_tool.c:280:15:input2menu	3
+usr_debug_tool.c:298:6:command_split	25
+usr_debug_tool.c:375:18:read_line_streem	9

@@ -30,21 +30,8 @@ typedef struct{
 
 
 
-
-
 /* Public define -------------------------------------------------------------*/
 #define PRiNTF_BUFFMAX 50
-
-
-typedef enum{
-	LF_NON_STOP = 0,
-	LF_IMMMEDIATE_STOP,
-	LF_MAX_DATA_STOP,
-
-	LF_MAX
-} LOG_FLAG;
-
-
 
 /* Public macro --------------------------------------------------------------*/
 
@@ -64,7 +51,6 @@ void debu_main(void);
 int getch(void);
 
 void rtc_display(void);
-void Set_logflg(LOG_FLAG flg);
 
 
 

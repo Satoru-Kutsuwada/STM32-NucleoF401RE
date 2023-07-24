@@ -232,13 +232,10 @@ void DBmanue_log(void)
 		LogInfo_clear();
 		break;
 	case '3':
-		Set_logflg(LF_NON_STOP);
 		break;
 	case '4':
-		Set_logflg(LF_IMMMEDIATE_STOP);
 		break;
 	case '5':
-		Set_logflg(LF_MAX_DATA_STOP);
 		break;
 	case 'r':
 	case 'R':

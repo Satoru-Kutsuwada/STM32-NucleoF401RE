@@ -88,5 +88,4 @@ void usr_isr_tim1_up(void)
 	//HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
 
 	timer.dt += 10;
-
 }

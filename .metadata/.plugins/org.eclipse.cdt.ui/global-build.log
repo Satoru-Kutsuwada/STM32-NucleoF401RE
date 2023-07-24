@@ -274,3 +274,513 @@ arm-none-eabi-size   TEST001.elf
   22280	    120	   8344	  30744	   7818	TEST001.elf
 Finished building: default.size.stdout
  
+15:27:24 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_debug_tool.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_debug_tool.d" -MT"Core/Src/Src/usr_debug_tool.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_debug_tool.o"
+arm-none-eabi-gcc "../Core/Src/Src/usr_isr_callback.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_isr_callback.d" -MT"Core/Src/Src/usr_isr_callback.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_isr_callback.o"
+arm-none-eabi-gcc "../Core/Src/Src/usr_log.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_log.d" -MT"Core/Src/Src/usr_log.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_log.o"
+arm-none-eabi-gcc "../Core/Src/Src/usr_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_main.d" -MT"Core/Src/Src/usr_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_hal_msp.d" -MT"Core/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:146,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:29,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:27,
+                 from ../Core/Inc/stm32f4xx_hal_conf.h:275,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/stm32f4xx_it.c:21:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h:779:29: error: expected declaration specifiers or '...' before '(' token
+  779 | #define GPIOA               ((GPIO_TypeDef *) GPIOA_BASE)
+      |                             ^
+../Core/Src/stm32f4xx_it.c:50:20: note: in expansion of macro 'GPIOA'
+   50 | HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+      |                    ^~~~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:279,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/stm32f4xx_it.c:21:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:90:36: error: expected declaration specifiers or '...' before '(' token
+   90 | #define GPIO_PIN_5                 ((uint16_t)0x0020)  /* Pin 5 selected    */
+      |                                    ^
+../Core/Src/stm32f4xx_it.c:50:27: note: in expansion of macro 'GPIO_PIN_5'
+   50 | HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+      |                           ^~~~~~~~~~
+../Core/Src/Src/usr_main.c: In function 'SKprintf':
+../Core/Src/Src/usr_main.c:69:2: warning: implicit declaration of function 'vsprintf' [-Wimplicit-function-declaration]
+   69 |  vsprintf(buffer, string, ap);
+      |  ^~~~~~~~
+../Core/Src/Src/usr_log.c:80:10: warning: built-in function 'log' declared as non-function [-Wbuiltin-declaration-mismatch]
+   80 | LOG_DATA log;
+      |          ^~~
+../Core/Src/Src/usr_log.c: In function 'Set_logInfo':
+../Core/Src/Src/usr_log.c:114:3: warning: implicit declaration of function 'vsprintf' [-Wimplicit-function-declaration]
+  114 |   vsprintf(buffer, string, ap);
+      |   ^~~~~~~~
+../Core/Src/Src/usr_main.c:77:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+   77 |  HAL_UART_Transmit(&huart2, buffer, i, HAL_MAX_DELAY);
+      |                             ^~~~~~
+      |                             |
+      |                             char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/Src/usr_main.c:10:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/Src/usr_main.c:78:1: warning: control reaches end of non-void function [-Wreturn-type]
+   78 | }
+      | ^
+../Core/Src/Src/usr_log.c: In function 'LogInfo_display':
+../Core/Src/Src/usr_log.c:165:3: warning: implicit declaration of function 'SKprintf' [-Wimplicit-function-declaration]
+  165 |   SKprintf("%02d:%02d:%02d.", log.rec[rptr].Hours, log.rec[rptr].Minutes, log.rec[rptr].Seconds);
+      |   ^~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/stm32f4xx_it.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/Src/usr_debug_tool.c:122:29: warning: missing braces around initializer [-Wmissing-braces]
+  122 | const MENUE Deb_menue00[] = {
+      |                             ^
+  123 |     "\r\nLOG MENUE",
+      |     {              }
+  124 |     " 1.LOG DISPLAY",
+      |     {               }
+  125 |     " 2.LOG CLEAR",
+      |     {             }
+  126 |     " 3.STOP MODE:IMMMEDIATE",
+      |     {                        }
+  127 |     " 4.STOP MODE:MAX_DATA_STOP",
+      |     {                           }
+  128 |     " 5.STOP MODE:NON_STOP",
+      |     {                      }
+  129 | 
+  130 |     " r.EXIT"
+      |     {
+  131 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c:134:29: warning: missing braces around initializer [-Wmissing-braces]
+  134 | const MENUE Deb_menue01[] = {
+      |                             ^
+  135 |     "\r\nRS485 MENUE",
+      |     {                }
+  136 |     " 1.RX MODE",
+      |     {           }
+  137 |     " 2.TX MODE",
+      |     {           }
+  138 | 
+  139 |     " r.EXIT"
+      |     {
+  140 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c:149:4: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  149 |    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:150:4: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  150 |    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE))
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:148:34: warning: missing braces around initializer [-Wmissing-braces]
+  148 | const MENUE_NUM_PAGE MenueList[]={
+      |                                  ^
+  149 |    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
+      |    {                                                         }
+  150 |    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE))
+      |    {
+  151 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c: In function 'debu_main':
+../Core/Src/Src/usr_debug_tool.c:171:4: warning: implicit declaration of function 'DBmanue_prompt' [-Wimplicit-function-declaration]
+  171 |    DBmanue_prompt();
+      |    ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:174:4: warning: implicit declaration of function 'DBmanue_log' [-Wimplicit-function-declaration]
+  174 |    DBmanue_log();
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:177:4: warning: implicit declaration of function 'DBmanue_rs485' [-Wimplicit-function-declaration]
+  177 |    DBmanue_rs485();
+      |    ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:184:9: warning: implicit declaration of function 'DispMenue' [-Wimplicit-function-declaration]
+  184 |         DispMenue(dev_menue_type);
+      |         ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:163:7: warning: unused variable 'ch' [-Wunused-variable]
+  163 |  char ch;
+      |       ^~
+../Core/Src/Src/usr_debug_tool.c: At top level:
+../Core/Src/Src/usr_debug_tool.c:190:6: warning: conflicting types for 'DispMenue'
+  190 | void DispMenue(uint8_t type)
+      |      ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:184:9: note: previous implicit declaration of 'DispMenue' was here
+  184 |         DispMenue(dev_menue_type);
+      |         ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c: In function 'DispMenue':
+../Core/Src/Src/usr_debug_tool.c:194:9: warning: implicit declaration of function 'SKprintf'; did you mean 'vdprintf'? [-Wimplicit-function-declaration]
+  194 |         SKprintf("ST> ");
+      |         ^~~~~~~~
+      |         vdprintf
+../Core/Src/Src/usr_debug_tool.c: At top level:
+../Core/Src/Src/usr_debug_tool.c:205:6: warning: conflicting types for 'DBmanue_prompt'
+  205 | void DBmanue_prompt(void)
+      |      ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:171:4: note: previous implicit declaration of 'DBmanue_prompt' was here
+  171 |    DBmanue_prompt();
+      |    ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:225:6: warning: conflicting types for 'DBmanue_log'
+  225 | void DBmanue_log(void)
+      |      ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:174:4: note: previous implicit declaration of 'DBmanue_log' was here
+  174 |    DBmanue_log();
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:251:6: warning: conflicting types for 'DBmanue_rs485'
+  251 | void DBmanue_rs485(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:177:4: note: previous implicit declaration of 'DBmanue_rs485' was here
+  177 |    DBmanue_rs485();
+      |    ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c: In function 'input2menu':
+../Core/Src/Src/usr_debug_tool.c:283:17: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+  283 |             if (strcmp(&input_string.main[0], &com_list[i].command[0]) == 0){
+      |                 ^~~~~~
+../Core/Src/Src/usr_debug_tool.c: In function 'command_split':
+../Core/Src/Src/usr_debug_tool.c:343:40: warning: format '%x' expects argument of type 'unsigned int *', but argument 3 has type 'uint16_t *' {aka 'short unsigned int *'} [-Wformat=]
+  343 |      sscanf(input_string.sub_ptr[j], "%x", &input_string.data[j]);
+      |                                       ~^   ~~~~~~~~~~~~~~~~~~~~~
+      |                                        |   |
+      |                                        |   uint16_t * {aka short unsigned int *}
+      |                                        unsigned int *
+      |                                       %hx
+../Core/Src/Src/usr_debug_tool.c:357:40: warning: format '%d' expects argument of type 'int *', but argument 3 has type 'uint16_t *' {aka 'short unsigned int *'} [-Wformat=]
+  357 |      sscanf(input_string.sub_ptr[j], "%d", &input_string.data[j]);
+      |                                       ~^   ~~~~~~~~~~~~~~~~~~~~~
+      |                                        |   |
+      |                                        |   uint16_t * {aka short unsigned int *}
+      |                                        int *
+      |                                       %hd
+../Core/Src/Src/usr_debug_tool.c: In function 'read_line_streem':
+../Core/Src/Src/usr_debug_tool.c:397:21: warning: implicit declaration of function 'isprint' [-Wimplicit-function-declaration]
+  397 |                 if( isprint(c) && (input_pos <= INPUT_BUF_SIZE - 2)){
+      |                     ^~~~~~~
+../Core/Src/Src/usr_debug_tool.c:379:13: warning: unused variable 'sub_cnt' [-Wunused-variable]
+  379 |     uint8_t sub_cnt;
+      |             ^~~~~~~
+../Core/Src/Src/usr_debug_tool.c:378:13: warning: unused variable 'num' [-Wunused-variable]
+  378 |     uint8_t num;
+      |             ^~~
+../Core/Src/Src/usr_debug_tool.c:377:14: warning: unused variable 'keta' [-Wunused-variable]
+  377 |     uint16_t keta;
+      |              ^~~~
+../Core/Src/Src/usr_debug_tool.c:376:14: warning: unused variable 'j' [-Wunused-variable]
+  376 |     uint16_t j;
+      |              ^
+../Core/Src/Src/usr_debug_tool.c:375:14: warning: unused variable 'i' [-Wunused-variable]
+  375 |     uint16_t i;
+      |              ^
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+15:28:41 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+In file included from ../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h:146,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h:29,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:27,
+                 from ../Core/Inc/stm32f4xx_hal_conf.h:275,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/stm32f4xx_it.c:21:
+../Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f401xe.h:779:29: error: expected declaration specifiers or '...' before '(' token
+  779 | #define GPIOA               ((GPIO_TypeDef *) GPIOA_BASE)
+      |                             ^
+../Core/Src/stm32f4xx_it.c:50:20: note: in expansion of macro 'GPIOA'
+   50 | HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+      |                    ^~~~~
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:279,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/stm32f4xx_it.c:21:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_gpio.h:90:36: error: expected declaration specifiers or '...' before '(' token
+   90 | #define GPIO_PIN_5                 ((uint16_t)0x0020)  /* Pin 5 selected    */
+      |                                    ^
+../Core/Src/stm32f4xx_it.c:50:27: note: in expansion of macro 'GPIO_PIN_5'
+   50 | HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+      |                           ^~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/stm32f4xx_it.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+15:30:10 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  22384	    120	   8344	  30848	   7880	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+15:37:10 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-size   TEST001.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22384	    120	   8344	  30848	   7880	TEST001.elf
+Finished building: default.size.stdout
+ 
+15:37:37 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-size   TEST001.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22384	    120	   8344	  30848	   7880	TEST001.elf
+Finished building: default.size.stdout
+ 
+15:44:14 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  22384	    120	   8344	  30848	   7880	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+15:44:33 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-size   TEST001.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22384	    120	   8344	  30848	   7880	TEST001.elf
+Finished building: default.size.stdout
+ 
+15:50:12 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  22384	    120	   8344	  30848	   7880	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+15:50:26 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-size   TEST001.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22384	    120	   8344	  30848	   7880	TEST001.elf
+Finished building: default.size.stdout
+ 
+16:06:10 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_log.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_log.d" -MT"Core/Src/Src/usr_log.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_log.o"
+../Core/Src/Src/usr_log.c:80:10: warning: built-in function 'log' declared as non-function [-Wbuiltin-declaration-mismatch]
+   80 | LOG_DATA log;
+      |          ^~~
+../Core/Src/Src/usr_log.c: In function 'Set_logInfo':
+../Core/Src/Src/usr_log.c:114:3: warning: implicit declaration of function 'vsprintf' [-Wimplicit-function-declaration]
+  114 |   vsprintf(buffer, string, ap);
+      |   ^~~~~~~~
+../Core/Src/Src/usr_log.c: In function 'LogInfo_display':
+../Core/Src/Src/usr_log.c:165:3: warning: implicit declaration of function 'SKprintf' [-Wimplicit-function-declaration]
+  165 |   SKprintf("%02d:%02d:%02d.", log.rec[rptr].Hours, log.rec[rptr].Minutes, log.rec[rptr].Seconds);
+      |   ^~~~~~~~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  22456	    120	   8344	  30920	   78c8	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+16:18:04 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_debug_tool.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_debug_tool.d" -MT"Core/Src/Src/usr_debug_tool.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_debug_tool.o"
+arm-none-eabi-gcc "../Core/Src/Src/usr_isr_callback.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_isr_callback.d" -MT"Core/Src/Src/usr_isr_callback.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_isr_callback.o"
+arm-none-eabi-gcc "../Core/Src/Src/usr_log.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_log.d" -MT"Core/Src/Src/usr_log.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_log.o"
+arm-none-eabi-gcc "../Core/Src/Src/usr_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_main.d" -MT"Core/Src/Src/usr_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_main.o"
+../Core/Src/Src/usr_main.c: In function 'SKprintf':
+../Core/Src/Src/usr_log.c:76:10: warning: built-in function 'log' declared as non-function [-Wbuiltin-declaration-mismatch]
+   76 | LOG_DATA log;
+      |          ^~~
+../Core/Src/Src/usr_main.c:69:2: warning: implicit declaration of function 'vsprintf' [-Wimplicit-function-declaration]
+   69 |  vsprintf(buffer, string, ap);
+      |  ^~~~~~~~
+../Core/Src/Src/usr_main.c:77:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+   77 |  HAL_UART_Transmit(&huart2, buffer, i, HAL_MAX_DELAY);
+      |                             ^~~~~~
+      |                             |
+      |                             char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/Src/usr_main.c:10:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/Src/usr_log.c: In function 'Set_logflg':
+../Core/Src/Src/usr_log.c:89:3: warning: implicit declaration of function 'SKprintf' [-Wimplicit-function-declaration]
+   89 |   SKprintf("log.flg=%d \r\n",log.flg);
+      |   ^~~~~~~~
+../Core/Src/Src/usr_log.c: In function 'Set_logInfo':
+../Core/Src/Src/usr_log.c:124:3: warning: implicit declaration of function 'vsprintf' [-Wimplicit-function-declaration]
+  124 |   vsprintf(buffer, string, ap);
+      |   ^~~~~~~~
+../Core/Src/Src/usr_main.c:78:1: warning: control reaches end of non-void function [-Wreturn-type]
+   78 | }
+      | ^
+../Core/Src/Src/usr_debug_tool.c:122:29: warning: missing braces around initializer [-Wmissing-braces]
+  122 | const MENUE Deb_menue00[] = {
+      |                             ^
+  123 |     "\r\nLOG MENUE",
+      |     {              }
+  124 |     " 1.LOG DISPLAY",
+      |     {               }
+  125 |     " 2.LOG CLEAR",
+      |     {             }
+  126 |     " 3.STOP MODE:IMMMEDIATE",
+      |     {                        }
+  127 |     " 4.STOP MODE:MAX_DATA_STOP",
+      |     {                           }
+  128 |     " 5.STOP MODE:NON_STOP",
+      |     {                      }
+  129 | 
+  130 |     " r.EXIT"
+      |     {
+  131 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c:134:29: warning: missing braces around initializer [-Wmissing-braces]
+  134 | const MENUE Deb_menue01[] = {
+      |                             ^
+  135 |     "\r\nRS485 MENUE",
+      |     {                }
+  136 |     " 1.RX MODE",
+      |     {           }
+  137 |     " 2.TX MODE",
+      |     {           }
+  138 | 
+  139 |     " r.EXIT"
+      |     {
+  140 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c:149:4: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  149 |    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:150:4: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  150 |    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE))
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:148:34: warning: missing braces around initializer [-Wmissing-braces]
+  148 | const MENUE_NUM_PAGE MenueList[]={
+      |                                  ^
+  149 |    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
+      |    {                                                         }
+  150 |    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE))
+      |    {
+  151 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c: In function 'debu_main':
+../Core/Src/Src/usr_debug_tool.c:171:4: warning: implicit declaration of function 'DBmanue_prompt' [-Wimplicit-function-declaration]
+  171 |    DBmanue_prompt();
+      |    ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:174:4: warning: implicit declaration of function 'DBmanue_log' [-Wimplicit-function-declaration]
+  174 |    DBmanue_log();
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:177:4: warning: implicit declaration of function 'DBmanue_rs485' [-Wimplicit-function-declaration]
+  177 |    DBmanue_rs485();
+      |    ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:184:9: warning: implicit declaration of function 'DispMenue' [-Wimplicit-function-declaration]
+  184 |         DispMenue(dev_menue_type);
+      |         ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:163:7: warning: unused variable 'ch' [-Wunused-variable]
+  163 |  char ch;
+      |       ^~
+../Core/Src/Src/usr_debug_tool.c: At top level:
+../Core/Src/Src/usr_debug_tool.c:190:6: warning: conflicting types for 'DispMenue'
+  190 | void DispMenue(uint8_t type)
+      |      ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:184:9: note: previous implicit declaration of 'DispMenue' was here
+  184 |         DispMenue(dev_menue_type);
+      |         ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c: In function 'DispMenue':
+../Core/Src/Src/usr_debug_tool.c:194:9: warning: implicit declaration of function 'SKprintf'; did you mean 'vdprintf'? [-Wimplicit-function-declaration]
+  194 |         SKprintf("ST> ");
+      |         ^~~~~~~~
+      |         vdprintf
+../Core/Src/Src/usr_debug_tool.c: At top level:
+../Core/Src/Src/usr_debug_tool.c:205:6: warning: conflicting types for 'DBmanue_prompt'
+  205 | void DBmanue_prompt(void)
+      |      ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:171:4: note: previous implicit declaration of 'DBmanue_prompt' was here
+  171 |    DBmanue_prompt();
+      |    ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:225:6: warning: conflicting types for 'DBmanue_log'
+  225 | void DBmanue_log(void)
+      |      ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:174:4: note: previous implicit declaration of 'DBmanue_log' was here
+  174 |    DBmanue_log();
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:254:6: warning: conflicting types for 'DBmanue_rs485'
+  254 | void DBmanue_rs485(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:177:4: note: previous implicit declaration of 'DBmanue_rs485' was here
+  177 |    DBmanue_rs485();
+      |    ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c: In function 'input2menu':
+../Core/Src/Src/usr_debug_tool.c:286:17: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+  286 |             if (strcmp(&input_string.main[0], &com_list[i].command[0]) == 0){
+      |                 ^~~~~~
+../Core/Src/Src/usr_debug_tool.c: In function 'command_split':
+../Core/Src/Src/usr_debug_tool.c:346:40: warning: format '%x' expects argument of type 'unsigned int *', but argument 3 has type 'uint16_t *' {aka 'short unsigned int *'} [-Wformat=]
+  346 |      sscanf(input_string.sub_ptr[j], "%x", &input_string.data[j]);
+      |                                       ~^   ~~~~~~~~~~~~~~~~~~~~~
+      |                                        |   |
+      |                                        |   uint16_t * {aka short unsigned int *}
+      |                                        unsigned int *
+      |                                       %hx
+../Core/Src/Src/usr_debug_tool.c:360:40: warning: format '%d' expects argument of type 'int *', but argument 3 has type 'uint16_t *' {aka 'short unsigned int *'} [-Wformat=]
+  360 |      sscanf(input_string.sub_ptr[j], "%d", &input_string.data[j]);
+      |                                       ~^   ~~~~~~~~~~~~~~~~~~~~~
+      |                                        |   |
+      |                                        |   uint16_t * {aka short unsigned int *}
+      |                                        int *
+      |                                       %hd
+../Core/Src/Src/usr_debug_tool.c: In function 'read_line_streem':
+../Core/Src/Src/usr_debug_tool.c:400:21: warning: implicit declaration of function 'isprint' [-Wimplicit-function-declaration]
+  400 |                 if( isprint(c) && (input_pos <= INPUT_BUF_SIZE - 2)){
+      |                     ^~~~~~~
+../Core/Src/Src/usr_debug_tool.c:382:13: warning: unused variable 'sub_cnt' [-Wunused-variable]
+  382 |     uint8_t sub_cnt;
+      |             ^~~~~~~
+../Core/Src/Src/usr_debug_tool.c:381:13: warning: unused variable 'num' [-Wunused-variable]
+  381 |     uint8_t num;
+      |             ^~~
+../Core/Src/Src/usr_debug_tool.c:380:14: warning: unused variable 'keta' [-Wunused-variable]
+  380 |     uint16_t keta;
+      |              ^~~~
+../Core/Src/Src/usr_debug_tool.c:379:14: warning: unused variable 'j' [-Wunused-variable]
+  379 |     uint16_t j;
+      |              ^
+../Core/Src/Src/usr_debug_tool.c:378:14: warning: unused variable 'i' [-Wunused-variable]
+  378 |     uint16_t i;
+      |              ^
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  22600	    120	   8344	  31064	   7958	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+16:19:00 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-size   TEST001.elf 
+   text	   data	    bss	    dec	    hex	filename
+  22600	    120	   8344	  31064	   7958	TEST001.elf
+Finished building: default.size.stdout
+ 

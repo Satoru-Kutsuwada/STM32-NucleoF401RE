@@ -4,4 +4,4 @@ main.c:168:13:MX_RTC_Init	5
 main.c:238:13:MX_TIM1_Init	4
 main.c:284:13:MX_USART2_UART_Init	2
 main.c:317:13:MX_GPIO_Init	1
-main.c:357:6:Error_Handler	1
+main.c:367:6:Error_Handler	1

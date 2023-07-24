@@ -46,7 +46,7 @@
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN PFP */
-void usr_isr_tim1_up(void);			// SK Add
+void usr_isr_tim1_up(void);			//ã€?è¿½åŠ?ã‚³ãƒ¼ãƒ?
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -209,7 +209,7 @@ void RTC_WKUP_IRQHandler(void)
   /* USER CODE END RTC_WKUP_IRQn 0 */
   HAL_RTCEx_WakeUpTimerIRQHandler(&hrtc);
   /* USER CODE BEGIN RTC_WKUP_IRQn 1 */
-  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);	// SK ADD
+
   /* USER CODE END RTC_WKUP_IRQn 1 */
 }
 
@@ -223,8 +223,7 @@ void TIM1_UP_TIM10_IRQHandler(void)
   /* USER CODE END TIM1_UP_TIM10_IRQn 0 */
   HAL_TIM_IRQHandler(&htim1);
   /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 1 */
-  usr_isr_tim1_up();	// SK ADD
-  //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);	// SK ADD
+  usr_isr_tim1_up();	// è¿½åŠ?ã‚³ãƒ¼ãƒ?
   /* USER CODE END TIM1_UP_TIM10_IRQn 1 */
 }
 

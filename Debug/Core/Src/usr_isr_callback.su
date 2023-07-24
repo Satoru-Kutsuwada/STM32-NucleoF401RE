@@ -1,2 +1,0 @@
-../Core/Src/usr_isr_callback.c:53:6:HAL_RTCEx_WakeUpTimerEventCallback	24	static
-../Core/Src/usr_isr_callback.c:86:6:usr_isr_tim1_up	4	static

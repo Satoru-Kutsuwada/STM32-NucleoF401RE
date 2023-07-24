@@ -1,0 +1,17 @@
+data='[ \
+	{ \
+		"image": "news/VisualExampleSelector.png", \
+		"link": "", \
+		"caption": "" \
+	}, \
+	{ \
+		"image": "news/VisualComplexity.png", \
+		"link": "", \
+		"caption": "" \
+	}, \
+	{ \
+		"image": "news/VisualRessourcePortal.png", \
+		"link": "", \
+		"caption": "" \
+	} \
+]';

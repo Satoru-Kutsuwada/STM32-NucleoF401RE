@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -47,6 +48,21 @@ TIM_HandleTypeDef htim2;
 
 UART_HandleTypeDef huart2;
 
+/* Definitions for Task_main */
+osThreadId_t Task_mainHandle;
+const osThreadAttr_t Task_main_attributes = {
+  .name = "Task_main",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for Task_sub1 */
+osThreadId_t Task_sub1Handle;
+const osThreadAttr_t Task_sub1_attributes = {
+  .name = "Task_sub1",
+  .stack_size = 128 * 4,
+//  .priority = (osPriority_t) osPriorityLow,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -58,10 +74,15 @@ static void MX_USART2_UART_Init(void);
 static void MX_RTC_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
+void StartDefaultTask(void *argument);
+void StartTask02(void *argument);
+
 /* USER CODE BEGIN PFP */
 void user_init(void);			// SK ADD
 void user_main_loop(void);		// SK ADD
 void rtc_display(void);			// SK ADD
+void debu_main(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -106,6 +127,43 @@ int main(void)
   user_init();		// SK ADD
   /* USER CODE END 2 */
 
+  /* Init scheduler */
+  osKernelInitialize();
+
+  /* USER CODE BEGIN RTOS_MUTEX */
+  /* add mutexes, ... */
+  /* USER CODE END RTOS_MUTEX */
+
+  /* USER CODE BEGIN RTOS_SEMAPHORES */
+  /* add semaphores, ... */
+  /* USER CODE END RTOS_SEMAPHORES */
+
+  /* USER CODE BEGIN RTOS_TIMERS */
+  /* start timers, add new ones, ... */
+  /* USER CODE END RTOS_TIMERS */
+
+  /* USER CODE BEGIN RTOS_QUEUES */
+  /* add queues, ... */
+  /* USER CODE END RTOS_QUEUES */
+
+  /* Create the thread(s) */
+  /* creation of Task_main */
+  Task_mainHandle = osThreadNew(StartDefaultTask, NULL, &Task_main_attributes);
+
+  /* creation of Task_sub1 */
+  Task_sub1Handle = osThreadNew(StartTask02, NULL, &Task_sub1_attributes);
+
+  /* USER CODE BEGIN RTOS_THREADS */
+  /* add threads, ... */
+  /* USER CODE END RTOS_THREADS */
+
+  /* USER CODE BEGIN RTOS_EVENTS */
+  /* add events, ... */
+  /* USER CODE END RTOS_EVENTS */
+
+  /* Start scheduler */
+  osKernelStart();
+  /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -113,7 +171,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	 user_main_loop();		// SK ADD
+	 //user_main_loop();		// SK ADD
   }
   /* USER CODE END 3 */
 }
@@ -230,7 +288,31 @@ static void MX_RTC_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN RTC_Init 2 */
+#define MAGIC_NO 0x12a5			// SK ADD
 
+  if(HAL_RTCEx_BKUPRead(&hrtc, RTC_BKP_DR0) != MAGIC_NO)
+  {
+    RTC_TimeTypeDef sTime = {0};
+    RTC_DateTypeDef sDate = {0};
+
+    sTime.Hours = 1;
+    sTime.Minutes = 0;
+    sTime.Seconds = 0;
+    if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+    {
+      Error_Handler();
+    }
+    sDate.WeekDay = RTC_WEEKDAY_WEDNESDAY;
+    sDate.Month = RTC_MONTH_JANUARY;
+    sDate.Date = 1;
+    sDate.Year = 20;
+    if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+    {
+      Error_Handler();
+
+    }
+    HAL_RTCEx_BKUPWrite(&hrtc, RTC_BKP_DR0, MAGIC_NO);
+  }
   /* USER CODE END RTC_Init 2 */
 
 }
@@ -410,9 +492,49 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE END 4 */
 
+/* USER CODE BEGIN Header_StartDefaultTask */
+/**
+  * @brief  Function implementing the Task_main thread.
+  * @param  argument: Not used
+  * @retval None
+  */
+/* USER CODE END Header_StartDefaultTask */
+void StartDefaultTask(void *argument)
+{
+  /* USER CODE BEGIN 5 */
+  /* Infinite loop */
+  for(;;)
+  {
+//	  rtc_display();
+	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+    osDelay(1000);
+  }
+  /* USER CODE END 5 */
+}
+
+/* USER CODE BEGIN Header_StartTask02 */
+/**
+* @brief Function implementing the Task_sub1 thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask02 */
+void StartTask02(void *argument)
+{
+  /* USER CODE BEGIN StartTask02 */
+  /* Infinite loop */
+  for(;;)
+  {
+	  debu_main();
+//	  user_main_loop();		// SK ADD
+    osDelay(1);
+  }
+  /* USER CODE END StartTask02 */
+}
+
 /**
   * @brief  Period elapsed callback in non blocking mode
-  * @note   This function is called  when TIM5 interrupt took place, inside
+  * @note   This function is called  when TIM10 interrupt took place, inside
   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
   * a global variable "uwTick" used as application time base.
   * @param  htim : TIM handle
@@ -423,7 +545,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   /* USER CODE BEGIN Callback 0 */
 
   /* USER CODE END Callback 0 */
-  if (htim->Instance == TIM5) {
+  if (htim->Instance == TIM10) {
     HAL_IncTick();
   }
   /* USER CODE BEGIN Callback 1 */

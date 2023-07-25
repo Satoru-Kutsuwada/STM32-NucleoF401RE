@@ -1,17 +1,17 @@
-09:37:13 **** Incremental Build of configuration Debug for project TEST001 ****
+14:41:14 **** Incremental Build of configuration Debug for project TEST001 ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f4xx_it.d" -MT"Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: TEST001.elf
  
 arm-none-eabi-size   TEST001.elf 
 arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
    text	   data	    bss	    dec	    hex	filename
-  22972	    120	   8488	  31580	   7b5c	TEST001.elf
+  34560	    124	  27268	  61952	   f200	TEST001.elf
 Finished building: default.size.stdout
  
 Finished building: TEST001.list
  
 
-09:37:14 Build Finished. 0 errors, 0 warnings. (took 710ms)
+14:41:16 Build Finished. 0 errors, 0 warnings. (took 1s.626ms)
 

@@ -43,6 +43,8 @@ extern TIM_HandleTypeDef htim1;
 
 /* Private variables ---------------------------------------------------------*/
 int gUartReceived = 0;
+int Sem_Printf = 0;
+
 
 /* Private function prototypes -----------------------------------------------*/
 void Get_UART_Handle(UART_HandleTypeDef *uart_handle);
@@ -61,6 +63,11 @@ int	SKprintf (const char *string, ...)
 
 	char buffer[PRiNTF_BUFFMAX];
 
+
+	while( Sem_Printf != 0 );
+
+	Sem_Printf = 1;
+
 	// 可変個引数の利用準備
 	// -- １… va_list 構造体 ap
 	// -- 2 … 可変個引数の直前にある引数
@@ -75,6 +82,9 @@ int	SKprintf (const char *string, ...)
 		}
 	}
 	HAL_UART_Transmit(&huart2, buffer, i, HAL_MAX_DELAY);
+
+	Sem_Printf = 0;
+
 }
 
 

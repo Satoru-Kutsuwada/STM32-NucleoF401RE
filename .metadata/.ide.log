@@ -1018,3 +1018,109 @@
 2023-07-25 09:25:01,739 [INFO] ProjectBuilder:4505 - Time for Generating toolchain IDE Files: 2357mS.
 2023-07-25 09:25:01,740 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 1mS.
 2023-07-25 09:25:01,741 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.
+2023-07-25 09:54:19,755 [INFO] RtosManager:919 - Current active RTOS is FREERTOS [Cortex-M4NS]
+2023-07-25 09:54:20,032 [ERROR] RtosPanel:558 - Can not restore the selected Tab for FREERTOS(A reason can be that the tab is no more available.)
+2023-07-25 09:54:20,078 [ERROR] RtosPanel:558 - Can not restore the selected Tab for FREERTOS(A reason can be that the tab is no more available.)
+2023-07-25 09:54:48,142 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-07-25 09:54:48,142 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-07-25 09:54:48,142 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-07-25 09:55:44,474 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 96
+2023-07-25 09:55:44,474 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 24576
+2023-07-25 09:57:15,595 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-07-25 09:57:15,596 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-07-25 09:57:15,596 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-07-25 09:57:15,701 [ERROR] RtosPanel:558 - Can not restore the selected Tab for FREERTOS(A reason can be that the tab is no more available.)
+2023-07-25 09:57:21,968 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-07-25 09:57:21,973 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-07-25 09:57:21,973 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-07-25 09:57:25,780 [INFO] EditThreadDialog:704 - RAM SIZE (in KB): 96
+2023-07-25 09:57:25,780 [INFO] EditThreadDialog:706 - RAM SIZE (in words): 24576
+2023-07-25 09:58:02,417 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-07-25 09:58:02,418 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-07-25 09:58:02,418 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-07-25 09:58:02,418 [INFO] TasksAndQueuesTab:757 - Dynamic
+2023-07-25 09:58:02,418 [WARN] TasksAndQueuesTab:763 - 128 128
+2023-07-25 09:58:02,418 [WARN] TasksAndQueuesTab:775 - max value is: 3840.0
+2023-07-25 10:00:45,809 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 769364704 Bytes (908066816)
+2023-07-25 10:00:48,645 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 790559328 Bytes (908066816)
+2023-07-25 10:00:49,906 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 625968312 Bytes (908066816)
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RTC
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: NVIC
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: FREERTOS
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: USART
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: TIM1_8
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: SYS
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: GPIO
+2023-07-25 10:01:03,977 [INFO] BlockDiagram:2759 - set Specific Code input for plugin: RCC
+2023-07-25 10:01:03,979 [INFO] CodeGenerator:793 - code generatio: config db path: C:\ST\STM32CubeIDE_1.12.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.8.0.202302231600\\db\
+2023-07-25 10:01:04,160 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\license.tmp_save
+2023-07-25 10:01:04,287 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\license.tmp
+2023-07-25 10:01:04,311 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\gpio.tmp_save
+2023-07-25 10:01:04,401 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\gpio.tmp
+2023-07-25 10:01:04,621 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-07-25 10:01:04,628 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_inc.tmp_save
+2023-07-25 10:01:04,701 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_inc.tmp
+2023-07-25 10:01:04,710 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-07-25 10:01:04,777 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_kernelInit.tmp
+2023-07-25 10:01:04,782 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-07-25 10:01:04,866 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_kernelStart.tmp
+2023-07-25 10:01:04,876 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_typedefs.tmp_save
+2023-07-25 10:01:04,953 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_typedefs.tmp
+2023-07-25 10:01:04,960 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_vars.tmp_save
+2023-07-25 10:01:05,060 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_vars.tmp
+2023-07-25 10:01:05,067 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_pfp.tmp_save
+2023-07-25 10:01:05,143 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_pfp.tmp
+2023-07-25 10:01:05,148 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-07-25 10:01:05,249 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_obj_creat.tmp
+2023-07-25 10:01:05,260 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_default_thread.tmp_save
+2023-07-25 10:01:05,383 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_default_thread.tmp
+2023-07-25 10:01:05,394 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_threads.tmp_save
+2023-07-25 10:01:05,460 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_threads.tmp
+2023-07-25 10:01:05,476 [INFO] Middleware:1439 - No code input for Bsp Dependency
+2023-07-25 10:01:05,488 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_inc.tmp_save
+2023-07-25 10:01:05,560 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_inc.tmp
+2023-07-25 10:01:05,560 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_kernelInit.tmp_save
+2023-07-25 10:01:05,603 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_kernelInit.tmp
+2023-07-25 10:01:05,609 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_kernelStart.tmp_save
+2023-07-25 10:01:05,643 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_kernelStart.tmp
+2023-07-25 10:01:05,653 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_typedefs.tmp_save
+2023-07-25 10:01:05,692 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_typedefs.tmp
+2023-07-25 10:01:05,702 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_vars.tmp_save
+2023-07-25 10:01:05,743 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_vars.tmp
+2023-07-25 10:01:05,753 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_pfp.tmp_save
+2023-07-25 10:01:05,793 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_pfp.tmp
+2023-07-25 10:01:05,803 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_obj_creat.tmp_save
+2023-07-25 10:01:05,856 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_obj_creat.tmp
+2023-07-25 10:01:05,859 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_default_thread.tmp_save
+2023-07-25 10:01:05,893 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_default_thread.tmp
+2023-07-25 10:01:05,893 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_threads.tmp_save
+2023-07-25 10:01:05,936 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\rtos_threads.tmp
+2023-07-25 10:01:05,943 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\FreeRTOSConfig.h_save
+2023-07-25 10:01:06,026 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\FreeRTOSConfig.h
+2023-07-25 10:01:06,036 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\freertos.c_save
+2023-07-25 10:01:06,136 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\freertos.c
+2023-07-25 10:01:06,153 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_it.c_save
+2023-07-25 10:01:06,375 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_it.c
+2023-07-25 10:01:06,392 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_it.h_save
+2023-07-25 10:01:06,492 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_it.h
+2023-07-25 10:01:06,519 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_hal_msp.c_save
+2023-07-25 10:01:06,659 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_hal_msp.c
+2023-07-25 10:01:06,664 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\system.tmp_save
+2023-07-25 10:01:06,712 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\MXTmpFiles\system.tmp
+2023-07-25 10:01:06,722 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_hal_timebase_tim.c_save
+2023-07-25 10:01:06,826 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\stm32f4xx_hal_timebase_tim.c
+2023-07-25 10:01:06,842 [INFO] CodeEngine:311 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_hal_conf.h_save
+2023-07-25 10:01:06,937 [INFO] CodeEngine:335 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\stm32f4xx_hal_conf.h
+2023-07-25 10:01:06,975 [WARN] IPConfigManager:3431 - IP not found : TIM
+2023-07-25 10:01:06,975 [WARN] CodeGenerator:3754 - IP not found : null
+2023-07-25 10:01:06,992 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\main.h_save
+2023-07-25 10:01:07,092 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Inc\main.h
+2023-07-25 10:01:07,108 [INFO] CodeEngine:255 - oldGeneratedFile, D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\main.c_save
+2023-07-25 10:01:07,254 [INFO] CodeEngine:279 - Generated code: D:\ST\git\STM32-NucleoF401RE\TEST001\Core\Src\main.c
+2023-07-25 10:01:07,858 [INFO] ProjectBuilder:2996 - Time for Copy HAL[1] : 162mS.
+2023-07-25 10:01:07,868 [INFO] ProjectBuilder:4304 - Project Generator version: 3.19.2
+2023-07-25 10:01:08,122 [INFO] ConfigFileManager:1483 - The Die is : DIE433
+2023-07-25 10:01:10,766 [INFO] ProjectBuilder:4505 - Time for Generating toolchain IDE Files: 2898mS.
+2023-07-25 10:01:10,767 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.
+2023-07-25 10:01:10,767 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.

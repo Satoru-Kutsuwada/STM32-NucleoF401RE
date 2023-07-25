@@ -57,6 +57,9 @@ void usr_isr_tim1_up(void);			// SK Add
 /* External variables --------------------------------------------------------*/
 extern RTC_HandleTypeDef hrtc;
 extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
+extern TIM_HandleTypeDef htim5;
+
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -186,7 +189,7 @@ void SysTick_Handler(void)
   /* USER CODE BEGIN SysTick_IRQn 0 */
 
   /* USER CODE END SysTick_IRQn 0 */
-  HAL_IncTick();
+
   /* USER CODE BEGIN SysTick_IRQn 1 */
 
   /* USER CODE END SysTick_IRQn 1 */
@@ -209,7 +212,7 @@ void RTC_WKUP_IRQHandler(void)
   /* USER CODE END RTC_WKUP_IRQn 0 */
   HAL_RTCEx_WakeUpTimerIRQHandler(&hrtc);
   /* USER CODE BEGIN RTC_WKUP_IRQn 1 */
-  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);	// SK ADD
+  //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);	// SK ADD
   /* USER CODE END RTC_WKUP_IRQn 1 */
 }
 
@@ -223,9 +226,38 @@ void TIM1_UP_TIM10_IRQHandler(void)
   /* USER CODE END TIM1_UP_TIM10_IRQn 0 */
   HAL_TIM_IRQHandler(&htim1);
   /* USER CODE BEGIN TIM1_UP_TIM10_IRQn 1 */
-  usr_isr_tim1_up();	// SK ADD
+//  usr_isr_tim1_up();	// SK ADD
   //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);	// SK ADD
   /* USER CODE END TIM1_UP_TIM10_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM2 global interrupt.
+  */
+void TIM2_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM2_IRQn 0 */
+
+  /* USER CODE END TIM2_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim2);
+  /* USER CODE BEGIN TIM2_IRQn 1 */
+  usr_isr_tim1_up();	// SK ADD
+
+  /* USER CODE END TIM2_IRQn 1 */
+}
+
+/**
+  * @brief This function handles TIM5 global interrupt.
+  */
+void TIM5_IRQHandler(void)
+{
+  /* USER CODE BEGIN TIM5_IRQn 0 */
+
+  /* USER CODE END TIM5_IRQn 0 */
+  HAL_TIM_IRQHandler(&htim5);
+  /* USER CODE BEGIN TIM5_IRQn 1 */
+
+  /* USER CODE END TIM5_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

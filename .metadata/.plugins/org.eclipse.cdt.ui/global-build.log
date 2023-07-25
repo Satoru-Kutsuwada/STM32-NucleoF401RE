@@ -2337,3 +2337,163 @@ Finished building: default.size.stdout
  
 Finished building: TEST001.list
  
+16:27:47 **** Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  34560	    124	  27268	  61952	   f200	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+16:50:10 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_debug_tool.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_debug_tool.d" -MT"Core/Src/Src/usr_debug_tool.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_debug_tool.o"
+../Core/Src/Src/usr_debug_tool.c:126:29: warning: missing braces around initializer [-Wmissing-braces]
+  126 | const MENUE Deb_menue00[] = {
+      |                             ^
+  127 |     "\r\nLOG MENUE",
+      |     {              }
+  128 |     " 1.LOG DISPLAY",
+      |     {               }
+  129 |     " 2.LOG CLEAR",
+      |     {             }
+  130 |     " 3.STOP MODE:IMMMEDIATE",
+      |     {                        }
+  131 |     " 4.STOP MODE:MAX_DATA_STOP",
+      |     {                           }
+  132 |     " 5.STOP MODE:NON_STOP",
+      |     {                      }
+  133 | 
+  134 |     " r.EXIT"
+      |     {
+  135 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c:138:29: warning: missing braces around initializer [-Wmissing-braces]
+  138 | const MENUE Deb_menue01[] = {
+      |                             ^
+  139 |     "\r\nRS485 MENUE",
+      |     {                }
+  140 |     " 1.RX MODE",
+      |     {           }
+  141 |     " 2.TX MODE",
+      |     {           }
+  142 | 
+  143 |     " r.EXIT"
+      |     {
+  144 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c:146:29: warning: missing braces around initializer [-Wmissing-braces]
+  146 | const MENUE Deb_menue02[] = {
+      |                             ^
+  147 |     "\r\nMEMPRY MENUE",
+      |     {                 }
+  148 |     " 1.ADDRESS INPUT",
+      |     {                 }
+  149 |     " 2.TASK01",
+      |     {          }
+  150 |     " 3.TASK02",
+      |     {          }
+  151 |     " 4.TASK03",
+      |     {          }
+  152 | 
+  153 |     " r.EXIT"
+      |     {
+  154 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c:165:4: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  165 |    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:166:4: warning: initialization discards 'const' qualifier from pointer target type [-Wdiscarded-qualifiers]
+  166 |    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE))
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:164:34: warning: missing braces around initializer [-Wmissing-braces]
+  164 | const MENUE_NUM_PAGE MenueList[]={
+      |                                  ^
+  165 |    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
+      |    {                                                         }
+  166 |    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE))
+      |    {
+  167 | };
+      | }
+../Core/Src/Src/usr_debug_tool.c: In function 'debu_main':
+../Core/Src/Src/usr_debug_tool.c:187:3: warning: implicit declaration of function 'SKprintf'; did you mean 'vdprintf'? [-Wimplicit-function-declaration]
+  187 |   SKprintf("debu_main:001\r\n");
+      |   ^~~~~~~~
+      |   vdprintf
+../Core/Src/Src/usr_debug_tool.c:191:4: warning: implicit declaration of function 'DBmanue_prompt' [-Wimplicit-function-declaration]
+  191 |    DBmanue_prompt();
+      |    ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:194:4: warning: implicit declaration of function 'DBmanue_log' [-Wimplicit-function-declaration]
+  194 |    DBmanue_log();
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:197:4: warning: implicit declaration of function 'DBmanue_rs485' [-Wimplicit-function-declaration]
+  197 |    DBmanue_rs485();
+      |    ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:208:9: warning: implicit declaration of function 'DispMenue' [-Wimplicit-function-declaration]
+  208 |         DispMenue(dev_menue_type);
+      |         ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c: At top level:
+../Core/Src/Src/usr_debug_tool.c:216:6: warning: conflicting types for 'DispMenue'
+  216 | void DispMenue(uint8_t type)
+      |      ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:208:9: note: previous implicit declaration of 'DispMenue' was here
+  208 |         DispMenue(dev_menue_type);
+      |         ^~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:231:6: warning: conflicting types for 'DBmanue_prompt'
+  231 | void DBmanue_prompt(void)
+      |      ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:191:4: note: previous implicit declaration of 'DBmanue_prompt' was here
+  191 |    DBmanue_prompt();
+      |    ^~~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:255:6: warning: conflicting types for 'DBmanue_log'
+  255 | void DBmanue_log(void)
+      |      ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:194:4: note: previous implicit declaration of 'DBmanue_log' was here
+  194 |    DBmanue_log();
+      |    ^~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:284:6: warning: conflicting types for 'DBmanue_rs485'
+  284 | void DBmanue_rs485(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c:197:4: note: previous implicit declaration of 'DBmanue_rs485' was here
+  197 |    DBmanue_rs485();
+      |    ^~~~~~~~~~~~~
+../Core/Src/Src/usr_debug_tool.c: In function 'input2menu':
+../Core/Src/Src/usr_debug_tool.c:370:17: warning: implicit declaration of function 'strcmp' [-Wimplicit-function-declaration]
+  370 |             if (strcmp(&input_string.main[0], &com_list[i].command[0]) == 0){
+      |                 ^~~~~~
+../Core/Src/Src/usr_debug_tool.c: In function 'command_split':
+../Core/Src/Src/usr_debug_tool.c:430:40: warning: format '%x' expects argument of type 'unsigned int *', but argument 3 has type 'uint16_t *' {aka 'short unsigned int *'} [-Wformat=]
+  430 |      sscanf(input_string.sub_ptr[j], "%x", &input_string.data[j]);
+      |                                       ~^   ~~~~~~~~~~~~~~~~~~~~~
+      |                                        |   |
+      |                                        |   uint16_t * {aka short unsigned int *}
+      |                                        unsigned int *
+      |                                       %hx
+../Core/Src/Src/usr_debug_tool.c:444:40: warning: format '%d' expects argument of type 'int *', but argument 3 has type 'uint16_t *' {aka 'short unsigned int *'} [-Wformat=]
+  444 |      sscanf(input_string.sub_ptr[j], "%d", &input_string.data[j]);
+      |                                       ~^   ~~~~~~~~~~~~~~~~~~~~~
+      |                                        |   |
+      |                                        |   uint16_t * {aka short unsigned int *}
+      |                                        int *
+      |                                       %hd
+../Core/Src/Src/usr_debug_tool.c: In function 'read_line_streem':
+../Core/Src/Src/usr_debug_tool.c:487:21: warning: implicit declaration of function 'isprint' [-Wimplicit-function-declaration]
+  487 |                 if( isprint(c) && (input_pos <= INPUT_BUF_SIZE - 2)){
+      |                     ^~~~~~~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  34940	    124	  27268	  62332	   f37c	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 

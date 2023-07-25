@@ -76,7 +76,6 @@ INPUT_STRING input_string;
     CMD_RTC,
     CMD_LOG,
     CMD_RS485,
-	CMD_MEM_DUMP,
 
 
     CMD_MAX
@@ -91,8 +90,7 @@ INPUT_STRING input_string;
  const COMAND_LIST com_list[] = {
      { CMD_RTC,      "rtc"  },
      { CMD_LOG,      "log" },
-	 { CMD_RS485,    "rs485" },
-	 { CMD_MEM_DUMP,    "mem" },
+     { CMD_RS485,    "rs485" },
 
 
 
@@ -106,8 +104,6 @@ INPUT_STRING input_string;
      DEB_PROMPT_MODE = 0,
      DEB_LOG_MENUE,
      DEB_RS485_MENUE,
-     DEB_MEM_MENUE,
-
 
      DEB_DISP_MAX
  } DEB_MENUE_TYPE;
@@ -143,18 +139,6 @@ const MENUE Deb_menue01[] = {
     " r.EXIT"
 };
 
-const MENUE Deb_menue02[] = {
-    "\r\nMEMPRY MENUE",
-    " 1.ADDRESS INPUT",
-    " 2.TASK01",
-    " 3.TASK02",
-    " 4.TASK03",
-
-    " r.EXIT"
-};
-
-
-
 typedef struct
 {
    MENUE *pt;
@@ -170,8 +154,6 @@ const MENUE_NUM_PAGE MenueList[]={
  /* Private function prototypes -----------------------------------------------*/
 INPUT_CHAR_STEP read_line_streem(void);
 COMMAND_MENUE input2menu(void);
-void DBmanue_memdump(void);
-
 
 //=============================================================================
 //
@@ -195,9 +177,6 @@ void debu_main(void)
 			break;
 		case DEB_RS485_MENUE:
 			DBmanue_rs485();
-			break;
-		case DEB_MEM_MENUE:
-			DBmanue_memdump();
 			break;
 		default:
 			break;
@@ -240,10 +219,6 @@ void DBmanue_prompt(void)
     case CMD_RS485:
         dev_menue_type = DEB_RS485_MENUE;
         break;
-    case CMD_MEM_DUMP:
-        dev_menue_type = DEB_MEM_MENUE;
-    	break;
-
     default:
         break;
     }
@@ -302,60 +277,6 @@ void DBmanue_rs485(void)
 	}
 }
 
-//==============================================================================
-//
-//==============================================================================
-void DBmanue_memdump(void)
-{
-	switch( input_string.main[0] ){
-	case '1':
-		break;
-	case '2':
-		break;
-	case '3':
-		break;
-	case '4':
-		break;
-	case '5':
-		break;
-	case 'r':
-	case 'R':
-		dev_menue_type = DEB_PROMPT_MODE;
-	default:
-		break;
-	}
-
-}
-
-//==============================================================================
-//
-//==============================================================================
-void hex_dmp(const void *buf, int size)
-{
-    int i,j;
-    unsigned char *p = (unsigned char *)buf, tmp[20];
-
-    SKprintf("+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +A +B +C +D +E +F|  -- ASCII --\r\n");
-    SKprintf("--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+----------------\r\n");
-    for (i=0; p-(unsigned char *)buf<size; i++) {
-        for (j=0; j<16; j++) {
-            tmp[j] = (unsigned char)((*p<0x20||*p>=0x7f)? '.': *p);
-            SKprintf("%02X ", (int)*p);
-            if (++p-(unsigned char *)buf>=size) {
-                tmp[++j] = '\0';
-                for (;j<16;j++) {
-                    SKprintf("   ");
-                }
-                break;
-            }
-        }
-        tmp[16] = '\0';
-        SKprintf("%s\r\n", tmp);
-        if (p-(unsigned char *)buf>=size) {
-            break;
-        }
-    }
-}
 
 //==============================================================================
 //

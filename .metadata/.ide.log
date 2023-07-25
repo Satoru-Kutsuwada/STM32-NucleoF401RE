@@ -2103,3 +2103,11 @@
 2023-07-25 16:12:55,446 [INFO] ProjectBuilder:4505 - Time for Generating toolchain IDE Files: 2832mS.
 2023-07-25 16:12:55,447 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.
 2023-07-25 16:12:55,450 [INFO] ProjectBuilder:2867 - Time for Copy CMSIS : 0mS.
+2023-07-25 16:27:33,442 [INFO] Activator:176 - 
+
+
+2023-07-25 16:27:33,442 [INFO] Activator:177 - !SESSION log4j initialized
+2023-07-25 16:27:36,150 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2023-07-25 16:27:57,452 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+2023-07-25 16:27:57,452 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: Defaulting to no-operation (NOP) logger implementation
+2023-07-25 16:27:57,452 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.

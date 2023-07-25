@@ -160,11 +160,13 @@ COMMAND_MENUE input2menu(void);
 //=============================================================================
 void debu_main(void)
 {
-	char ch;
+	//char ch;
 
 	if(read_line_streem() == INPUT_DATA_FIX){
 
 		input_char_step = INPUT_INIT;
+
+		SKprintf("debu_main:001\r\n");
 
 		switch(dev_menue_type){
 		case DEB_PROMPT_MODE:
@@ -180,8 +182,11 @@ void debu_main(void)
 			break;
 		}
 
+		SKprintf("debu_main:002\r\n");
         // メニュを表示する
         DispMenue(dev_menue_type);
+        SKprintf("debu_main:003\r\n");
+
 	}
 }
 //==============================================================================
@@ -375,11 +380,14 @@ void command_split(void)
  INPUT_CHAR_STEP read_line_streem(void)
 {
     char c;
+
+#ifdef ___NOP
     uint16_t i;
     uint16_t j;
     uint16_t keta;
     uint8_t num;
     uint8_t sub_cnt;
+#endif	// ___NOP
     char	string[2];
 
     string[0] = '\0';

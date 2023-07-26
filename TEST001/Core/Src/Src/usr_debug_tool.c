@@ -38,6 +38,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 int input_pos;
+char *sk_mem_dump;
 
 
 //-----------------------------------------
@@ -148,7 +149,8 @@ const MENUE Deb_menue02[] = {
     " 1.ADDRESS INPUT",
     " 2.TASK01",
     " 3.TASK02",
-    " 4.TASK03",
+    " ",
+    " (f)foward / (b)back",
 
     " r.EXIT"
 };
@@ -163,7 +165,8 @@ typedef struct
 
 const MENUE_NUM_PAGE MenueList[]={
    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
-   Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE))
+   Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE)),
+   Deb_menue02, (uint8_t)(sizeof(Deb_menue02 )/sizeof(MENUE))
 };
 
 
@@ -171,7 +174,7 @@ const MENUE_NUM_PAGE MenueList[]={
 INPUT_CHAR_STEP read_line_streem(void);
 COMMAND_MENUE input2menu(void);
 void DBmanue_memdump(void);
-
+void hex_dmp(uint8_t *buf, uint16_t size);
 
 //=============================================================================
 //
@@ -184,7 +187,7 @@ void debu_main(void)
 
 		input_char_step = INPUT_INIT;
 
-		SKprintf("debu_main:001\r\n");
+		//SKprintf("debu_main:001\r\n");
 
 		switch(dev_menue_type){
 		case DEB_PROMPT_MODE:
@@ -203,10 +206,10 @@ void debu_main(void)
 			break;
 		}
 
-		SKprintf("debu_main:002\r\n");
+		//SKprintf("debu_main:002\r\n");
         // メニュを表示する
         DispMenue(dev_menue_type);
-        SKprintf("debu_main:003\r\n");
+        //SKprintf("debu_main:003\r\n");
 
 	}
 }
@@ -307,16 +310,37 @@ void DBmanue_rs485(void)
 //==============================================================================
 void DBmanue_memdump(void)
 {
+	STACK_INFO stack;
+
 	switch( input_string.main[0] ){
 	case '1':
 		break;
 	case '2':
+		Get_task1_stackptr(&stack);
+		hex_dmp(stack.topptr, 128*4);
+		//hex_dmp(stack.botomptr, stack.size);
+
 		break;
 	case '3':
+		Get_task2_stackptr(&stack);
+		hex_dmp(stack.topptr, 128*4);
+		//hex_dmp(stack.botomptr, stack.size);
 		break;
 	case '4':
 		break;
 	case '5':
+		break;
+	case 'f':
+		if(sk_mem_dump != NULL){
+			sk_mem_dump += 128*4;
+			hex_dmp(sk_mem_dump, 128*4);
+		}
+		break;
+	case 'b':
+		if(sk_mem_dump != NULL){
+			sk_mem_dump -= 128*4;
+			hex_dmp(sk_mem_dump, 128*4);
+		}
 		break;
 	case 'r':
 	case 'R':
@@ -327,34 +351,75 @@ void DBmanue_memdump(void)
 
 }
 
+
+
 //==============================================================================
 //
 //==============================================================================
-void hex_dmp(const void *buf, int size)
+void hex_dmp(uint8_t *buf, uint16_t size)
 {
     int i,j;
-    unsigned char *p = (unsigned char *)buf, tmp[20];
+    uint8_t *p;
+    uint8_t *p_disp;
+    uint8_t tmp[17];
+    uint16_t flg;
+    uint16_t pre_data;
+    uint16_t	size_plus;
+    uint32_t pp;
 
-    SKprintf("+0 +1 +2 +3 +4 +5 +6 +7 +8 +9 +A +B +C +D +E +F|  -- ASCII --\r\n");
-    SKprintf("--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+----------------\r\n");
-    for (i=0; p-(unsigned char *)buf<size; i++) {
-        for (j=0; j<16; j++) {
-            tmp[j] = (unsigned char)((*p<0x20||*p>=0x7f)? '.': *p);
-            SKprintf("%02X ", (int)*p);
-            if (++p-(unsigned char *)buf>=size) {
-                tmp[++j] = '\0';
-                for (;j<16;j++) {
-                    SKprintf("   ");
-                }
-                break;
-            }
-        }
-        tmp[16] = '\0';
-        SKprintf("%s\r\n", tmp);
-        if (p-(unsigned char *)buf>=size) {
-            break;
-        }
+
+
+   p = buf;
+   pp = (uint32_t)buf;
+   p_disp = (uint8_t *)(pp & 0xfffffff0);
+   p = p_disp;
+
+   pre_data = (uint8_t)pp & 0x0000000F;
+   sk_mem_dump = p_disp;
+
+   size_plus = size + pre_data;
+   if(( size_plus % 16 ) != 0){
+    	   size_plus = size_plus + 16 - (size_plus % 16);
     }
+
+
+    SKprintf("\r\n%p -->>\r\n",p);
+    SKprintf("            0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F    -- ASCII --\r\n");
+    SKprintf("-----------+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+-----------------\r\n");
+
+
+    for (i=0; i<size_plus; i++) {
+
+    	if(( i % 16)== 0){
+    	    SKprintf("%08p  ",p_disp);
+    	    p_disp += 16;
+    	}
+
+
+		j = i % 16;
+
+		if( i < (size + pre_data) ){
+			SKprintf("%02x ", p[i]);
+			tmp[j] = (uint8_t)((p[i]<0x20||p[i]>=0x7f)? '.': p[i]);
+					}
+		else{
+			SKprintf("   ");
+			tmp[j] = ' ';
+		}
+
+		flg = 1;
+		if(( i % 16)==15 ){
+			flg = 0;
+			tmp[j+1] = '\0';
+			SKprintf(" %s\r\n", tmp);
+		}
+    }
+
+    if( flg == 1 ){
+		tmp[j+1] = '\0';
+		SKprintf("%s\r\n", tmp);
+    }
+
 }
 
 //==============================================================================

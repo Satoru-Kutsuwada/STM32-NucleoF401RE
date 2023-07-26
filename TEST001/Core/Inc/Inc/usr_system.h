@@ -29,6 +29,11 @@ typedef struct{
 } TIMER_TIC;
 
 
+typedef struct{
+	uint8_t		*topptr;
+	uint8_t		*botomptr;
+	uint16_t	size;
+} STACK_INFO;
 
 
 
@@ -66,6 +71,9 @@ int getch(void);
 void rtc_display(void);
 void Set_logflg(LOG_FLAG flg);
 
+void Get_task1_stackptr(STACK_INFO *ptr);
+void Get_task2_stackptr(STACK_INFO *ptr);
 
+int	SKprintf (const char *string, ...);
 
 #endif /* INC_USR_SYSTEM_H_ */

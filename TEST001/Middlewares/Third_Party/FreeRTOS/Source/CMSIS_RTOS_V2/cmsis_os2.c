@@ -449,7 +449,7 @@ osThreadId_t osThreadNew (osThreadFunc_t func, void *argument, const osThreadAtt
   int32_t mem;
 
   hTask = NULL;
-
+  SKprintf("osThreadNew ()\r\n");
   if (!IS_IRQ() && (func != NULL)) {
     stack = configMINIMAL_STACK_SIZE;
     prio  = (UBaseType_t)osPriorityNormal;

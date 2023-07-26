@@ -8,13 +8,96 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
+#include "croutine.h"
+
 //#include "stm32f4xx_hal_uart.h"
 #include "usr_system.h"
 #include <stdarg.h>
-
+#include "FreeRTOS.h"
+#include "task.h"
 /* Public includes -----------------------------------------------------------*/
 
 /* Public typedef ------------------------------------------------------------*/
+typedef struct {
+	volatile StackType_t	*pxTopOfStack;	/*< Points to the location of the last item placed on the tasks stack.  THIS MUST BE THE FIRST MEMBER OF THE TCB STRUCT. */
+
+	#if ( portUSING_MPU_WRAPPERS == 1 )
+		xMPU_SETTINGS	xMPUSettings;		/*< The MPU settings are defined as part of the port layer.  THIS MUST BE THE SECOND MEMBER OF THE TCB STRUCT. */
+	#endif
+
+	ListItem_t			xStateListItem;	/*< The list that the state list item of a task is reference from denotes the state of that task (Ready, Blocked, Suspended ). */
+	ListItem_t			xEventListItem;		/*< Used to reference a task from an event list. */
+	UBaseType_t			uxPriority;			/*< The priority of the task.  0 is the lowest priority. */
+	StackType_t			*pxStack;			/*< Points to the start of the stack. */
+	char				pcTaskName[ configMAX_TASK_NAME_LEN ];/*< Descriptive name given to the task when created.  Facilitates debugging only. */ /*lint !e971 Unqualified char types are allowed for strings and single characters only. */
+
+	#if ( ( portSTACK_GROWTH > 0 ) || ( configRECORD_STACK_HIGH_ADDRESS == 1 ) )
+		StackType_t		*pxEndOfStack;		/*< Points to the highest valid address for the stack. */
+	#endif
+
+	#if ( portCRITICAL_NESTING_IN_TCB == 1 )
+		UBaseType_t		uxCriticalNesting;	/*< Holds the critical section nesting depth for ports that do not maintain their own count in the port layer. */
+	#endif
+
+	#if ( configUSE_TRACE_FACILITY == 1 )
+		UBaseType_t		uxTCBNumber;		/*< Stores a number that increments each time a TCB is created.  It allows debuggers to determine when a task has been deleted and then recreated. */
+		UBaseType_t		uxTaskNumber;		/*< Stores a number specifically for use by third party trace code. */
+	#endif
+
+	#if ( configUSE_MUTEXES == 1 )
+		UBaseType_t		uxBasePriority;		/*< The priority last assigned to the task - used by the priority inheritance mechanism. */
+		UBaseType_t		uxMutexesHeld;
+	#endif
+
+	#if ( configUSE_APPLICATION_TASK_TAG == 1 )
+		TaskHookFunction_t pxTaskTag;
+	#endif
+
+	#if( configNUM_THREAD_LOCAL_STORAGE_POINTERS > 0 )
+		void			*pvThreadLocalStoragePointers[ configNUM_THREAD_LOCAL_STORAGE_POINTERS ];
+	#endif
+
+	#if( configGENERATE_RUN_TIME_STATS == 1 )
+		uint32_t		ulRunTimeCounter;	/*< Stores the amount of time the task has spent in the Running state. */
+	#endif
+
+	#if ( configUSE_NEWLIB_REENTRANT == 1 )
+		/* Allocate a Newlib reent structure that is specific to this task.
+		Note Newlib support has been included by popular demand, but is not
+		used by the FreeRTOS maintainers themselves.  FreeRTOS is not
+		responsible for resulting newlib operation.  User must be familiar with
+		newlib and must provide system-wide implementations of the necessary
+		stubs. Be warned that (at the time of writing) the current newlib design
+		implements a system-wide malloc() that must be provided with locks.
+
+		See the third party link http://www.nadler.com/embedded/newlibAndFreeRTOS.html
+		for additional information. */
+		struct	_reent xNewLib_reent;
+	#endif
+
+	#if( configUSE_TASK_NOTIFICATIONS == 1 )
+		volatile uint32_t ulNotifiedValue;
+		volatile uint8_t ucNotifyState;
+	#endif
+
+	/* See the comments in FreeRTOS.h with the definition of
+	tskSTATIC_AND_DYNAMIC_ALLOCATION_POSSIBLE. */
+	#if( tskSTATIC_AND_DYNAMIC_ALLOCATION_POSSIBLE != 0 ) /*lint !e731 !e9029 Macro has been consolidated for readability reasons. */
+		uint8_t	ucStaticallyAllocated; 		/*< Set to pdTRUE if the task is a statically allocated to ensure no attempt is made to free the memory. */
+	#endif
+
+	#if( INCLUDE_xTaskAbortDelay == 1 )
+		uint8_t ucDelayAborted;
+	#endif
+
+	#if( configUSE_POSIX_ERRNO == 1 )
+		int iTaskErrno;
+	#endif
+
+} SKtskTaskControlBlock; 			/* The old naming convention is used to prevent breaking kernel aware debuggers. */
+
+
 
 /* Public define -------------------------------------------------------------*/
 #define ___UART_POLING
@@ -26,6 +109,8 @@ extern UART_HandleTypeDef huart2;
 extern RTC_HandleTypeDef hrtc;
 extern TIM_HandleTypeDef htim1;
 
+extern osThreadId_t Task_mainHandle;
+extern osThreadId_t Task_sub1Handle;
 
 /* Public function prototypes ------------------------------------------------*/
 
@@ -52,6 +137,43 @@ void Get_UART_Handle(UART_HandleTypeDef *uart_handle);
 
 //==============================================================================
 //
+//==============================================================================
+void Get_task1_stackptr(STACK_INFO *ptr)
+{
+	SKtskTaskControlBlock *hTask;
+
+	hTask = (TaskHandle_t)&Task_mainHandle;
+	ptr->botomptr = (char *)*hTask->pxStack;
+	ptr->topptr = (char *)*hTask->pxTopOfStack;
+
+	if( ptr->botomptr > ptr->topptr ){
+		ptr->size = (uint16_t)(ptr->botomptr - ptr->topptr);
+	}
+	else{
+		ptr->size = (uint16_t)(ptr->topptr - ptr->botomptr);
+	}
+	SKprintf("top=%p,botom=%p,size=%d\r\n", ptr->topptr,ptr->botomptr,ptr->size);
+}
+
+void Get_task2_stackptr(STACK_INFO *ptr)
+{
+	SKtskTaskControlBlock *hTask;
+
+	hTask = (TaskHandle_t *)&Task_sub1Handle;
+	ptr->botomptr = (char *)*hTask->pxStack;
+	ptr->topptr = (char *)*hTask->pxTopOfStack;
+
+	if( ptr->botomptr > ptr->topptr ){
+		ptr->size = (uint16_t)(ptr->botomptr - ptr->topptr);
+	}
+	else{
+		ptr->size = (uint16_t)(ptr->topptr - ptr->botomptr);
+	}
+	SKprintf("top=%p,botom=%p,size=%d\r\n",ptr->topptr,ptr->botomptr,ptr->size);
+}
+
+//==============================================================================
+//
 // 総和を求める関数（値は int 型を想定）
 // n は、渡す引数の数、それ以降は計算する値です。
 //==============================================================================
@@ -60,28 +182,36 @@ int	SKprintf (const char *string, ...)
 {
 	va_list ap;
 	int i;
+	char *buffer;
 
-	char buffer[PRiNTF_BUFFMAX];
-
+#define CHARA_MAX 100
 
 	while( Sem_Printf != 0 );
 
-	Sem_Printf = 1;
+	buffer = (char *)pvPortMalloc(CHARA_MAX);
 
-	// 可変個引数の利用準備
-	// -- １… va_list 構造体 ap
-	// -- 2 … 可変個引数の直前にある引数
+	if( buffer != NULL ){
 
-	va_start(ap, string);
-	vsprintf(buffer, string, ap);
-	va_end(ap);
+		Sem_Printf = 1;
 
-	for(i=0; i<PRiNTF_BUFFMAX; i++){
-		if(buffer[i] == '\0'){
-			break;
+		// 可変個引数の利用準備
+		// -- １… va_list 構造体 ap
+		// -- 2 … 可変個引数の直前にある引数
+
+		va_start(ap, string);
+		vsprintf(buffer, string, ap);
+		va_end(ap);
+
+		for(i=0; i<CHARA_MAX; i++){
+			if(buffer[i] == '\0'){
+				break;
+			}
 		}
+		HAL_UART_Transmit(&huart2, buffer, i, HAL_MAX_DELAY);
+
 	}
-	HAL_UART_Transmit(&huart2, buffer, i, HAL_MAX_DELAY);
+
+	vPortFree(buffer);
 
 	Sem_Printf = 0;
 

@@ -157,6 +157,7 @@ int main(void)
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_EVENTS */
+  SKprintf("osKernelStart()\r\n");
   /* add events, ... */
   /* USER CODE END RTOS_EVENTS */
 

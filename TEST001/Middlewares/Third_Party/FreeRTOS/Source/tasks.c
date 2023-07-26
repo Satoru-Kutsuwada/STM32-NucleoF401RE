@@ -589,6 +589,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 	TCB_t *pxNewTCB;
 	TaskHandle_t xReturn;
 
+	SKprintf("xTaskCreateStatic()\r\n");
 		configASSERT( puxStackBuffer != NULL );
 		configASSERT( pxTaskBuffer != NULL );
 
@@ -740,6 +741,7 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 	TCB_t *pxNewTCB;
 	BaseType_t xReturn;
 
+	SKprintf("xTaskCreate()\r\n");
 		/* If the stack grows down then allocate the stack then the TCB so the stack
 		does not grow into the TCB.  Likewise if the stack grows up then allocate
 		the TCB then the stack. */
@@ -771,11 +773,15 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 
 			/* Allocate space for the stack used by the task being created. */
 			pxStack = pvPortMalloc( ( ( ( size_t ) usStackDepth ) * sizeof( StackType_t ) ) ); /*lint !e9079 All values returned by pvPortMalloc() have at least the alignment required by the MCU's stack and this allocation is the stack. */
+			SKprintf("  pxStack=%p, size=%d\r\n",pxStack,( ( ( size_t ) usStackDepth ) * sizeof( StackType_t ) ));
 
 			if( pxStack != NULL )
 			{
 				/* Allocate space for the TCB. */
 				pxNewTCB = ( TCB_t * ) pvPortMalloc( sizeof( TCB_t ) ); /*lint !e9087 !e9079 All values returned by pvPortMalloc() have at least the alignment required by the MCU's stack, and the first member of TCB_t is always a pointer to the task's stack. */
+
+				SKprintf("  pxNewTCB=%p, size=%d\r\n",pxNewTCB,sizeof( TCB_t ) );
+
 
 				if( pxNewTCB != NULL )
 				{
@@ -833,6 +839,9 @@ static void prvInitialiseNewTask( 	TaskFunction_t pxTaskCode,
 StackType_t *pxTopOfStack;
 UBaseType_t x;
 
+SKprintf("prvInitialiseNewTask()\r\n");
+
+
 	#if( portUSING_MPU_WRAPPERS == 1 )
 		/* Should the task be created in privileged mode? */
 		BaseType_t xRunPrivileged;
@@ -852,6 +861,15 @@ UBaseType_t x;
 	{
 		/* Fill the stack with a known value to assist debugging. */
 		( void ) memset( pxNewTCB->pxStack, ( int ) tskSTACK_FILL_BYTE, ( size_t ) ulStackDepth * sizeof( StackType_t ) );
+		SKprintf("  pxStack=%p, size=%d\r\n",pxNewTCB->pxStack,( size_t ) ulStackDepth * sizeof( StackType_t));
+
+//		int  skdt;
+//		uint32_t pp = (uint32_t )pxNewTCB->pxStack;
+//		skdt = pp & 0x000000FF;
+//		SKprintf("  skdt=%x, pxStack=%p, size=%d\r\n",skdt,pxNewTCB->pxStack,( size_t ) ulStackDepth * sizeof( StackType_t));
+
+//		( void ) memset( pxNewTCB->pxStack, ( int ) skdt, ( size_t ) ulStackDepth * sizeof( StackType_t ) );
+
 	}
 	#endif /* tskSET_NEW_STACKS_TO_KNOWN_VALUE */
 
@@ -861,6 +879,7 @@ UBaseType_t x;
 	by the port. */
 	#if( portSTACK_GROWTH < 0 )
 	{
+		SKprintf(" prvInitialiseNewTask() 0001\r\n");
 		pxTopOfStack = &( pxNewTCB->pxStack[ ulStackDepth - ( uint32_t ) 1 ] );
 		pxTopOfStack = ( StackType_t * ) ( ( ( portPOINTER_SIZE_TYPE ) pxTopOfStack ) & ( ~( ( portPOINTER_SIZE_TYPE ) portBYTE_ALIGNMENT_MASK ) ) ); /*lint !e923 !e9033 !e9078 MISRA exception.  Avoiding casts between pointers and integers is not practical.  Size differences accounted for using portPOINTER_SIZE_TYPE type.  Checked by assert(). */
 
@@ -869,14 +888,21 @@ UBaseType_t x;
 
 		#if( configRECORD_STACK_HIGH_ADDRESS == 1 )
 		{
+			SKprintf(" prvInitialiseNewTask() 0002\r\n");
 			/* Also record the stack's high address, which may assist
 			debugging. */
 			pxNewTCB->pxEndOfStack = pxTopOfStack;
+
+			SKprintf("pxTopOfStack=%p\r\n",pxTopOfStack);
+
+
+
 		}
 		#endif /* configRECORD_STACK_HIGH_ADDRESS */
 	}
 	#else /* portSTACK_GROWTH */
 	{
+		SKprintf(" prvInitialiseNewTask() 0003\r\n");
 		pxTopOfStack = pxNewTCB->pxStack;
 
 		/* Check the alignment of the stack buffer is correct. */
@@ -885,6 +911,8 @@ UBaseType_t x;
 		/* The other extreme of the stack space is required if stack checking is
 		performed. */
 		pxNewTCB->pxEndOfStack = pxNewTCB->pxStack + ( ulStackDepth - ( uint32_t ) 1 );
+
+		SKprintf("  pxEndOfStack=%p\r\n",pxNewTCB->pxEndOfStack);
 	}
 	#endif /* portSTACK_GROWTH */
 

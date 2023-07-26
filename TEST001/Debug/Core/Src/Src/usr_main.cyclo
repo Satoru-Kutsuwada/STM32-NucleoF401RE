@@ -1,6 +1,8 @@
-usr_main.c:59:5:SKprintf	4
-usr_main.c:96:6:Get_UART_Handle	1
-usr_main.c:107:6:user_init	1
-usr_main.c:143:6:user_main_loop	1
-usr_main.c:220:6:rtc_display	1
-usr_main.c:236:5:getch	4
+usr_main.c:141:6:Get_task1_stackptr	2
+usr_main.c:158:6:Get_task2_stackptr	2
+usr_main.c:181:5:SKprintf	5
+usr_main.c:226:6:Get_UART_Handle	1
+usr_main.c:237:6:user_init	1
+usr_main.c:273:6:user_main_loop	1
+usr_main.c:350:6:rtc_display	1
+usr_main.c:366:5:getch	4

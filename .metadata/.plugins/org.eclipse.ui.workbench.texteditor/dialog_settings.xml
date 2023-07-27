@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="SKprintf"/>
+		<item key="selection" value="SKprint"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="SKprint"/>
+			<item value="vPortMallo"/>
+			<item value="Skprintf"/>
 			<item value="SKprintf"/>
 			<item value="pxStack"/>
 			<item value="SKp"/>
@@ -20,16 +23,14 @@
 			<item value="osThreadId_t"/>
 			<item value="Task_mainHandle"/>
 			<item value="hTask"/>
-			<item value="pvParameters"/>
-			<item value="xTaskCreate"/>
-			<item value="argument"/>
 		</list>
 		<list key="replacehistory">
+			<item value="SKprintf"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1560"/>
-		<item key="DIALOG_Y_ORIGIN" value="183"/>
+		<item key="DIALOG_X_ORIGIN" value="1593"/>
+		<item key="DIALOG_Y_ORIGIN" value="181"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>

@@ -19,7 +19,9 @@
 /* Public includes -----------------------------------------------------------*/
 
 /* Public typedef ------------------------------------------------------------*/
-typedef struct {
+
+typedef struct tskTaskControlBlock 			/* The old naming convention is used to prevent breaking kernel aware debuggers. */
+{
 	volatile StackType_t	*pxTopOfStack;	/*< Points to the location of the last item placed on the tasks stack.  THIS MUST BE THE FIRST MEMBER OF THE TCB STRUCT. */
 
 	#if ( portUSING_MPU_WRAPPERS == 1 )
@@ -95,8 +97,7 @@ typedef struct {
 		int iTaskErrno;
 	#endif
 
-} SKtskTaskControlBlock; 			/* The old naming convention is used to prevent breaking kernel aware debuggers. */
-
+} SKtskTaskControlBlock;
 
 
 /* Public define -------------------------------------------------------------*/
@@ -111,6 +112,12 @@ extern TIM_HandleTypeDef htim1;
 
 extern osThreadId_t Task_mainHandle;
 extern osThreadId_t Task_sub1Handle;
+extern osThreadId_t Task_sub2Handle;
+
+extern osThreadAttr_t Task_main_attributes;
+extern osThreadAttr_t Task_sub1_attributes;
+extern osThreadAttr_t Task_sub2_attributes;
+
 
 /* Public function prototypes ------------------------------------------------*/
 
@@ -120,6 +127,17 @@ extern osThreadId_t Task_sub1Handle;
 /* Private includes ----------------------------------------------------------*/
 
 /* Private typedef -----------------------------------------------------------*/
+
+
+typedef struct {
+	char 		name[configMAX_TASK_NAME_LEN];
+	uint8_t 	*chk_stack;
+	uint16_t	size;
+	uint16_t	used;
+} TASK_STACK_CHECK;
+
+TASK_STACK_CHECK task_chk_table[SK_TASK_MAX];
+
 
 /* Private define ------------------------------------------------------------*/
 
@@ -134,42 +152,243 @@ int Sem_Printf = 0;
 /* Private function prototypes -----------------------------------------------*/
 void Get_UART_Handle(UART_HandleTypeDef *uart_handle);
 
+//==============================================================================
+//
+//==============================================================================
+void task_chk_init(void)
+{
+	SKtskTaskControlBlock *hTask;
+	osThreadAttr_t		*attr;
+	uint32_t 			*dtp;
+	int		i;
+	int		j;
+
+
+	SKprintf("task_chk_init()\r\n");
+
+	for( i=0; i < SK_TASK_MAX; i++ ){
+		switch(i){
+		case SK_TASK_main:
+			dtp = &Task_mainHandle;
+			attr = &Task_main_attributes;
+			break;
+		case SK_TASK_sub1:
+			dtp = &Task_sub1Handle;
+			attr = &Task_sub1_attributes;
+			break;
+		case SK_TASK_sub2:
+			dtp = &Task_sub2Handle;
+			attr = &Task_sub2_attributes;
+			break;
+		default:
+			SKprintf("Error taskid\r\n");
+			break;
+		}
+		hTask = (TaskHandle_t *)*dtp;
+
+		for( j=0; j < configMAX_TASK_NAME_LEN; j++ ){
+			task_chk_table[i].name[j] = hTask->pcTaskName[j];
+		}
+		task_chk_table[i].name[j-1] = '\0';
+
+		task_chk_table[i].chk_stack = hTask->pxStack;
+		task_chk_table[i].size = attr->stack_size;
+		task_chk_table[i].used = 0;
+
+		SKprintf(" %s\r\n", &task_chk_table[i].name[0]);
+		SKprintf("  Check Start Address = %p\r\n", task_chk_table[i].chk_stack);
+		SKprintf("  Size          = %d\r\n", task_chk_table[i].size);
+		SKprintf("  Used Size     = %d(%d%%)\r\n\r\n", task_chk_table[i].used, 100*task_chk_table[i].used/task_chk_table[i].size);
+
+	}
+}
 
 //==============================================================================
 //
 //==============================================================================
-void Get_task1_stackptr(STACK_INFO *ptr)
+void task_stack_chk(void)
+{
+	int		i;
+	int		j;
+
+
+	//SKprintf("\r\ntask_stack_chk()\r\n");
+	for( i=0; i < SK_TASK_MAX; i++ ){
+
+		for( j= 0; j < task_chk_table[i].size; j++){
+			if(task_chk_table[i].chk_stack[j] != 0xa5){
+				break;
+			}
+		}
+		task_chk_table[i].used = task_chk_table[i].size - j;
+
+		//SKprintf(" %s:Used Size= %d(%d%%)\r\n", &task_chk_table[i].name[0], task_chk_table[i].used, (100*task_chk_table[i].used/task_chk_table[i].size));
+
+		if( j < (task_chk_table[i].size/10) ){
+			SKprintf("WARNING:STACK FULL  %s\r\n", &task_chk_table[i].name[0]);
+		}
+
+	}
+}
+//==============================================================================
+//
+//==============================================================================
+void Disp_task_info(SK_TASK taskid)
 {
 	SKtskTaskControlBlock *hTask;
+	osThreadAttr_t		*attr;
+	uint32_t 			*dtp;
 
-	hTask = (TaskHandle_t)&Task_mainHandle;
-	ptr->botomptr = (char *)*hTask->pxStack;
-	ptr->topptr = (char *)*hTask->pxTopOfStack;
+	switch(taskid){
+	case SK_TASK_main:
+		dtp = &Task_mainHandle;
+		hTask = (TaskHandle_t *)*dtp;
+		attr = &Task_main_attributes;
+		break;
+	case SK_TASK_sub1:
+		dtp = &Task_sub1Handle;
+		hTask = (TaskHandle_t *)*dtp;
+		attr = &Task_sub1_attributes;
+		break;
+	case SK_TASK_sub2:
+		dtp = &Task_sub2Handle;
+		hTask = (TaskHandle_t *)*dtp;
+		attr = &Task_sub2_attributes;
+		break;
+	default:
+		SKprintf("Error taskid\r\n");
+		break;
+	}
 
-	if( ptr->botomptr > ptr->topptr ){
-		ptr->size = (uint16_t)(ptr->botomptr - ptr->topptr);
-	}
-	else{
-		ptr->size = (uint16_t)(ptr->topptr - ptr->botomptr);
-	}
-	SKprintf("top=%p,botom=%p,size=%d\r\n", ptr->topptr,ptr->botomptr,ptr->size);
+	SKprintf("<<< %s >>>\r\n" ,attr->name);
+	SKprintf(" TCB Address           = %p\r\n" ,hTask);
+	SKprintf(" Stack Botom Address   = 0x%lx\r\n", hTask->pxTopOfStack );
+	SKprintf(" Stack top Address     = 0x%lx\r\n", hTask->pxStack );
+	SKprintf(" stack_size            = %lx\r\n" ,attr->stack_size);
+	SKprintf(" uxTCBNumber           = %lx\r\n", hTask->uxTCBNumber );
+	SKprintf(" uxTaskNumber          = %lx\r\n", hTask->uxTaskNumber );
+	SKprintf(" uxBasePriority        = %lx\r\n", hTask->uxBasePriority );
+	SKprintf(" uxMutexesHeld         = %lx\r\n", hTask->uxMutexesHeld );
+	SKprintf(" ulNotifiedValue       = %lx\r\n", hTask->ulNotifiedValue );
+	SKprintf(" ucNotifyState         = %lx\r\n", hTask->ucNotifyState );
+	SKprintf(" ucStaticallyAllocated = %lx\r\n", hTask->ucStaticallyAllocated );
+
+#ifdef ___NOP
+
+	SKprintf(" name = %s\r\n" ,attr->name);
+	SKprintf(" attr_bits = %lx\r\n" ,attr->attr_bits);
+	//SKprintf(" *cb_mem = %p\r\n" ,*attr->cb_mem);
+	SKprintf(" cb_size = %lx\r\n" ,attr->cb_size);
+	//SKprintf(" *stack_mem = %p\r\n" ,*attr->stack_mem);
+	SKprintf(" priority = %lx\r\n" ,attr->priority);
+	SKprintf(" tz_module = %lx\r\n" ,attr->tz_module);
+	SKprintf(" reserved = %lx\r\n" ,attr->reserved);
+
+	SKprintf(" ---------------\r\n");
+
+
+
+
+	dtp = (uint32_t *)hTask;
+	SKprintf("TCB Address= 0x%lx\r\n" ,*dtp);
+
+
+	//SKprintf("\r\nTASK CONTROL BLOCK\r\n");
+
+	dt = &hTask->pxStack;
+	dtp = &hTask->pxStack;
+	SKprintf(" dt= 0x%lx\r\n", dt );
+	SKprintf(" dtp= %p\r\n", dt );
+	SKprintf(" *dtp= 0x%lx\r\n", *dtp );
+
+
+
+
+
+	SKprintf(" pxTopOfStack = %p\r\n", hTask->pxTopOfStack );
+	SKprintf(" pxTopOfStack* = %x\r\n", *hTask->pxTopOfStack );
+	SKprintf(" pxTopOfStack dt = %lx\r\n", dt );
+
+
+	dt = (uint32_t )*hTask->pxStack;
+	SKprintf(" pxStack = %p\r\n", hTask->pxStack );
+	SKprintf(" pxStack* = %x\r\n", *hTask->pxStack );
+	SKprintf(" pxStack dt = %x\r\n", dt );
+	dt = (uint32_t )hTask->pxStack;
+	SKprintf(" pxStack dt2 = %x\r\n", dt );
+
+
+
+
+
+	hTask->pcTaskName[configMAX_TASK_NAME_LEN-1] = '\0';
+	SKprintf(" pcTaskName = %s\r\n", &hTask->pcTaskName[0]);
+
+	typedef struct {
+	  const char                   *name;   ///< name of the thread
+	  uint32_t                 attr_bits;   ///< attribute bits
+	  void                      *cb_mem;    ///< memory for control block
+	  uint32_t                   cb_size;   ///< size of provided memory for control block
+	  void                   *stack_mem;    ///< memory for stack
+	  uint32_t                stack_size;   ///< size of stack
+	  osPriority_t              priority;   ///< initial thread priority (default: osPriorityNormal)
+	  TZ_ModuleId_t            tz_module;   ///< TrustZone module identifier
+	  uint32_t                  reserved;   ///< reserved (must be 0)
+	} osThreadAttr_t;
+
+
+	SKprintf("\r\nTASK ATTRIBUTE\r\n");
+	SKprintf(" name = %s\r\n" ,attr->name);
+	SKprintf(" attr_bits = %lx\r\n" ,attr->attr_bits);
+	SKprintf(" *cb_mem = %p\r\n" ,*attr->cb_mem);
+	SKprintf(" cb_size = %lx\r\n" ,attr->cb_size);
+	SKprintf(" *stack_mem = %p\r\n" ,*attr->stack_mem);
+	SKprintf(" stack_size = %lx\r\n" ,attr->stack_size);
+	SKprintf(" priority = %lx\r\n" ,attr->priority);
+	SKprintf(" tz_module = %lx\r\n" ,attr->tz_module);
+	SKprintf(" reserved = %lx\r\n" ,attr->reserved);
+#endif	// ___NOP
+
+
 }
 
-void Get_task2_stackptr(STACK_INFO *ptr)
+
+//==============================================================================
+//
+//==============================================================================
+void Get_task_stackptr(SK_TASK taskid, STACK_INFO *ptr)
 {
 	SKtskTaskControlBlock *hTask;
+	uint32_t 			*dtp;
 
-	hTask = (TaskHandle_t *)&Task_sub1Handle;
-	ptr->botomptr = (char *)*hTask->pxStack;
-	ptr->topptr = (char *)*hTask->pxTopOfStack;
+	switch(taskid){
+	case SK_TASK_main:
+		dtp = &Task_mainHandle;
+		hTask = (TaskHandle_t *)*dtp;
+		break;
+	case SK_TASK_sub1:
+		hTask = (TaskHandle_t)&Task_sub1Handle;
+		dtp = &Task_sub1Handle;
+		hTask = (TaskHandle_t *)*dtp;
+		break;
+	case SK_TASK_sub2:
+		dtp = &Task_sub2Handle;
+		hTask = (TaskHandle_t *)*dtp;
+		break;
+	default:
+		SKprintf("Error taskid\r\n");
+		break;
+	}
 
-	if( ptr->botomptr > ptr->topptr ){
-		ptr->size = (uint16_t)(ptr->botomptr - ptr->topptr);
-	}
-	else{
-		ptr->size = (uint16_t)(ptr->topptr - ptr->botomptr);
-	}
-	SKprintf("top=%p,botom=%p,size=%d\r\n",ptr->topptr,ptr->botomptr,ptr->size);
+	SKprintf(" Stack top Address     = 0x%lx\r\n", hTask->pxStack );
+
+
+
+	ptr->pxStack = (char *)hTask->pxStack;
+	ptr->pxTopOfStack = (char *)hTask->pxTopOfStack;
+	ptr->size = (uint16_t)(128*4);
+
+	SKprintf("pxStack=%p,pxTopOfStack=%p,size=%d\r\n", ptr->pxStack,ptr->pxTopOfStack,ptr->size);
 }
 
 //==============================================================================

@@ -46,6 +46,7 @@ RTC_HandleTypeDef hrtc;
 TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 
+UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart2;
 
 /* Definitions for Task_main */
@@ -62,6 +63,28 @@ const osThreadAttr_t Task_sub1_attributes = {
   .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
+/* Definitions for Task_sub2 */
+osThreadId_t Task_sub2Handle;
+const osThreadAttr_t Task_sub2_attributes = {
+  .name = "Task_sub2",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for myQueue01 */
+osMessageQueueId_t myQueue01Handle;
+const osMessageQueueAttr_t myQueue01_attributes = {
+  .name = "myQueue01"
+};
+/* Definitions for myQueue02 */
+osMessageQueueId_t myQueue02Handle;
+const osMessageQueueAttr_t myQueue02_attributes = {
+  .name = "myQueue02"
+};
+/* Definitions for myQueue03 */
+osMessageQueueId_t myQueue03Handle;
+const osMessageQueueAttr_t myQueue03_attributes = {
+  .name = "myQueue03"
+};
 /* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
@@ -73,8 +96,10 @@ static void MX_USART2_UART_Init(void);
 static void MX_RTC_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
+static void MX_USART1_UART_Init(void);
 void StartDefaultTask(void *argument);
 void StartTask02(void *argument);
+void StartTask03(void *argument);
 
 /* USER CODE BEGIN PFP */
 void user_init(void);			// SK ADD
@@ -121,6 +146,7 @@ int main(void)
   MX_RTC_Init();
   MX_TIM1_Init();
   MX_TIM2_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
   user_init();		// SK ADD
@@ -141,6 +167,16 @@ int main(void)
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of myQueue01 */
+  myQueue01Handle = osMessageQueueNew (16, sizeof(uint8_t), &myQueue01_attributes);
+
+  /* creation of myQueue02 */
+  myQueue02Handle = osMessageQueueNew (16, sizeof(uint8_t), &myQueue02_attributes);
+
+  /* creation of myQueue03 */
+  myQueue03Handle = osMessageQueueNew (16, sizeof(uint8_t), &myQueue03_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -151,6 +187,9 @@ int main(void)
 
   /* creation of Task_sub1 */
   Task_sub1Handle = osThreadNew(StartTask02, NULL, &Task_sub1_attributes);
+
+  /* creation of Task_sub2 */
+  Task_sub2Handle = osThreadNew(StartTask03, NULL, &Task_sub2_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -409,6 +448,39 @@ static void MX_TIM2_Init(void)
 }
 
 /**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_UART_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  huart1.Instance = USART1;
+  huart1.Init.BaudRate = 57600;
+  huart1.Init.WordLength = UART_WORDLENGTH_8B;
+  huart1.Init.StopBits = UART_STOPBITS_1;
+  huart1.Init.Parity = UART_PARITY_NONE;
+  huart1.Init.Mode = UART_MODE_TX_RX;
+  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+  if (HAL_UART_Init(&huart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
+
+}
+
+/**
   * @brief USART2 Initialization Function
   * @param None
   * @retval None
@@ -507,7 +579,7 @@ void StartDefaultTask(void *argument)
   {
 //	  rtc_display();
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    osDelay(1000);
+    osDelay(200);
   }
   /* USER CODE END 5 */
 }
@@ -522,14 +594,38 @@ void StartDefaultTask(void *argument)
 void StartTask02(void *argument)
 {
   /* USER CODE BEGIN StartTask02 */
+	task_chk_init();
+
   /* Infinite loop */
   for(;;)
   {
 	  debu_main();
+	  task_stack_chk();
 //	  user_main_loop();		// SK ADD
-    osDelay(1);
+    osDelay(1000);
   }
   /* USER CODE END StartTask02 */
+}
+
+/* USER CODE BEGIN Header_StartTask03 */
+/**
+* @brief Function implementing the Task_sub2 thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTask03 */
+__weak void StartTask03(void *argument)
+{
+  /* USER CODE BEGIN StartTask03 */
+  /* Infinite loop */
+
+	//SKprintf("*** TASK_3 ***\r\n");
+	for(;;)
+	{
+
+		osDelay(10000);
+	}
+/* USER CODE END StartTask03 */
 }
 
 /**

@@ -108,6 +108,7 @@ INPUT_STRING input_string;
      DEB_LOG_MENUE,
      DEB_RS485_MENUE,
      DEB_MEM_MENUE,
+	 DEB_MEM_INPUT_MENUE,
 
 
      DEB_DISP_MAX
@@ -125,36 +126,41 @@ typedef struct{
 } MENUE;
 
 const MENUE Deb_menue00[] = {
-    "\r\nLOG MENUE",
-    " 1.LOG DISPLAY",
-    " 2.LOG CLEAR",
-    " 3.STOP MODE:IMMMEDIATE",
-    " 4.STOP MODE:MAX_DATA_STOP",
-    " 5.STOP MODE:NON_STOP",
+    "\r\nLOG MENUE\r\n",
+    " 1.LOG DISPLAY\r\n",
+    " 2.LOG CLEAR\r\n",
+    " 3.STOP MODE:IMMMEDIATE\r\n",
+    " 4.STOP MODE:MAX_DATA_STOP\r\n",
+    " 5.STOP MODE:NON_STOP\r\n",
 
-    " r.EXIT"
+    " r.EXIT\r\n"
 };
 
 
 const MENUE Deb_menue01[] = {
-    "\r\nRS485 MENUE",
-    " 1.RX MODE",
-    " 2.TX MODE",
+    "\r\nRS485 MENUE\r\n",
+    " 1.RX MODE\r\n",
+    " 2.TX MODE\r\n",
 
     " r.EXIT"
 };
 
 const MENUE Deb_menue02[] = {
-    "\r\nMEMPRY MENUE",
-    " 1.ADDRESS INPUT",
-    " 2.TASK01",
-    " 3.TASK02",
+    "\r\nMEMPRY MENUE\r\n",
+    " 1.ADDRESS INPUT\r\n",
+    " 2.TASK01\r\n",
+    " 3.TASK02\r\n",
+    " 4.TASK03\r\n",
     " ",
-    " (f)foward / (b)back",
+    " (f)foward / (b)back\r\n",
 
-    " r.EXIT"
+    " r.EXIT\r\n"
 };
 
+const MENUE Deb_menue03[] = {
+    "\r\nMEMPRY INPUT MENUE\r\n",
+    " ADDRESS INPUT (r.Return) = 0x"
+};
 
 
 typedef struct
@@ -166,7 +172,8 @@ typedef struct
 const MENUE_NUM_PAGE MenueList[]={
    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE)),
-   Deb_menue02, (uint8_t)(sizeof(Deb_menue02 )/sizeof(MENUE))
+   Deb_menue02, (uint8_t)(sizeof(Deb_menue02 )/sizeof(MENUE)),
+   Deb_menue03, (uint8_t)(sizeof(Deb_menue03 )/sizeof(MENUE))
 };
 
 
@@ -202,6 +209,9 @@ void debu_main(void)
 		case DEB_MEM_MENUE:
 			DBmanue_memdump();
 			break;
+		case DEB_MEM_INPUT_MENUE:
+			DBmanue_mem_input();
+			break;
 		default:
 			break;
 		}
@@ -224,7 +234,7 @@ void DispMenue(uint8_t type)
     }
     else{
         for( i=0; i<MenueList[type-1].clumn; i++){
-            SKprintf("%s\r\n", &MenueList[type-1].pt[i].name[0]);
+            SKprintf("%s", &MenueList[type-1].pt[i].name[0]);
         }
     }
 }
@@ -314,19 +324,25 @@ void DBmanue_memdump(void)
 
 	switch( input_string.main[0] ){
 	case '1':
+		dev_menue_type = DEB_MEM_INPUT_MENUE;
 		break;
 	case '2':
-		Get_task1_stackptr(&stack);
-		hex_dmp(stack.topptr, 128*4);
-		//hex_dmp(stack.botomptr, stack.size);
-
+		Disp_task_info(SK_TASK_main);
+		Get_task_stackptr(SK_TASK_main,&stack);
+		hex_dmp(stack.pxStack, stack.size);
+		//hex_dmp(stack.pxTopOfStack, stack.size);
 		break;
 	case '3':
-		Get_task2_stackptr(&stack);
-		hex_dmp(stack.topptr, 128*4);
-		//hex_dmp(stack.botomptr, stack.size);
+		Disp_task_info(SK_TASK_sub1);
+		Get_task_stackptr(SK_TASK_sub1,&stack);
+		hex_dmp(stack.pxStack, stack.size);
+		//hex_dmp(stack.pxTopOfStack, stack.size);
 		break;
 	case '4':
+		Disp_task_info(SK_TASK_sub2);
+		Get_task_stackptr(SK_TASK_sub2,&stack);
+		hex_dmp(stack.pxStack, stack.size);
+		//hex_dmp(stack.pxTopOfStack, stack.size);
 		break;
 	case '5':
 		break;
@@ -348,6 +364,45 @@ void DBmanue_memdump(void)
 	default:
 		break;
 	}
+
+}
+
+//==============================================================================
+//
+//==============================================================================
+void DBmanue_mem_input(void)
+{
+	int 		i = 0;
+	uint32_t	dt = 0;
+	uint8_t		c = input_string.main[0];
+
+	if( c == 'r' || c == 'R' ){
+
+	}
+	else{
+		while( input_string.main[i] != '\0'){
+			c= input_string.main[i];
+
+			dt <<= 4;
+
+			if( c >= '0'  && c <= '9' ){
+				dt |= ( c - '0');
+			}
+			else if( c >= 'a'  && c <= 'f' ){
+				dt |= ( c - 'a' + 10);
+			}
+			else if( c >= 'A'  && c <= 'F' ){
+				dt |= ( c - 'A' + 10);
+			}
+
+			i++;
+		}
+
+		SKprintf("dt=%lx",dt);
+		hex_dmp((uint8_t *)dt, 128*4);
+	}
+
+	dev_menue_type = DEB_MEM_MENUE;
 
 }
 
@@ -392,6 +447,9 @@ void hex_dmp(uint8_t *buf, uint16_t size)
 
     	if(( i % 16)== 0){
     	    SKprintf("%08p  ",p_disp);
+    	    if( p_disp != &p[i] ){
+    	    	SKprintf("\r\nERROR p_disp=%p,p=%p\r\n",p_disp,&p[i]);
+    	    }
     	    p_disp += 16;
     	}
 

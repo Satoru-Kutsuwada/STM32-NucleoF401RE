@@ -30,8 +30,8 @@ typedef struct{
 
 
 typedef struct{
-	uint8_t		*topptr;
-	uint8_t		*botomptr;
+	uint8_t		*pxTopOfStack;
+	uint8_t		*pxStack;
 	uint16_t	size;
 } STACK_INFO;
 
@@ -48,6 +48,14 @@ typedef enum{
 
 	LF_MAX
 } LOG_FLAG;
+
+typedef enum{
+	SK_TASK_main = 0,
+	SK_TASK_sub1,
+	SK_TASK_sub2,
+
+	SK_TASK_MAX
+} SK_TASK;
 
 
 
@@ -71,9 +79,11 @@ int getch(void);
 void rtc_display(void);
 void Set_logflg(LOG_FLAG flg);
 
-void Get_task1_stackptr(STACK_INFO *ptr);
-void Get_task2_stackptr(STACK_INFO *ptr);
+void Get_task_stackptr(SK_TASK taskid, STACK_INFO *ptr);
 
 int	SKprintf (const char *string, ...);
+void task_chk_init(void);
+void task_stack_chk(void);
+
 
 #endif /* INC_USR_SYSTEM_H_ */

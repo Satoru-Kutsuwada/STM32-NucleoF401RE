@@ -22,7 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "usr_system.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -61,13 +61,13 @@ osThreadId_t Task_sub1Handle;
 const osThreadAttr_t Task_sub1_attributes = {
   .name = "Task_sub1",
   .stack_size = 256 * 4,
-  .priority = (osPriority_t) osPriorityLow,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for Task_sub2 */
 osThreadId_t Task_sub2Handle;
 const osThreadAttr_t Task_sub2_attributes = {
   .name = "Task_sub2",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for myQueue01 */
@@ -106,6 +106,9 @@ void user_init(void);			// SK ADD
 void user_main_loop(void);		// SK ADD
 void rtc_display(void);			// SK ADD
 void debu_main(void);
+int getch_uart1(void);
+int	SKprintf_uart1 (const char *string, ...);
+
 
 /* USER CODE END PFP */
 
@@ -594,15 +597,20 @@ void StartDefaultTask(void *argument)
 void StartTask02(void *argument)
 {
   /* USER CODE BEGIN StartTask02 */
+	 SKprintf("task2 start()\r\n");
+		uart_Rcv_init(SK_UART2_DEBUG);
 	task_chk_init();
 
+
+	 SKprintf("task2 loop()\r\n");
   /* Infinite loop */
   for(;;)
   {
-	  debu_main();
 	  task_stack_chk();
+	  debu_main();
+
 //	  user_main_loop();		// SK ADD
-    osDelay(1000);
+    osDelay(100);
   }
   /* USER CODE END StartTask02 */
 }
@@ -617,15 +625,28 @@ void StartTask02(void *argument)
 __weak void StartTask03(void *argument)
 {
   /* USER CODE BEGIN StartTask03 */
-  /* Infinite loop */
+	char c[2];
 
-	//SKprintf("*** TASK_3 ***\r\n");
+	SKprintf_uart1("===================\r\n");
+	SKprintf_uart1("=== UART1 START ===\r\n");
+	SKprintf_uart1("===================\r\n");
+
+	uart_Rcv_init(SK_UART1_RS485);
+
+	/* Infinite loop */
+
 	for(;;)
 	{
+		c[0] = getch(SK_UART1_RS485);
+		c[1] = '\0';
+		if( c[0] != 0 ){
+			SKprintf_uart1(c);
+		}
+		//SKprintf_uart1("task2\r\n");
 
-		osDelay(10000);
+		// osDelay(10);
 	}
-/* USER CODE END StartTask03 */
+  /* USER CODE END StartTask03 */
 }
 
 /**

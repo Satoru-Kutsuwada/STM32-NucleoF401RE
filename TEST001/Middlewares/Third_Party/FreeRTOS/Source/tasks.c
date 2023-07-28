@@ -740,9 +740,6 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 	TCB_t *pxNewTCB;
 	BaseType_t xReturn;
 
-
-	SKprintf("xTaskCreate()\r\n");
-
 		/* If the stack grows down then allocate the stack then the TCB so the stack
 		does not grow into the TCB.  Likewise if the stack grows up then allocate
 		the TCB then the stack. */
@@ -752,7 +749,6 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 			the implementation of the port malloc function and whether or not static
 			allocation is being used. */
 			pxNewTCB = ( TCB_t * ) pvPortMalloc( sizeof( TCB_t ) );
-			SKprintf("  pxNewTCB1 = %p, size= %d\r\n",pxNewTCB ,sizeof( TCB_t ));
 
 			if( pxNewTCB != NULL )
 			{
@@ -760,7 +756,6 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 				The base of the stack memory stored in the TCB so the task can
 				be deleted later if required. */
 				pxNewTCB->pxStack = ( StackType_t * ) pvPortMalloc( ( ( ( size_t ) usStackDepth ) * sizeof( StackType_t ) ) ); /*lint !e961 MISRA exception as the casts are only redundant for some ports. */
-				SKprintf("  pxStack1= %p, size= %d\r\n",pxNewTCB->pxStack,( size_t ) usStackDepth ) * sizeof( StackType_t ));
 
 				if( pxNewTCB->pxStack == NULL )
 				{
@@ -776,13 +771,12 @@ static void prvAddNewTaskToReadyList( TCB_t *pxNewTCB ) PRIVILEGED_FUNCTION;
 
 			/* Allocate space for the stack used by the task being created. */
 			pxStack = pvPortMalloc( ( ( ( size_t ) usStackDepth ) * sizeof( StackType_t ) ) ); /*lint !e9079 All values returned by pvPortMalloc() have at least the alignment required by the MCU's stack and this allocation is the stack. */
-			SKprintf("  pxStack2= %p, size= %d\r\n",pxStack,(( size_t ) usStackDepth ) * sizeof( StackType_t ) );
 
 			if( pxStack != NULL )
 			{
 				/* Allocate space for the TCB. */
 				pxNewTCB = ( TCB_t * ) pvPortMalloc( sizeof( TCB_t ) ); /*lint !e9087 !e9079 All values returned by pvPortMalloc() have at least the alignment required by the MCU's stack, and the first member of TCB_t is always a pointer to the task's stack. */
-				SKprintf("  pxNewTCB2 = %p, size= %d\r\n",pxNewTCB ,sizeof( TCB_t ));
+
 				if( pxNewTCB != NULL )
 				{
 					/* Store the stack location in the TCB. */
@@ -839,8 +833,6 @@ static void prvInitialiseNewTask( 	TaskFunction_t pxTaskCode,
 StackType_t *pxTopOfStack;
 UBaseType_t x;
 
-SKprintf("prvInitialiseNewTask()\r\n");
-
 	#if( portUSING_MPU_WRAPPERS == 1 )
 		/* Should the task be created in privileged mode? */
 		BaseType_t xRunPrivileged;
@@ -860,27 +852,6 @@ SKprintf("prvInitialiseNewTask()\r\n");
 	{
 		/* Fill the stack with a known value to assist debugging. */
 		( void ) memset( pxNewTCB->pxStack, ( int ) tskSTACK_FILL_BYTE, ( size_t ) ulStackDepth * sizeof( StackType_t ) );
-
-
-
-//		uint16_t dt = (uint16_t)pxNewTCB->pxStack;
-//		dt &= 0x00FF;
-
-//		SKprintf("  pxStack= %p, FIL=%x, size= %d\r\n",pxNewTCB->pxStack,dt,( size_t ) ulStackDepth * sizeof( StackType_t ));
-
-//		( void ) memset( pxNewTCB->pxStack, ( int ) dt, ( size_t ) ulStackDepth * sizeof( StackType_t ) );
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 	#endif /* tskSET_NEW_STACKS_TO_KNOWN_VALUE */
 

@@ -57,6 +57,12 @@ typedef enum{
 	SK_TASK_MAX
 } SK_TASK;
 
+typedef enum{
+	SK_UART1_RS485 = 0,
+	SK_UART2_DEBUG,
+
+	SK_UART_MAX
+} SK_UART;
 
 
 /* Public macro --------------------------------------------------------------*/
@@ -74,7 +80,7 @@ void Set_logInfo(const char *string, ...);
 void LogInfo_display(void);
 void debu_main(void);
 
-int getch(void);
+int getch(SK_UART id);
 
 void rtc_display(void);
 void Set_logflg(LOG_FLAG flg);
@@ -85,5 +91,8 @@ int	SKprintf (const char *string, ...);
 void task_chk_init(void);
 void task_stack_chk(void);
 
+int	putch_uart1 (const char *string);
+
+void uart1_Rcv_init(void);
 
 #endif /* INC_USR_SYSTEM_H_ */

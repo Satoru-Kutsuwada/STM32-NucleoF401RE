@@ -103,12 +103,22 @@ typedef struct tskTaskControlBlock 			/* The old naming convention is used to pr
 /* Public define -------------------------------------------------------------*/
 #define ___UART_POLING
 
+
+//#define ___TASK_CHK_DISPLAY		// タスクスタック検知表示
+
+
 /* Public macro --------------------------------------------------------------*/
 
 /* Public variables ----------------------------------------------------------*/
-extern UART_HandleTypeDef huart2;
+
 extern RTC_HandleTypeDef hrtc;
+
 extern TIM_HandleTypeDef htim1;
+extern TIM_HandleTypeDef htim2;
+
+extern UART_HandleTypeDef huart1;
+extern UART_HandleTypeDef huart2;
+
 
 extern osThreadId_t Task_mainHandle;
 extern osThreadId_t Task_sub1Handle;
@@ -117,6 +127,8 @@ extern osThreadId_t Task_sub2Handle;
 extern osThreadAttr_t Task_main_attributes;
 extern osThreadAttr_t Task_sub1_attributes;
 extern osThreadAttr_t Task_sub2_attributes;
+
+
 
 
 /* Public function prototypes ------------------------------------------------*/
@@ -145,8 +157,8 @@ TASK_STACK_CHECK task_chk_table[SK_TASK_MAX];
 /* Private macro -------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
-int gUartReceived = 0;
-int Sem_Printf = 0;
+
+
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -211,8 +223,11 @@ void task_stack_chk(void)
 	int		i;
 	int		j;
 
+#ifdef ___TASK_CHK_DISPLAY
+	SKprintf_uart1("\r\ntask_stack_chk()\r\n");
+	SKprintf("\r\ntask_stack_chk()\r\n");
+#endif	// ___TASK_CHK_DISPLAY
 
-	//SKprintf("\r\ntask_stack_chk()\r\n");
 	for( i=0; i < SK_TASK_MAX; i++ ){
 
 		for( j= 0; j < task_chk_table[i].size; j++){
@@ -222,7 +237,9 @@ void task_stack_chk(void)
 		}
 		task_chk_table[i].used = task_chk_table[i].size - j;
 
-		//SKprintf(" %s:Used Size= %d(%d%%)\r\n", &task_chk_table[i].name[0], task_chk_table[i].used, (100*task_chk_table[i].used/task_chk_table[i].size));
+#ifdef ___TASK_CHK_DISPLAY
+		SKprintf(" %s:Used Size= %d(%d%%)\r\n", &task_chk_table[i].name[0], task_chk_table[i].used, (100*task_chk_table[i].used/task_chk_table[i].size));
+#endif	// ___TASK_CHK_DISPLAY
 
 		if( j < (task_chk_table[i].size/10) ){
 			SKprintf("WARNING:STACK FULL  %s\r\n", &task_chk_table[i].name[0]);
@@ -391,51 +408,6 @@ void Get_task_stackptr(SK_TASK taskid, STACK_INFO *ptr)
 	SKprintf("pxStack=%p,pxTopOfStack=%p,size=%d\r\n", ptr->pxStack,ptr->pxTopOfStack,ptr->size);
 }
 
-//==============================================================================
-//
-// 総和を求める関数（値は int 型を想定）
-// n は、渡す引数の数、それ以降は計算する値です。
-//==============================================================================
-
-int	SKprintf (const char *string, ...)
-{
-	va_list ap;
-	int i;
-	char *buffer;
-
-#define CHARA_MAX 100
-
-	while( Sem_Printf != 0 );
-
-	buffer = (char *)pvPortMalloc(CHARA_MAX);
-
-	if( buffer != NULL ){
-
-		Sem_Printf = 1;
-
-		// 可変個引数の利用準備
-		// -- １… va_list 構造体 ap
-		// -- 2 … 可変個引数の直前にある引数
-
-		va_start(ap, string);
-		vsprintf(buffer, string, ap);
-		va_end(ap);
-
-		for(i=0; i<CHARA_MAX; i++){
-			if(buffer[i] == '\0'){
-				break;
-			}
-		}
-		HAL_UART_Transmit(&huart2, buffer, i, HAL_MAX_DELAY);
-
-	}
-
-	vPortFree(buffer);
-
-	Sem_Printf = 0;
-
-}
-
 
 /*******************************************************************************
   * @brief
@@ -576,31 +548,5 @@ void rtc_display(void)
 	SKprintf("20%02d.%02d.%02d %02d:%02d:%02d\r\n", sDate.Year, sDate.Month, sDate.Date, sTime.Hours, sTime.Minutes, sTime.Seconds);
 	SKprintf("av=%d max=%d\r\n",timer.dt_av,timer.dt_max);
 	SKprintf("dt_buf=%d, %d, %d\r\n", timer.dt_buf[0],timer.dt_buf[1],timer.dt_buf[2]);
-}
-/*******************************************************************************
-  * @brief
-  * @param  None
-  * @retval None
-  *******************************************************************************/
-int getch(void)
-{
-	uint8_t buffer[256];
-	HAL_StatusTypeDef s;
-	int rtn = 0;
-
-	s = HAL_UART_Receive(&huart2, buffer, 1, HAL_MAX_DELAY);
-
-	switch(s){
-	case HAL_OK:
-		rtn = (int) buffer[0];
-		break;
-	case HAL_ERROR:
-	case HAL_BUSY:
-	case HAL_TIMEOUT:
-
-		break;
-	}
-
-	return rtn;
 }
 

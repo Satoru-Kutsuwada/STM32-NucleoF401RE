@@ -596,9 +596,13 @@ void command_split(void)
     string[1] = '\0';
 
 
-    c = (char)getch();
+    c = (char)getch(SK_UART2_DEBUG);
+
+    //SKprintf("read_line_streem()\r\n");
 
     if( c != 0 ){
+
+
 
         switch(input_char_step){
             case INPUT_INIT:

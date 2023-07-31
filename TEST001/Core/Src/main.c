@@ -108,6 +108,7 @@ void rtc_display(void);			// SK ADD
 void debu_main(void);
 int getch_uart1(void);
 int	SKprintf_uart1 (const char *string, ...);
+void rs485_com_task(void);
 
 
 /* USER CODE END PFP */
@@ -152,7 +153,8 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-  user_init();		// SK ADD
+  user_init();		// SK ADDSKprint
+
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -581,7 +583,7 @@ void StartDefaultTask(void *argument)
   for(;;)
   {
 //	  rtc_display();
-	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	  //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
     osDelay(200);
   }
   /* USER CODE END 5 */
@@ -625,26 +627,19 @@ void StartTask02(void *argument)
 __weak void StartTask03(void *argument)
 {
   /* USER CODE BEGIN StartTask03 */
-	char c[2];
+	//char c[2];
 
-	SKprintf_uart1("===================\r\n");
+	//SKprintf_uart1("===================\r\n");
 	SKprintf_uart1("=== UART1 START ===\r\n");
-	SKprintf_uart1("===================\r\n");
+	//SKprintf_uart1("===================\r\n");
 
-	uart_Rcv_init(SK_UART1_RS485);
+	//uart_Rcv_init(SK_UART1_RS485);
 
 	/* Infinite loop */
 
 	for(;;)
 	{
-		c[0] = getch(SK_UART1_RS485);
-		c[1] = '\0';
-		if( c[0] != 0 ){
-			SKprintf_uart1(c);
-		}
-		//SKprintf_uart1("task2\r\n");
-
-		// osDelay(10);
+		rs485_com_task();
 	}
   /* USER CODE END StartTask03 */
 }

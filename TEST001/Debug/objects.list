@@ -2,6 +2,7 @@
 "./Core/Src/Src/usr_isr_callback.o"
 "./Core/Src/Src/usr_log.o"
 "./Core/Src/Src/usr_main.o"
+"./Core/Src/Src/usr_rs485_main.o"
 "./Core/Src/Src/usr_uart.o"
 "./Core/Src/freertos.o"
 "./Core/Src/main.o"

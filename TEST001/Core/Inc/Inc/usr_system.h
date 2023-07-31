@@ -29,11 +29,21 @@ typedef struct{
 } TIMER_TIC;
 
 
+/* Public typedef ------------------------------------------------------------*/
 typedef struct{
 	uint8_t		*pxTopOfStack;
 	uint8_t		*pxStack;
 	uint16_t	size;
 } STACK_INFO;
+
+
+
+/* Public typedef ------------------------------------------------------------*/
+typedef enum {
+	RET_FALSE = 0,
+	RET_TRUE
+
+}RETURN_STATUS;
 
 
 
@@ -94,5 +104,12 @@ void task_stack_chk(void);
 int	putch_uart1 (const char *string);
 
 void uart1_Rcv_init(void);
+
+uint8_t	Get_rs485_rcvflg(void);
+void Set_rs485_rcvflg(uint8_t dt);
+
+RETURN_STATUS Recive_rs485(uint8_t *pData, uint16_t Size);
+RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size);
+
 
 #endif /* INC_USR_SYSTEM_H_ */

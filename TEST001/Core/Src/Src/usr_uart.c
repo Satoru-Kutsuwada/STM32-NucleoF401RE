@@ -73,6 +73,73 @@ const UART_MENBER UartList[]={
 
 /* Private function prototypes -----------------------------------------------*/
 
+
+//==============================================================================
+//
+//==============================================================================
+RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size)
+{
+	RETURN_STATUS status = RET_TRUE;
+	HAL_StatusTypeDef s;
+
+	SKprintf("Send_rs485() size=%d\r\n",Size);
+	s= HAL_UART_Transmit(UartList[SK_UART1_RS485].huart, pData, Size, HAL_MAX_DELAY);
+
+	switch(s){
+	case HAL_OK:
+		break;
+	case HAL_ERROR:
+	case HAL_BUSY:
+	case HAL_TIMEOUT:
+		status = RET_FALSE;
+		SKprintf("ERROR %s RS485 TRANSMIT = %d\r\n",UartList[SK_UART1_RS485].name, s);
+		break;
+	}
+
+	return status;
+
+}
+
+//==============================================================================
+//
+//==============================================================================
+RETURN_STATUS Recive_rs485(uint8_t *pData, uint16_t Size)
+{
+	RETURN_STATUS status = RET_TRUE;
+	HAL_StatusTypeDef s;
+
+		// 受信準備
+		s= HAL_UART_Receive_IT(UartList[SK_UART1_RS485].huart, pData, Size);
+
+		switch(s){
+		case HAL_OK:
+			break;
+		case HAL_ERROR:
+		case HAL_BUSY:
+		case HAL_TIMEOUT:
+			status = RET_FALSE;
+			SKprintf("ERROR %s RS485 RECIVE = %d\r\n",UartList[SK_UART1_RS485].name, s);
+			break;
+		}
+
+		return status;
+}
+
+//==============================================================================
+//
+//==============================================================================
+uint8_t	Get_rs485_rcvflg(void)
+{
+	return *UartList[SK_UART1_RS485].RcvFlg;
+}
+//==============================================================================
+//
+//==============================================================================
+void Set_rs485_rcvflg(uint8_t dt)
+{
+	*UartList[SK_UART1_RS485].RcvFlg = dt;
+}
+
 //==============================================================================
 //
 //==============================================================================

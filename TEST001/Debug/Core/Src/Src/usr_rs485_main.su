@@ -1,0 +1,3 @@
+../Core/Src/Src/usr_rs485_main.c:116:6:rs485_com_task	16	static
+../Core/Src/Src/usr_rs485_main.c:162:15:Rcv_rx485_message	16	static
+../Core/Src/Src/usr_rs485_main.c:233:15:Send_rx485_cmd_message	24	static

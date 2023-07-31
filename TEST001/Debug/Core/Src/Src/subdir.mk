@@ -9,6 +9,7 @@ C_SRCS += \
 ../Core/Src/Src/usr_isr_callback.c \
 ../Core/Src/Src/usr_log.c \
 ../Core/Src/Src/usr_main.c \
+../Core/Src/Src/usr_rs485_main.c \
 ../Core/Src/Src/usr_uart.c 
 
 OBJS += \
@@ -16,6 +17,7 @@ OBJS += \
 ./Core/Src/Src/usr_isr_callback.o \
 ./Core/Src/Src/usr_log.o \
 ./Core/Src/Src/usr_main.o \
+./Core/Src/Src/usr_rs485_main.o \
 ./Core/Src/Src/usr_uart.o 
 
 C_DEPS += \
@@ -23,6 +25,7 @@ C_DEPS += \
 ./Core/Src/Src/usr_isr_callback.d \
 ./Core/Src/Src/usr_log.d \
 ./Core/Src/Src/usr_main.d \
+./Core/Src/Src/usr_rs485_main.d \
 ./Core/Src/Src/usr_uart.d 
 
 
@@ -33,7 +36,7 @@ Core/Src/Src/%.o Core/Src/Src/%.su Core/Src/Src/%.cyclo: ../Core/Src/Src/%.c Cor
 clean: clean-Core-2f-Src-2f-Src
 
 clean-Core-2f-Src-2f-Src:
-	-$(RM) ./Core/Src/Src/usr_debug_tool.cyclo ./Core/Src/Src/usr_debug_tool.d ./Core/Src/Src/usr_debug_tool.o ./Core/Src/Src/usr_debug_tool.su ./Core/Src/Src/usr_isr_callback.cyclo ./Core/Src/Src/usr_isr_callback.d ./Core/Src/Src/usr_isr_callback.o ./Core/Src/Src/usr_isr_callback.su ./Core/Src/Src/usr_log.cyclo ./Core/Src/Src/usr_log.d ./Core/Src/Src/usr_log.o ./Core/Src/Src/usr_log.su ./Core/Src/Src/usr_main.cyclo ./Core/Src/Src/usr_main.d ./Core/Src/Src/usr_main.o ./Core/Src/Src/usr_main.su ./Core/Src/Src/usr_uart.cyclo ./Core/Src/Src/usr_uart.d ./Core/Src/Src/usr_uart.o ./Core/Src/Src/usr_uart.su
+	-$(RM) ./Core/Src/Src/usr_debug_tool.cyclo ./Core/Src/Src/usr_debug_tool.d ./Core/Src/Src/usr_debug_tool.o ./Core/Src/Src/usr_debug_tool.su ./Core/Src/Src/usr_isr_callback.cyclo ./Core/Src/Src/usr_isr_callback.d ./Core/Src/Src/usr_isr_callback.o ./Core/Src/Src/usr_isr_callback.su ./Core/Src/Src/usr_log.cyclo ./Core/Src/Src/usr_log.d ./Core/Src/Src/usr_log.o ./Core/Src/Src/usr_log.su ./Core/Src/Src/usr_main.cyclo ./Core/Src/Src/usr_main.d ./Core/Src/Src/usr_main.o ./Core/Src/Src/usr_main.su ./Core/Src/Src/usr_rs485_main.cyclo ./Core/Src/Src/usr_rs485_main.d ./Core/Src/Src/usr_rs485_main.o ./Core/Src/Src/usr_rs485_main.su ./Core/Src/Src/usr_uart.cyclo ./Core/Src/Src/usr_uart.d ./Core/Src/Src/usr_uart.o ./Core/Src/Src/usr_uart.su
 
 .PHONY: clean-Core-2f-Src-2f-Src
 

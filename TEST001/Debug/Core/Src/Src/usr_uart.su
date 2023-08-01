@@ -1,9 +1,8 @@
-../Core/Src/Src/usr_uart.c:80:15:Send_rs485	24	static
-../Core/Src/Src/usr_uart.c:106:15:Recive_rs485	24	static
-../Core/Src/Src/usr_uart.c:131:9:Get_rs485_rcvflg	4	static
-../Core/Src/Src/usr_uart.c:138:6:Set_rs485_rcvflg	16	static
-../Core/Src/Src/usr_uart.c:146:6:HAL_UART_RxCpltCallback	16	static
-../Core/Src/Src/usr_uart.c:163:6:uart_Rcv_init	24	static
-../Core/Src/Src/usr_uart.c:184:5:SKprintf_uart1	24	static
-../Core/Src/Src/usr_uart.c:227:5:SKprintf	24	static
-../Core/Src/Src/usr_uart.c:268:5:getch	24	static
+../Core/Src/Src/usr_uart.c:76:22:Get_huart	4	static
+../Core/Src/Src/usr_uart.c:84:15:Send_rs485	24	static
+../Core/Src/Src/usr_uart.c:112:9:Get_rs485_rcvflg	4	static
+../Core/Src/Src/usr_uart.c:119:6:Set_rs485_rcvflg	16	static
+../Core/Src/Src/usr_uart.c:133:6:uart_Rcv_init	24	static
+../Core/Src/Src/usr_uart.c:154:5:SKprintf_uart1	24	static
+../Core/Src/Src/usr_uart.c:197:5:SKprintf	24	static
+../Core/Src/Src/usr_uart.c:238:5:getch	24	static

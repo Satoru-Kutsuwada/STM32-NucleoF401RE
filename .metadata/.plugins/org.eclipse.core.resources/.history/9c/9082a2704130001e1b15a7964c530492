@@ -73,10 +73,6 @@ const UART_MENBER UartList[]={
 
 /* Private function prototypes -----------------------------------------------*/
 
-UART_HandleTypeDef * Get_huart(void)
-{
-	return UartList[SK_UART1_RS485].huart;
-}
 
 //==============================================================================
 //
@@ -104,7 +100,30 @@ RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size)
 
 }
 
+//==============================================================================
+//
+//==============================================================================
+RETURN_STATUS Recive_rs485(uint8_t *pData, uint16_t Size)
+{
+	RETURN_STATUS status = RET_TRUE;
+	HAL_StatusTypeDef s;
 
+		// 受信準備
+		s= HAL_UART_Receive_IT(UartList[SK_UART1_RS485].huart, pData, Size);
+
+		switch(s){
+		case HAL_OK:
+			break;
+		case HAL_ERROR:
+		case HAL_BUSY:
+		case HAL_TIMEOUT:
+			status = RET_FALSE;
+			SKprintf("ERROR %s RS485 RECIVE = %d\r\n",UartList[SK_UART1_RS485].name, s);
+			break;
+		}
+
+		return status;
+}
 
 //==============================================================================
 //
@@ -121,7 +140,18 @@ void Set_rs485_rcvflg(uint8_t dt)
 	*UartList[SK_UART1_RS485].RcvFlg = dt;
 }
 
-
+//==============================================================================
+//
+//==============================================================================
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if( UartList[SK_UART1_RS485].huart == huart ){
+		*UartList[SK_UART1_RS485].RcvFlg = 1;
+	}
+	else {
+		*UartList[SK_UART2_DEBUG].RcvFlg = 1;
+	}
+}
 
 
 //==============================================================================

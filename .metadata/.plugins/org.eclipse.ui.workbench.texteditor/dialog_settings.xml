@@ -1,36 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="SKprint"/>
+		<item key="selection" value="cmd_ptr "/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="cmd_ptr "/>
+			<item value="cmd_ptr"/>
+			<item value="Send_rx485_cmd_message"/>
+			<item value="ERROE RS485"/>
+			<item value="s485_com_task() 001"/>
+			<item value="RS485 COMMAND ER"/>
+			<item value="COM_PROTOCOL_STEP"/>
+			<item value="com_step"/>
+			<item value="COM_PROTOCOL_STE"/>
+			<item value="cmd_mesg"/>
+			<item value="Recive_rs485"/>
+			<item value="i++"/>
 			<item value="SKprint"/>
 			<item value="task_stack_chk"/>
 			<item value="uart1_rcvflg"/>
-			<item value="Sem_Printf"/>
-			<item value="HAL_UART_Receive"/>
-			<item value="CHARA_MAX"/>
-			<item value="vPortMallo"/>
-			<item value="Skprintf"/>
-			<item value="SKprintf"/>
-			<item value="pxStack"/>
-			<item value="SKp"/>
-			<item value="prvInitialiseNewTask"/>
-			<item value="vPortStoreTaskMPUSettings"/>
-			<item value="tskTaskControlBlock"/>
-			<item value="pxNewTCB"/>
 		</list>
 		<list key="replacehistory">
+			<item value="res_ptr"/>
+			<item value="Res_mesg"/>
+			<item value="num++"/>
 			<item value="SKprintf"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="1593"/>
-		<item key="DIALOG_Y_ORIGIN" value="181"/>
+		<item key="DIALOG_X_ORIGIN" value="781"/>
+		<item key="DIALOG_Y_ORIGIN" value="402"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="391"/>
 		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>

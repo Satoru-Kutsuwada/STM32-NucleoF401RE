@@ -1,25 +1,35 @@
-15:49:57 **** Incremental Build of configuration Debug for project TEST001 ****
+17:29:29 **** Incremental Build of configuration Debug for project TEST001 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
 ../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
-../Core/Src/Src/usr_rs485_main.c:145:4: warning: implicit declaration of function 'osDelay' [-Wimplicit-function-declaration]
-  145 |    osDelay(1);
-      |    ^~~~~~~
+../Core/Src/Src/usr_rs485_main.c:268:7: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  268 |       printf("RS485_CMD_STATUS\r\n");
+      |       ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:268:7: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   12 | #include "rs485_com.h"
+  +++ |+#include <stdio.h>
+   13 | 
 ../Core/Src/Src/usr_rs485_main.c: In function 'Rcv_rx485_message':
-../Core/Src/Src/usr_rs485_main.c:166:11: warning: unused variable 'flg' [-Wunused-variable]
-  166 |  uint8_t  flg = 0;
-      |           ^~~
+../Core/Src/Src/usr_rs485_main.c:376:5: warning: incompatible implicit declaration of built-in function 'printf'
+  376 |     printf("Res_mesg= ");
+      |     ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:376:5: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/Src/usr_rs485_main.c:396:9: warning: incompatible implicit declaration of built-in function 'printf'
+  396 |         printf("dt=0x%02x, com_step_flg=%d,rcvnum=%d\r\n", dt, com_step_flg,rcvnum);
+      |         ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:396:9: note: include '<stdio.h>' or provide a declaration of 'printf'
 arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: TEST001.elf
  
 arm-none-eabi-size   TEST001.elf 
 arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
    text	   data	    bss	    dec	    hex	filename
-  43668	    124	  27548	  71340	  116ac	TEST001.elf
+  47108	    124	  27644	  74876	  1247c	TEST001.elf
 Finished building: default.size.stdout
  
 Finished building: TEST001.list
  
 
-15:49:58 Build Finished. 0 errors, 2 warnings. (took 878ms)
+17:29:31 Build Finished. 0 errors, 4 warnings. (took 1s.998ms)
 

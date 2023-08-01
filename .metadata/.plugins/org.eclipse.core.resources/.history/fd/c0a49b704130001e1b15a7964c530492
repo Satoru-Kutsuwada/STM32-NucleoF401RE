@@ -427,8 +427,6 @@ void Get_UART_Handle(UART_HandleTypeDef *uart_handle)
   *******************************************************************************/
 void user_init(void)
 {
-	RETURN_STATUS	status = RET_TRUE;
-
 	//LED_Flush(0);
 	SKprintf("Initialize all configured peripherals\r\n");
 	SKprintf("******************\r\n");
@@ -455,12 +453,6 @@ void user_init(void)
 	//-----------------------------------------------
 	LogInfo_clear();
 
-
-	//-----------------------------------------------
-	// 受信割込み準備
-	//-----------------------------------------------
-	// 受信準備
-	status = Recive_rs485_prepaer();
 
 }
 

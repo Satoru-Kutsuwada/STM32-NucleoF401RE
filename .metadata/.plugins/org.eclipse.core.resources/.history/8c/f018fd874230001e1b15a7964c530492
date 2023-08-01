@@ -86,7 +86,6 @@ uint8_t		cmd_mesg[RS485_MSG_MAX];
 uint8_t		Res_mesg[RS485_MSG_MAX];
 uint8_t		cmd_char[RS485_MSG_MAX];
 uint8_t		cmd_ptr = 0;
-uint8_t		res_ptr = 0;
 
 
 /* Private variables ---------------------------------------------------------*/
@@ -132,7 +131,7 @@ const COMMAND_FORM	com_form[] = {
 typedef enum{
 	COM_PROTOCOL_SEND,
 	COM_PROTOCOL_RECIVE
-} COM_PROTOCOL_STEP;
+}COM_PROTOCOL_STEP;
 
 typedef enum {
     COM_RCV_INIT = 0,
@@ -152,6 +151,7 @@ COM_STEP    com_step_flg;
 /* Private function prototypes -----------------------------------------------*/
 //RETURN_STATUS Rcv_rx485_message(void)；
 //RETURN_STATUS Send_rx485_cmd_message( CMD_MSG *com_msg );
+RETURN_STATUS Rcv_rx485_message(void);
 
 RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg );
 UART_HandleTypeDef * Get_huart(void);
@@ -224,22 +224,23 @@ void rs485_com_task(void)
 	RETURN_STATUS	status = RET_TRUE;
 	CMD_MSG	com_msg;
 
-	 COM_PROTOCOL_STEP	cp_step = COM_PROTOCOL_SEND;
+
+	COM_PROTOCOL_STEP　com_step = COM_PROTOCOL_SEND;
 
 	while(1){
 
-		SKprintf("rs485_com_task() cmd_ptr=%d \r\n",cmd_ptr);
-		if( cp_step == COM_PROTOCOL_SEND ){
+		SKprintf("rs485_com_task() \r\n");
+		if( com_step == COM_PROTOCOL_SEND ){
 
 			if( com[cmd_ptr].command != RS485_CMD_MAX ){
-				//SKprintf("rs485_com_task() 001\r\n");
+				SKprintf("rs485_com_task() 001\r\n");
 				com_msg.command = com[cmd_ptr].command;
 				com_msg.address = com[cmd_ptr].address;
 				com_msg.sub1 = com[cmd_ptr].sub1;
 				com_msg.rcv_byte = com[cmd_ptr].rcv_byte;
 			}
 			else{
-				//SKprintf("rs485_com_task() 002\r\n");
+				SKprintf("rs485_com_task() 002\r\n");
 				cmd_ptr = 0;
 				com_msg.command = com[cmd_ptr].command;
 				com_msg.address = com[cmd_ptr].address;
@@ -251,10 +252,9 @@ void rs485_com_task(void)
 
 
 			if( status == RET_TRUE ){
-				cp_step = COM_PROTOCOL_RECIVE;
+				com_step = COM_PROTOCOL_RECIVE;
                 com_step_flg = COM_RCV_INIT;
-                //cmd_ptr = 0;
-                res_ptr = 0;
+                cmd_ptr = 0;
 			}
 
 		}
@@ -290,7 +290,7 @@ void rs485_com_task(void)
 		}
 
 		if( status == RET_TRUE ){
-			cp_step = COM_PROTOCOL_SEND;
+			com_step = COM_PROTOCOL_SEND;
 			cmd_ptr ++;
 		}
 	}
@@ -311,70 +311,70 @@ COM_STEP  Rcv_rx485_message(CMD_MSG	*com_msg)
 
 		switch( com_step_flg ){
 		case  COM_RCV_INIT:
-			if( dt == '#'  &&  res_ptr== com_form[com_msg->command].address_id ){
-				Res_mesg[res_ptr] = dt;
+			if( dt == '#'  &&  cmd_ptr == com_form[com_msg->command].address_id ){
+				Res_mesg[cmd_ptr] = dt;
 				com_step_flg = COM_RCV_ADD_ID;
-				res_ptr++;
+				cmd_ptr ++;
 			}
 			break;
 		case COM_RCV_ADD_ID:
-			Res_mesg[res_ptr] = dt;
+			Res_mesg[cmd_ptr] = dt;
 			com_step_flg = COM_RCV_ADD_ID_DIST;
-			res_ptr++;
+			cmd_ptr ++;
 			break;
 
 		case COM_RCV_ADD_ID_DIST:
-			Res_mesg[res_ptr] = dt;
+			Res_mesg[cmd_ptr] = dt;
 			com_step_flg = COM_RCV_ADD_ID_SOURCE;
-			res_ptr++;
+			cmd_ptr ++;
 			break;
 
 		case COM_RCV_ADD_ID_SOURCE:
-			if( dt == '*'   &&  res_ptr== com_form[com_msg->command].command_id ){
-				Res_mesg[res_ptr] = dt;
+			if( dt == '*'   &&  cmd_ptr == com_form[com_msg->command].command_id ){
+				Res_mesg[cmd_ptr] = dt;
 				com_step_flg = COM_RCV_CMD_ID;
-				res_ptr++;
+				cmd_ptr ++;
 			}
 			else{
 				com_step_flg = COM_RCV_INIT;
-				res_ptr = 0;
+				cmd_ptr = 0;
 			}
 			break;
 
 		case COM_RCV_CMD_ID:
-			Res_mesg[res_ptr] = dt;
+			Res_mesg[cmd_ptr] = dt;
 			com_step_flg = COM_RCV_COMMAND;
-			res_ptr ++;
+			cmd_ptr ++;
 			break;
 
 		case COM_RCV_COMMAND:
-			if( dt == '$'   &&  res_ptr == com_form[com_msg->command].chksum_id ){
-				Res_mesg[res_ptr] = dt;
+			if( dt == '$'   &&  cmd_ptr == com_form[com_msg->command].chksum_id ){
+				Res_mesg[cmd_ptr] = dt;
 				com_step_flg = COM_RCV_CSUM_ID;
-				res_ptr ++;
+				cmd_ptr ++;
 			}
 			else{
-				Res_mesg[res_ptr] = dt;
+				Res_mesg[cmd_ptr] = dt;
 				com_step_flg = COM_RCV_COMMAND;
-				res_ptr ++;
+				cmd_ptr ++;
 			}
 			break;
 		case COM_RCV_CSUM_ID:
 
 
 			sum = 0;
-			for( i = 0; i< (res_ptr -1); i++){
+			for( i = 0; i< (cmd_ptr -1); i++){
 				sum += Res_mesg[i];
 			}
 
 			if( sum == dt ){
-				Res_mesg[res_ptr] = dt;
+				Res_mesg[cmd_ptr] = dt;
 				com_step_flg = COM_RCV_COMPLITE;
-				res_ptr ++;
+				cmd_ptr ++;
 
 
 				printf("Res_mesg= ");
-				for( i=0; i<res_ptr; i++ ){
+				for( i=0; i<cmd_ptr; i++ ){
 					printf("%02x ",Res_mesg[i]);
 					cmd_char[i] = ((Res_mesg[i]<0x20||Res_mesg[i]>=0x7f)? '.': cmd_mesg[i]);
 				}
@@ -385,7 +385,7 @@ COM_STEP  Rcv_rx485_message(CMD_MSG	*com_msg)
 			}
 			else{
 				com_step_flg = COM_RCV_INIT;
-				res_ptr = 0;
+				cmd_ptr = 0;
 			}
 
 		case COM_RCV_COMPLITE:
@@ -451,7 +451,7 @@ RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg )
 		cmd_mesg[num++] = '$';
 		break;
 	default:
-		SKprintf("ERROE RS485 COMMAND ERR\r\n");
+		SKprintf("ERROE RS485 COMMAND ERR");
 		status = RET_FALSE;
 		break;
 	}
@@ -478,7 +478,7 @@ RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg )
 
 
 		// 受信準備
-		//status = Recive_rs485(Res_mesg, com_msg->rcv_byte);
+		status = Recive_rs485(Res_mesg, com_msg->rcv_byte);
 	}
 
 

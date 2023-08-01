@@ -73,10 +73,6 @@ const UART_MENBER UartList[]={
 
 /* Private function prototypes -----------------------------------------------*/
 
-UART_HandleTypeDef * Get_huart(void)
-{
-	return UartList[SK_UART1_RS485].huart;
-}
 
 //==============================================================================
 //

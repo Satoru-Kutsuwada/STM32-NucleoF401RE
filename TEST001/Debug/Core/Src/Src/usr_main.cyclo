@@ -4,5 +4,5 @@ usr_main.c:253:6:Disp_task_info	5
 usr_main.c:376:6:Get_task_stackptr	5
 usr_main.c:417:6:Get_UART_Handle	1
 usr_main.c:428:6:user_init	1
-usr_main.c:464:6:user_main_loop	1
-usr_main.c:541:6:rtc_display	1
+usr_main.c:472:6:user_main_loop	1
+usr_main.c:549:6:rtc_display	1

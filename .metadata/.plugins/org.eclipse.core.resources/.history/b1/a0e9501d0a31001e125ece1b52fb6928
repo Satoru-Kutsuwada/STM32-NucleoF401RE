@@ -255,6 +255,7 @@ void rs485_com_task(void)
 				com_msg.command = com[cmd_ptr].command;
 				com_msg.address = com[cmd_ptr].address;
 				com_msg.sub1 = com[cmd_ptr].sub1;
+				com_msg.rcv_byte = com[cmd_ptr].rcv_byte;
 			}
 			else{
 				//SKprintf("rs485_com_task() 002\r\n");
@@ -262,6 +263,7 @@ void rs485_com_task(void)
 				com_msg.command = com[cmd_ptr].command;
 				com_msg.address = com[cmd_ptr].address;
 				com_msg.sub1 = com[cmd_ptr].sub1;
+				com_msg.rcv_byte = com[cmd_ptr].rcv_byte;
 			}
 
 			status = Send_rx485_cmd_message( &com_msg );
@@ -585,6 +587,7 @@ RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg )
 	case RS485_CMD_MESUR_DATA:
 		cmd_mesg[num++] = com_msg->sub1;
 		break;
+		default:
 	default:
 		break;
 	}

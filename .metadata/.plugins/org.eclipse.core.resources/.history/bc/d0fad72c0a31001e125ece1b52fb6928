@@ -585,6 +585,7 @@ RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg )
 	case RS485_CMD_MESUR_DATA:
 		cmd_mesg[num++] = com_msg->sub1;
 		break;
+		default:
 	default:
 		break;
 	}

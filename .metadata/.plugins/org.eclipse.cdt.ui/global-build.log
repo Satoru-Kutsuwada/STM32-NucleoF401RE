@@ -23024,3 +23024,65 @@ Finished building: default.size.stdout
  
 Finished building: TEST001.list
  
+16:56:04 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:258:12: error: 'CMD_MSG' has no member named 'rcv_byte'
+  258 |     com_msg.rcv_byte = com[cmd_ptr].rcv_byte;
+      |            ^
+../Core/Src/Src/usr_rs485_main.c:258:36: error: 'CMD_MSG' has no member named 'rcv_byte'
+  258 |     com_msg.rcv_byte = com[cmd_ptr].rcv_byte;
+      |                                    ^
+../Core/Src/Src/usr_rs485_main.c:266:12: error: 'CMD_MSG' has no member named 'rcv_byte'
+  266 |     com_msg.rcv_byte = com[cmd_ptr].rcv_byte;
+      |            ^
+../Core/Src/Src/usr_rs485_main.c:266:36: error: 'CMD_MSG' has no member named 'rcv_byte'
+  266 |     com_msg.rcv_byte = com[cmd_ptr].rcv_byte;
+      |                                    ^
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:591:2: error: multiple default labels in one switch
+  591 |  default:
+      |  ^~~~~~~
+../Core/Src/Src/usr_rs485_main.c:590:3: note: this is the first default label
+  590 |   default:
+      |   ^~~~~~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+16:56:40 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:589:2: error: multiple default labels in one switch
+  589 |  default:
+      |  ^~~~~~~
+../Core/Src/Src/usr_rs485_main.c:588:3: note: this is the first default label
+  588 |   default:
+      |   ^~~~~~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+16:57:06 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44124	    124	  27812	  72060	  1197c	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 

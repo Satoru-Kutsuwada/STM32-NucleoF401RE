@@ -9,5 +9,5 @@ main.c:526:13:MX_GPIO_Init	1
 main.c:579:6:StartDefaultTask	1
 main.c:599:6:StartTask02	1
 main.c:627:13:StartTask03	1
-main.c:655:6:HAL_TIM_PeriodElapsedCallback	2
-main.c:672:6:Error_Handler	1
+main.c:657:6:HAL_TIM_PeriodElapsedCallback	2
+main.c:674:6:Error_Handler	1

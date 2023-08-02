@@ -22294,3 +22294,733 @@ Finished building: default.size.stdout
  
 Finished building: TEST001.list
  
+07:57:32 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:267:7: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  267 |       printf("RS485_CMD_STATUS\r\n");
+      |       ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:267:7: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   12 | #include "rs485_com.h"
+  +++ |+#include <stdio.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Rcv_rx485_message':
+../Core/Src/Src/usr_rs485_main.c:381:5: warning: incompatible implicit declaration of built-in function 'printf'
+  381 |     printf("Res_mesg= ");
+      |     ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:381:5: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/Src/usr_rs485_main.c:401:9: warning: incompatible implicit declaration of built-in function 'printf'
+  401 |         printf("dt=0x%02x, com_step_flg=%d,rcvnum=%d\r\n", dt, com_step_flg,rcvnum);
+      |         ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:401:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  47156	    124	  27644	  74924	  124ac	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+08:02:17 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:269:7: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  269 |       printf("RS485_CMD_STATUS\r\n");
+      |       ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:269:7: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   12 | #include "rs485_com.h"
+  +++ |+#include <stdio.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Rcv_rx485_message':
+../Core/Src/Src/usr_rs485_main.c:383:5: warning: incompatible implicit declaration of built-in function 'printf'
+  383 |     printf("Res_mesg= ");
+      |     ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:383:5: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/Src/usr_rs485_main.c:403:9: warning: incompatible implicit declaration of built-in function 'printf'
+  403 |         printf("dt=0x%02x, com_step_flg=%d,rcvnum=%d\r\n", dt, com_step_flg,rcvnum);
+      |         ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:403:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  47212	    124	  27644	  74980	  124e4	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+08:08:04 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:269:7: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  269 |       printf("RS485_CMD_STATUS\r\n");
+      |       ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:269:7: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   12 | #include "rs485_com.h"
+  +++ |+#include <stdio.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Rcv_rx485_message':
+../Core/Src/Src/usr_rs485_main.c:385:5: warning: incompatible implicit declaration of built-in function 'printf'
+  385 |     printf("Res_mesg= ");
+      |     ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:385:5: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  47212	    124	  27644	  74980	  124e4	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+08:16:53 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:269:7: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  269 |       printf("RS485_CMD_STATUS\r\n");
+      |       ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:269:7: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   12 | #include "rs485_com.h"
+  +++ |+#include <stdio.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Rcv_rx485_message':
+../Core/Src/Src/usr_rs485_main.c:386:5: warning: incompatible implicit declaration of built-in function 'printf'
+  386 |     printf("Res_mesg= ");
+      |     ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:386:5: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  47304	    124	  27644	  75072	  12540	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+08:22:58 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:272:7: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  272 |       printf("RS485_CMD_STATUS\r\n");
+      |       ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:272:7: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   12 | #include "rs485_com.h"
+  +++ |+#include <stdio.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Rcv_rx485_message':
+../Core/Src/Src/usr_rs485_main.c:389:5: warning: incompatible implicit declaration of built-in function 'printf'
+  389 |     printf("Res_mesg= ");
+      |     ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:389:5: note: include '<stdio.h>' or provide a declaration of 'printf'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  47308	    124	  27644	  75076	  12544	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+08:26:04 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44288	    124	  27644	  72056	  11978	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+08:35:59 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:510:1: error: expected declaration or statement at end of input
+  510 | }
+      | ^
+At top level:
+../Core/Src/Src/usr_rs485_main.c:422:15: warning: 'Send_rx485_cmd_message' defined but not used [-Wunused-function]
+  422 | RETURN_STATUS Send_rx485_cmd_message( CMD_MSG  *com_msg )
+      |               ^~~~~~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:315:11: warning: 'Rcv_rx485_message' defined but not used [-Wunused-function]
+  315 | COM_STEP  Rcv_rx485_message(CMD_MSG *com_msg)
+      |           ^~~~~~~~~~~~~~~~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+08:36:45 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44288	    124	  27644	  72056	  11978	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+08:46:03 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44140	    124	  27644	  71908	  118e4	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+08:51:59 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44108	    124	  27644	  71876	  118c4	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+11:44:45 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:281:20: error: stray '\343' in program
+  281 |     work_buf[num++]ã€?= Get_rcv_data();
+      |                    ^~
+../Core/Src/Src/usr_rs485_main.c:282:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  282 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:282:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  282 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:370:2: error: 'rtn' undeclared (first use in this function)
+  370 |  rtn = 0;
+      |  ^~~
+../Core/Src/Src/usr_rs485_main.c:370:2: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+11:45:12 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:281:20: error: stray '\343' in program
+  281 |     work_buf[num++]ã€?= Get_rcv_data();
+      |                    ^~
+../Core/Src/Src/usr_rs485_main.c:282:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  282 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:282:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  282 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+11:46:25 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:281:20: error: stray '\343' in program
+  281 |     work_buf[num++]ã€?= Get_rcv_data();
+      |                    ^~
+../Core/Src/Src/usr_rs485_main.c:282:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  282 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:282:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  282 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+11:50:38 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:282:20: error: stray '\343' in program
+  282 |     work_buf[num++]ã€?= dt;
+      |                    ^~
+../Core/Src/Src/usr_rs485_main.c:284:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  284 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:284:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  284 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+11:52:12 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:283:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  283 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:283:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  283 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44156	    124	  27812	  72092	  1199c	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+13:54:43 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:283:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  283 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:283:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  283 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+../Core/Src/main.c: In function 'StartTask02':
+../Core/Src/main.c:603:3: warning: implicit declaration of function 'uart_Rcv_init'; did you mean 'uart1_Rcv_init'? [-Wimplicit-function-declaration]
+  603 |   uart_Rcv_init(SK_UART2_DEBUG);
+      |   ^~~~~~~~~~~~~
+      |   uart1_Rcv_init
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44172	    124	  27812	  72108	  119ac	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+13:58:40 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:283:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  283 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:283:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  283 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44192	    124	  27812	  72128	  119c0	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:00:33 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:284:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  284 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:284:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  284 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44236	    124	  27812	  72172	  119ec	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:02:33 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:284:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  284 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:284:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  284 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44260	    124	  27812	  72196	  11a04	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:06:36 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:284:25: warning: passing argument 1 of 'Get_end_test_pt' makes integer from pointer without a cast [-Wint-conversion]
+  284 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                         ^~~~~~~~
+      |                         |
+      |                         uint8_t * {aka unsigned char *}
+../Core/Src/Src/usr_rs485_main.c:173:36: note: expected 'uint16_t' {aka 'short unsigned int'} but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                           ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:284:35: warning: passing argument 2 of 'Get_end_test_pt' makes pointer from integer without a cast [-Wint-conversion]
+  284 |     if( Get_end_test_pt(work_buf, num) != 0 ){
+      |                                   ^~~
+      |                                   |
+      |                                   uint8_t {aka unsigned char}
+../Core/Src/Src/usr_rs485_main.c:173:49: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'uint8_t' {aka 'unsigned char'}
+  173 | uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+      |                                        ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44292	    124	  27812	  72228	  11a24	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:08:54 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44292	    124	  27812	  72228	  11a24	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:15:15 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:619:20: error: 'j' undeclared (first use in this function)
+  619 |      for( i=0; i < j; i++){
+      |                    ^
+../Core/Src/Src/usr_rs485_main.c:619:20: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:620:21: error: 'cmd_msg' undeclared (first use in this function); did you mean 'cmd_mesg'?
+  620 |    SKprintf("%02x ",cmd_msg[i]);
+      |                     ^~~~~~~
+      |                     cmd_mesg
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:15:46 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:619:20: error: 'j' undeclared (first use in this function)
+  619 |      for( i=0; i < j; i++){
+      |                    ^
+../Core/Src/Src/usr_rs485_main.c:619:20: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:16:18 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44500	    124	  27812	  72436	  11af4	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:18:10 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44448	    124	  27812	  72384	  11ac0	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:20:35 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44424	    124	  27812	  72360	  11aa8	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:21:34 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-size   TEST001.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44424	    124	  27812	  72360	  11aa8	TEST001.elf
+Finished building: default.size.stdout
+ 
+14:23:05 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-size   TEST001.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44424	    124	  27812	  72360	  11aa8	TEST001.elf
+Finished building: default.size.stdout
+ 
+14:32:51 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc "../Core/Src/Src/usr_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_uart.d" -MT"Core/Src/Src/usr_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_uart.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_uart.c:56:3: warning: initialization of 'uint8_t *' {aka 'unsigned char *'} from incompatible pointer type 'int *' [-Wincompatible-pointer-types]
+   56 |   &uart1_rcvflg  },
+      |   ^
+../Core/Src/Src/usr_uart.c:56:3: note: (near initialization for 'UartList[0].RcvFlg')
+../Core/Src/Src/usr_uart.c:62:3: warning: initialization of 'uint8_t *' {aka 'unsigned char *'} from incompatible pointer type 'int *' [-Wincompatible-pointer-types]
+   62 |   &uart2_rcvflg  }
+      |   ^
+../Core/Src/Src/usr_uart.c:62:3: note: (near initialization for 'UartList[1].RcvFlg')
+../Core/Src/Src/usr_uart.c: In function 'uart_Rcv_init':
+../Core/Src/Src/usr_uart.c:136:57: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+  136 |  s= HAL_UART_Receive_IT(UartList[id].huart, UartList[id].rcvbuf, 1);
+      |                                             ~~~~~~~~~~~~^~~~~~~
+      |                                                         |
+      |                                                         char * const
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/Src/usr_uart.c:10:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:725:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char * const'
+  725 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/Src/usr_uart.c: In function 'SKprintf_uart1':
+../Core/Src/Src/usr_uart.c:173:3: warning: implicit declaration of function 'vsprintf' [-Wimplicit-function-declaration]
+  173 |   vsprintf(buffer, string, ap);
+      |   ^~~~~~~~
+../Core/Src/Src/usr_uart.c:181:53: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  181 |   HAL_UART_Transmit(UartList[SK_UART1_RS485].huart, buffer, i, HAL_MAX_DELAY);
+      |                                                     ^~~~~~
+      |                                                     |
+      |                                                     char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/Src/usr_uart.c:10:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/Src/usr_uart.c: In function 'SKprintf':
+../Core/Src/Src/usr_uart.c:224:53: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  224 |   HAL_UART_Transmit(UartList[SK_UART2_DEBUG].huart, buffer, i, HAL_MAX_DELAY);
+      |                                                     ^~~~~~
+      |                                                     |
+      |                                                     char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/Src/usr_uart.c:10:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/Src/usr_uart.c: In function 'SKprintf_uart1':
+../Core/Src/Src/usr_uart.c:189:1: warning: control reaches end of non-void function [-Wreturn-type]
+  189 | }
+      | ^
+../Core/Src/Src/usr_uart.c: In function 'SKprintf':
+../Core/Src/Src/usr_uart.c:232:1: warning: control reaches end of non-void function [-Wreturn-type]
+  232 | }
+      | ^
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44384	    124	  27812	  72320	  11a80	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 

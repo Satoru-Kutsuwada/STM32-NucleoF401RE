@@ -1,35 +1,80 @@
-17:29:29 **** Incremental Build of configuration Debug for project TEST001 ****
+14:32:51 **** Incremental Build of configuration Debug for project TEST001 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc "../Core/Src/Src/usr_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_uart.d" -MT"Core/Src/Src/usr_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_uart.o"
 ../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
-../Core/Src/Src/usr_rs485_main.c:268:7: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
-  268 |       printf("RS485_CMD_STATUS\r\n");
-      |       ^~~~~~
-../Core/Src/Src/usr_rs485_main.c:268:7: warning: incompatible implicit declaration of built-in function 'printf'
-../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<stdio.h>' or provide a declaration of 'printf'
-   12 | #include "rs485_com.h"
-  +++ |+#include <stdio.h>
-   13 | 
-../Core/Src/Src/usr_rs485_main.c: In function 'Rcv_rx485_message':
-../Core/Src/Src/usr_rs485_main.c:376:5: warning: incompatible implicit declaration of built-in function 'printf'
-  376 |     printf("Res_mesg= ");
-      |     ^~~~~~
-../Core/Src/Src/usr_rs485_main.c:376:5: note: include '<stdio.h>' or provide a declaration of 'printf'
-../Core/Src/Src/usr_rs485_main.c:396:9: warning: incompatible implicit declaration of built-in function 'printf'
-  396 |         printf("dt=0x%02x, com_step_flg=%d,rcvnum=%d\r\n", dt, com_step_flg,rcvnum);
-      |         ^~~~~~
-../Core/Src/Src/usr_rs485_main.c:396:9: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
+  245 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_uart.c:56:3: warning: initialization of 'uint8_t *' {aka 'unsigned char *'} from incompatible pointer type 'int *' [-Wincompatible-pointer-types]
+   56 |   &uart1_rcvflg  },
+      |   ^
+../Core/Src/Src/usr_uart.c:56:3: note: (near initialization for 'UartList[0].RcvFlg')
+../Core/Src/Src/usr_uart.c:62:3: warning: initialization of 'uint8_t *' {aka 'unsigned char *'} from incompatible pointer type 'int *' [-Wincompatible-pointer-types]
+   62 |   &uart2_rcvflg  }
+      |   ^
+../Core/Src/Src/usr_uart.c:62:3: note: (near initialization for 'UartList[1].RcvFlg')
+../Core/Src/Src/usr_uart.c: In function 'uart_Rcv_init':
+../Core/Src/Src/usr_uart.c:136:57: warning: pointer targets in passing argument 2 of 'HAL_UART_Receive_IT' differ in signedness [-Wpointer-sign]
+  136 |  s= HAL_UART_Receive_IT(UartList[id].huart, UartList[id].rcvbuf, 1);
+      |                                             ~~~~~~~~~~~~^~~~~~~
+      |                                                         |
+      |                                                         char * const
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/Src/usr_uart.c:10:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:725:75: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char * const'
+  725 | HAL_StatusTypeDef HAL_UART_Receive_IT(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size);
+      |                                                                  ~~~~~~~~~^~~~~
+../Core/Src/Src/usr_uart.c: In function 'SKprintf_uart1':
+../Core/Src/Src/usr_uart.c:173:3: warning: implicit declaration of function 'vsprintf' [-Wimplicit-function-declaration]
+  173 |   vsprintf(buffer, string, ap);
+      |   ^~~~~~~~
+../Core/Src/Src/usr_uart.c:181:53: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  181 |   HAL_UART_Transmit(UartList[SK_UART1_RS485].huart, buffer, i, HAL_MAX_DELAY);
+      |                                                     ^~~~~~
+      |                                                     |
+      |                                                     char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/Src/usr_uart.c:10:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/Src/usr_uart.c: In function 'SKprintf':
+../Core/Src/Src/usr_uart.c:224:53: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+  224 |   HAL_UART_Transmit(UartList[SK_UART2_DEBUG].huart, buffer, i, HAL_MAX_DELAY);
+      |                                                     ^~~~~~
+      |                                                     |
+      |                                                     char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:411,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/Src/usr_uart.c:10:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/Src/usr_uart.c: In function 'SKprintf_uart1':
+../Core/Src/Src/usr_uart.c:189:1: warning: control reaches end of non-void function [-Wreturn-type]
+  189 | }
+      | ^
+../Core/Src/Src/usr_uart.c: In function 'SKprintf':
+../Core/Src/Src/usr_uart.c:232:1: warning: control reaches end of non-void function [-Wreturn-type]
+  232 | }
+      | ^
 arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: TEST001.elf
  
 arm-none-eabi-size   TEST001.elf 
 arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
    text	   data	    bss	    dec	    hex	filename
-  47108	    124	  27644	  74876	  1247c	TEST001.elf
+  44384	    124	  27812	  72320	  11a80	TEST001.elf
 Finished building: default.size.stdout
  
 Finished building: TEST001.list
  
 
-17:29:31 Build Finished. 0 errors, 4 warnings. (took 1s.998ms)
+14:32:52 Build Finished. 0 errors, 9 warnings. (took 1s.53ms)
 

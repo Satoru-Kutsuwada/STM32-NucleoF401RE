@@ -74,6 +74,7 @@ SLAVE_DATA slv_dt[RS485_AD_MAX];
 #define  RCV_BUF_SIZE 128
 uint8_t		rcv_dt[2];
 uint8_t		rcvbuf[RCV_BUF_SIZE];
+uint8_t		work_buf[RCV_BUF_SIZE];
 uint8_t		rcvnum = 0;
 uint8_t		rcv_wpt = 0;
 uint8_t		rcv_rpt = 0;
@@ -81,7 +82,7 @@ uint8_t		rcv_rpt = 0;
 
 /* Private variables ---------------------------------------------------------*/
 
-#define RS485_MSG_MAX	20
+#define RS485_MSG_MAX	32
 uint8_t		cmd_mesg[RS485_MSG_MAX];
 uint8_t		Res_mesg[RS485_MSG_MAX];
 uint8_t		cmd_char[RS485_MSG_MAX];
@@ -90,6 +91,12 @@ uint8_t		res_ptr = 0;
 
 
 /* Private variables ---------------------------------------------------------*/
+#define TEXT_LENGTH		6
+const char com_start_text[]   = "COM-ST\0";
+const char res_start_text[]   = "RES-ST\0";
+const char message_end_text[] = "MSGEND\0";
+char comp_buf[TEXT_LENGTH+1];
+
 
 typedef struct{
 	RA485_COMMAND		command;
@@ -122,6 +129,9 @@ typedef struct{
 } COMMAND_FORM;
 
 const COMMAND_FORM	com_form[] = {
+
+		{ 0, 0, 0 },		// コマンドが１スタートのためダミーデータを入れる
+
 		{ 0, 3, 9 },
 		{ 0, 3, 10 },
 		{ 0, 3, 6 },
@@ -131,7 +141,9 @@ const COMMAND_FORM	com_form[] = {
 
 typedef enum{
 	COM_PROTOCOL_SEND,
-	COM_PROTOCOL_RECIVE
+	COM_PROTOCOL_RECIVE,
+	COM_PROTOCOL_RESPONS
+
 } COM_PROTOCOL_STEP;
 
 typedef enum {
@@ -156,6 +168,11 @@ COM_STEP    com_step_flg;
 RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg );
 UART_HandleTypeDef * Get_huart(void);
 COM_STEP  Rcv_rx485_message(CMD_MSG	*com_msg);
+
+
+uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
+void  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist);
+uint8_t Get_rcv_data(void);
 //==============================================================================
 //
 //==============================================================================
@@ -221,15 +238,17 @@ uint8_t Get_rcv_data(void)
 //==============================================================================
 void rs485_com_task(void)
 {
-	RETURN_STATUS	status = RET_TRUE;
-	CMD_MSG	com_msg;
-
-	 COM_PROTOCOL_STEP	cp_step = COM_PROTOCOL_SEND;
+		RETURN_STATUS		status = RET_TRUE;
+		CMD_MSG				com_msg;
+		COM_PROTOCOL_STEP	cp_step = COM_PROTOCOL_SEND;
+		uint8_t 			num = 0;
+		uint8_t dt;
 
 	while(1){
 
-		SKprintf("rs485_com_task() cmd_ptr=%d \r\n",cmd_ptr);
-		if( cp_step == COM_PROTOCOL_SEND ){
+		switch( cp_step ){
+		case COM_PROTOCOL_SEND:
+			//SKprintf("rs485_com_task(001) cmd_ptr=%d \r\n",cmd_ptr);
 
 			if( com[cmd_ptr].command != RS485_CMD_MAX ){
 				//SKprintf("rs485_com_task() 001\r\n");
@@ -252,48 +271,159 @@ void rs485_com_task(void)
 
 			if( status == RET_TRUE ){
 				cp_step = COM_PROTOCOL_RECIVE;
-                com_step_flg = COM_RCV_INIT;
-                //cmd_ptr = 0;
-                res_ptr = 0;
+                num = 0;
 			}
+			break;
 
-		}
+		case COM_PROTOCOL_RECIVE:
 
-
-		if( status == RET_TRUE ){
 			while( rcvnum  > 0 ){
-				if( Rcv_rx485_message( &com_msg ) == COM_RCV_COMPLITE){
-					switch( Res_mesg[RS485_CMD_ID+1] ){
-					case RS485_CMD_STATUS:
-						printf("RS485_CMD_STATUS\r\n");
+				work_buf[num ++] = Get_rcv_data();
+				//SKprintf("Get_end_test_pt() num=%d, dt=%02x\r\n",num,work_buf[(num-1)]);
 
+				if( Get_end_test_pt(num, work_buf) != 0 ){
+					SKprintf("Respons Recive\r\n");
+					 Set_Res_Message(num, work_buf, Res_mesg);
+					cp_step = COM_PROTOCOL_RESPONS;
+					com_step_flg = COM_RCV_INIT;
+					res_ptr = 0;
 
-						break;
-					case RS485_CMD_VERSION:
-						printf("RS485_CMD_VERSION\r\n");
-
-
-						break;
-					case RS485_CMD_MESUR:
-						printf("RS485_CMD_MESUR\r\n");
-
-						break;
-					case RS485_CMD_MESUR_DATA:
-						printf("RS485_CMD_MESUR_DATA\r\n");
-
-						break;
-					default:
-						break;
-				   }
+					break;
 				}
 			}
-		}
+			break;
 
-		if( status == RET_TRUE ){
-			cp_step = COM_PROTOCOL_SEND;
-			cmd_ptr ++;
+		case COM_PROTOCOL_RESPONS:
+			status = RET_TRUE;
+			switch( Res_mesg[TEXT_LENGTH+RS485_CMD_ID+1] ){
+			case RS485_CMD_STATUS:
+				SKprintf("RS485_CMD_STATUS\r\n");
+
+				break;
+			case RS485_CMD_VERSION:
+				SKprintf("RS485_CMD_VERSION\r\n");
+
+				break;
+			case RS485_CMD_MESUR:
+				SKprintf("RS485_CMD_MESUR\r\n");
+
+				break;
+			case RS485_CMD_MESUR_DATA:
+				SKprintf("RS485_CMD_MESUR_DATA\r\n");
+
+				break;
+			default:
+				status = RET_FALSE;
+				SKprintf("ERROR Recive Command None \r\n");
+				break;
+			}
+
+			if( status == RET_TRUE ){
+				cp_step = COM_PROTOCOL_SEND;
+				cmd_ptr ++;
+				break;
+			}
+
+			break;
+
+		default:
+			break;
+
 		}
 	}
+}
+
+//==============================================================================
+//
+//==============================================================================
+uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf )
+{
+	uint16_t	i;
+	uint16_t	rtn;
+
+	rtn = 0;
+
+	for( i=0; i<num; i++){
+		if( (i+TEXT_LENGTH) > num ){
+			rtn = 0;
+			//SKprintf("None\r\n");
+			break;
+		}
+		else if( buf[i] == message_end_text[0]
+				&& buf[i+1] == message_end_text[1]
+				&& buf[i+2] == message_end_text[2]
+				&& buf[i+3] == message_end_text[3]
+				&& buf[i+4] == message_end_text[4]
+				&& buf[i+5] == message_end_text[5] ){
+
+			SKprintf("FIX\r\n");
+			rtn = i;
+			break;
+		}
+	}
+
+	return rtn;
+}
+//==============================================================================
+//
+//==============================================================================
+void  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist)
+{
+	uint16_t	i;
+	uint16_t	j;
+	uint16_t	start;
+	uint16_t	end;
+	uint8_t		c[2];
+
+
+	for( i=0; i<num; i++){
+		if( src[i] == res_start_text[0]
+				&& src[i+1] == res_start_text[1]
+				&& src[i+2] == res_start_text[2]
+				&& src[i+3] == res_start_text[3]
+				&& src[i+4] == res_start_text[4]
+				&& src[i+5] == res_start_text[5] ){
+
+			start = i;
+			break;
+		}
+	}
+
+
+	for( i=0; i<num; i++){
+		if( src[i] == message_end_text[0]
+				&& src[i+1] == message_end_text[1]
+				&& src[i+2] == message_end_text[2]
+				&& src[i+3] == message_end_text[3]
+				&& src[i+4] == message_end_text[4]
+				&& src[i+5] == message_end_text[5] ){
+
+			end = i+5+1;
+			break;
+		}
+	}
+
+	j = 0;
+	for( i=start; i < end; i++){
+		dist[j++] = src[i];
+	}
+
+	for( i=0; i < j; i++){
+		cmd_char[i] = ((dist[i]<0x20||dist[i]>=0x7f)? '.': dist[i]);
+	}
+
+
+    SKprintf("\r\nRESPONS MESSAGE = \r\n ");
+    for( i=0; i < j; i++){
+		SKprintf("%02x ",dist[i]);
+	}
+    SKprintf("\r\n ");
+    c[1] = '\0';
+    for( i=0; i < j; i++){
+        c[0] = cmd_char[i];
+		SKprintf(" %s ", c);
+	}
+    SKprintf("\r\n");
 
 }
 
@@ -306,6 +436,8 @@ COM_STEP  Rcv_rx485_message(CMD_MSG	*com_msg)
 	uint8_t		i;
 	uint8_t		sum;
 	uint8_t		dt;
+
+
 
 		dt = Get_rcv_data();
 
@@ -348,7 +480,8 @@ COM_STEP  Rcv_rx485_message(CMD_MSG	*com_msg)
 			break;
 
 		case COM_RCV_COMMAND:
-			if( dt == '$'   &&  res_ptr == com_form[com_msg->command].chksum_id ){
+			//SKprintf("dt=0x%02x, res_ptr=%d,command=%d,ofst=%d\r\n", dt, res_ptr,com_msg->command,com_form[com_msg->command].chksum_id);
+		if( dt == '$'   &&  res_ptr == com_form[com_msg->command].chksum_id ){
 				Res_mesg[res_ptr] = dt;
 				com_step_flg = COM_RCV_CSUM_ID;
 				res_ptr ++;
@@ -373,13 +506,13 @@ COM_STEP  Rcv_rx485_message(CMD_MSG	*com_msg)
 				res_ptr ++;
 
 
-				printf("Res_mesg= ");
+				SKprintf("Res_mesg= ");
 				for( i=0; i<res_ptr; i++ ){
-					printf("%02x ",Res_mesg[i]);
-					cmd_char[i] = ((Res_mesg[i]<0x20||Res_mesg[i]>=0x7f)? '.': cmd_mesg[i]);
+					SKprintf("%02x ",Res_mesg[i]);
+					cmd_char[i] = ((Res_mesg[i]<0x20||Res_mesg[i]>=0x7f)? '.': Res_mesg[i]);
 				}
 				cmd_char[i+1] = '\0';
-				printf(" :: %s\r\n", cmd_char);
+				SKprintf(" :: %s\r\n", cmd_char);
 
 
 			}
@@ -393,7 +526,9 @@ COM_STEP  Rcv_rx485_message(CMD_MSG	*com_msg)
 			break;
 	}
 
-        printf("dt=0x%02x, com_step_flg=%d,rcvnum=%d\r\n", dt, com_step_flg,rcvnum);
+		SKprintf("dt=0x%02x, com_step_flg=%d,rcvnum=%d\r\n", dt, com_step_flg,rcvnum);
+
+
 
         return  com_step_flg;
 }
@@ -409,9 +544,16 @@ RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg )
 	uint8_t		i   = 0;
 	uint8_t		sum = 0;
 	uint8_t		num = 0;
+	uint8_t		c[2];
 
 
+	// START Text
+	for( i=0; i < TEXT_LENGTH; i++ ){
+		cmd_mesg[i] = com_start_text[i];
+	}
 
+
+	num = TEXT_LENGTH;
 	switch(com_msg->command){
 	case RS485_CMD_STATUS:
 		cmd_mesg[num++] = '#';
@@ -458,31 +600,35 @@ RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg )
 
 	// チェックサム計算
 	if( status == RET_TRUE ){
-
-		i = 0;
 		sum = 0;
-
-		for( i=0;  i < num; i++ ){
+		for( i=TEXT_LENGTH;  i < num; i++ ){
 			sum += cmd_mesg[i];
 		}
 		cmd_mesg[num++] = '$';
 		cmd_mesg[num++] = sum;
 
+		// END Text
+		for( i=0; i < TEXT_LENGTH; i++ ){
+			cmd_mesg[num++] = message_end_text[i];
+		}
 
-		SKprintf("Comand Send = ");
+		// デバック用メッセージ
 		for( i=0;  i < num; i++ ){
-			SKprintf("%02x ", cmd_mesg[i]);
 			cmd_char[i] =  (uint8_t)((cmd_mesg[i]<0x20||cmd_mesg[i]>=0x7f)? '.': cmd_mesg[i]);
 		}
-		SKprintf(" :: %s\r\n", cmd_char);
 
+	    SKprintf("\r\nCOMMAND MESSAGE = \r\n ");
+	    for( i=0; i < num; i++){
+			SKprintf("%02x ",cmd_mesg[i]);
+		}
+	    SKprintf("\r\n ");
+	    c[1] = '\0';
+	    for( i=0; i < num; i++){
+	        c[0] = cmd_char[i];
+			SKprintf(" %s ", c);
+		}
+	    SKprintf("\r\n");
 
-		// 受信準備
-		//status = Recive_rs485(Res_mesg, com_msg->rcv_byte);
-	}
-
-
-	if( status == RET_TRUE ){
 		// コマンド送信
 		HAL_GPIO_WritePin(GPIOA, GPIO_PIN_5, RS485_TX);
 		status = Send_rs485(cmd_mesg, num );

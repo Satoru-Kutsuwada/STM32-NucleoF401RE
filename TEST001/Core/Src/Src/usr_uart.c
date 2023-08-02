@@ -86,7 +86,7 @@ RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size)
 	RETURN_STATUS status = RET_TRUE;
 	HAL_StatusTypeDef s;
 
-	SKprintf("Send_rs485() size=%d\r\n",Size);
+	//SKprintf("Send_rs485() size=%d\r\n",Size);
 	s= HAL_UART_Transmit(UartList[SK_UART1_RS485].huart, pData, Size, HAL_MAX_DELAY);
 
 	switch(s){

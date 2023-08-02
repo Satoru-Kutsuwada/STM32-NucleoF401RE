@@ -627,11 +627,13 @@ void StartTask02(void *argument)
 __weak void StartTask03(void *argument)
 {
   /* USER CODE BEGIN StartTask03 */
-	//char c[2];
+    osDelay(100);
+    //char c[2];
 
 	//SKprintf_uart1("===================\r\n");
 	SKprintf_uart1("=== UART1 START ===\r\n");
 	//SKprintf_uart1("===================\r\n");
+
 
 	//uart_Rcv_init(SK_UART1_RS485);
 

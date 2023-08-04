@@ -633,7 +633,7 @@ __weak void StartTask03(void *argument)
 	//SKprintf_uart1("===================\r\n");
 	SKprintf_uart1("=== UART1 START ===\r\n");
 	//SKprintf_uart1("===================\r\n");
-
+	tasuk3_init();
 
 	//uart_Rcv_init(SK_UART1_RS485);
 

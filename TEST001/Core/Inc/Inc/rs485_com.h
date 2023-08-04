@@ -24,6 +24,8 @@ typedef enum {
 	RS485_AD_MAX
 }RA485_ADDRESS;
 
+#define MY_RS485_ADDRESS RS485_AD_MASTER
+
 
 typedef enum {
 	RS485_CMD_STATUS = 1,

@@ -23086,3 +23086,1893 @@ Finished building: default.size.stdout
  
 Finished building: TEST001.list
  
+09:31:40 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c:149:2: error: unknown type name 'uint16'
+  149 |  uint16  slv_ver;
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:150:2: error: unknown type name 'uint16'
+  150 |  uint16  sens_ver;
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:354:11: warning: unused variable 'dt' [-Wunused-variable]
+  354 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  582 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:622:28: error: 'sub1' undeclared (first use in this function)
+  622 |   Com.u.cmd03.measure_sw = sub1;
+      |                            ^~~~
+../Core/Src/Src/usr_rs485_main.c:622:28: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:661:16: error: 'num' undeclared (first use in this function)
+  661 |  for( i=0; i < num; i++){
+      |                ^~~
+../Core/Src/Src/usr_rs485_main.c:671:23: error: 'uint8' undeclared (first use in this function); did you mean 'uint8_t'?
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                       ^~~~~
+      |                       uint8_t
+../Core/Src/Src/usr_rs485_main.c:671:29: error: 't' undeclared (first use in this function); did you mean 'pt'?
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                             ^
+      |                             pt
+../Core/Src/Src/usr_rs485_main.c:671:32: error: expected expression before ')' token
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                                ^
+../Core/Src/Src/usr_rs485_main.c:671:11: error: too few arguments to function 'Send_rs485'
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |           ^~~~~~~~~~
+In file included from ../Core/Src/Src/usr_rs485_main.c:11:
+D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/usr_system.h:112:15: note: declared here
+  112 | RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size);
+      |               ^~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:588:23: warning: unused variable 'Res' [-Wunused-variable]
+  588 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+09:32:48 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c:149:2: error: unknown type name 'uint16'
+  149 |  uint16  slv_ver;
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:150:2: error: unknown type name 'uint16'
+  150 |  uint16  sens_ver;
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:354:11: warning: unused variable 'dt' [-Wunused-variable]
+  354 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  582 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:622:37: error: 'CMD_MSG' has no member named 'csub1'; did you mean 'sub1'?
+  622 |   Com.u.cmd03.measure_sw = com_msg->csub1;
+      |                                     ^~~~~
+      |                                     sub1
+../Core/Src/Src/usr_rs485_main.c:627:36: error: 'CMD_MSG' has no member named 'csub1'; did you mean 'sub1'?
+  627 |   Com.u.cmd04.data_kind = com_msg->csub1;
+      |                                    ^~~~~
+      |                                    sub1
+../Core/Src/Src/usr_rs485_main.c:671:23: error: 'uint8' undeclared (first use in this function); did you mean 'uint8_t'?
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                       ^~~~~
+      |                       uint8_t
+../Core/Src/Src/usr_rs485_main.c:671:23: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:671:29: error: 't' undeclared (first use in this function); did you mean 'pt'?
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                             ^
+      |                             pt
+../Core/Src/Src/usr_rs485_main.c:671:32: error: expected expression before ')' token
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                                ^
+../Core/Src/Src/usr_rs485_main.c:671:11: error: too few arguments to function 'Send_rs485'
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |           ^~~~~~~~~~
+In file included from ../Core/Src/Src/usr_rs485_main.c:11:
+D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/usr_system.h:112:15: note: declared here
+  112 | RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size);
+      |               ^~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:588:23: warning: unused variable 'Res' [-Wunused-variable]
+  588 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+09:33:12 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c:149:2: error: unknown type name 'uint16'
+  149 |  uint16  slv_ver;
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:150:2: error: unknown type name 'uint16'
+  150 |  uint16  sens_ver;
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:354:11: warning: unused variable 'dt' [-Wunused-variable]
+  354 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  582 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:671:23: error: 'uint8' undeclared (first use in this function); did you mean 'uint8_t'?
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                       ^~~~~
+      |                       uint8_t
+../Core/Src/Src/usr_rs485_main.c:671:23: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:671:29: error: 't' undeclared (first use in this function); did you mean 'pt'?
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                             ^
+      |                             pt
+../Core/Src/Src/usr_rs485_main.c:671:32: error: expected expression before ')' token
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |                                ^
+../Core/Src/Src/usr_rs485_main.c:671:11: error: too few arguments to function 'Send_rs485'
+  671 |  status = Send_rs485((uint8?t *)&Com, sizeof(RS485_COMMAND_STRUCT) );
+      |           ^~~~~~~~~~
+In file included from ../Core/Src/Src/usr_rs485_main.c:11:
+D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/usr_system.h:112:15: note: declared here
+  112 | RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size);
+      |               ^~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:588:23: warning: unused variable 'Res' [-Wunused-variable]
+  588 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+09:33:31 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c:149:2: error: unknown type name 'uint16'
+  149 |  uint16  slv_ver;
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:150:2: error: unknown type name 'uint16'
+  150 |  uint16  sens_ver;
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:354:11: warning: unused variable 'dt' [-Wunused-variable]
+  354 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  582 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:588:23: warning: unused variable 'Res' [-Wunused-variable]
+  588 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+09:34:03 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:354:11: warning: unused variable 'dt' [-Wunused-variable]
+  354 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  582 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:582:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:588:23: warning: unused variable 'Res' [-Wunused-variable]
+  588 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44140	    124	  27796	  72060	  1197c	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+09:40:24 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:354:11: warning: unused variable 'dt' [-Wunused-variable]
+  354 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:584:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  584 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:584:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:590:23: warning: unused variable 'Res' [-Wunused-variable]
+  590 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44168	    124	  27796	  72088	  11998	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:02:58 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:354:11: warning: unused variable 'dt' [-Wunused-variable]
+  354 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: At top level:
+../Core/Src/Src/usr_rs485_main.c:477:16: error: conflicting types for 'Set_Res_Message'
+  477 | RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist)
+      |                ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:283:7: note: previous declaration of 'Set_Res_Message' was here
+  283 | void  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist);
+      |       ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:490:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  490 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:490:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:556:20: warning: implicit declaration of function 'Get_command_chksum' [-Wimplicit-function-declaration]
+  556 |  if( Res.chksum != Get_command_chksum(&Res.address_id, &Res.chksum_id)){
+      |                    ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: At top level:
+../Core/Src/Src/usr_rs485_main.c:589:9: error: conflicting types for 'Get_command_chksum'
+  589 | uint8_t Get_command_chksum(uint8_t *start, uint8_t *end )
+      |         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:556:20: note: previous implicit declaration of 'Get_command_chksum' was here
+  556 |  if( Res.chksum != Get_command_chksum(&Res.address_id, &Res.chksum_id)){
+      |                    ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:619:2: warning: incompatible implicit declaration of built-in function 'memset'
+  619 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:619:2: note: include '<string.h>' or provide a declaration of 'memset'
+../Core/Src/Src/usr_rs485_main.c:625:23: warning: unused variable 'Res' [-Wunused-variable]
+  625 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:04:41 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:356:11: warning: unused variable 'dt' [-Wunused-variable]
+  356 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:492:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  492 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:492:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:621:2: warning: incompatible implicit declaration of built-in function 'memset'
+  621 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:621:2: note: include '<string.h>' or provide a declaration of 'memset'
+../Core/Src/Src/usr_rs485_main.c:627:23: warning: unused variable 'Res' [-Wunused-variable]
+  627 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44448	    124	  27828	  72400	  11ad0	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:06:27 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:356:11: warning: unused variable 'dt' [-Wunused-variable]
+  356 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:492:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  492 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:492:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:621:2: warning: incompatible implicit declaration of built-in function 'memset'
+  621 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:621:2: note: include '<string.h>' or provide a declaration of 'memset'
+../Core/Src/Src/usr_rs485_main.c:627:23: warning: unused variable 'Res' [-Wunused-variable]
+  627 |  RS485_RESPONS_STRUCT Res;
+      |                       ^~~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44476	    124	  27828	  72428	  11aec	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+11:53:52 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:357:11: warning: unused variable 'dt' [-Wunused-variable]
+  357 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:493:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  493 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:493:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:622:2: warning: incompatible implicit declaration of built-in function 'memset'
+  622 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:622:2: note: include '<string.h>' or provide a declaration of 'memset'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44380	    124	  27828	  72332	  11a8c	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+12:41:33 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:357:11: warning: unused variable 'dt' [-Wunused-variable]
+  357 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:493:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  493 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:493:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Get_command_chksum':
+../Core/Src/Src/usr_rs485_main.c:597:18: error: request for member 'start' in something not a structure or union
+  597 |  SKprintf("%p %p".start.end);
+      |                  ^
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:623:2: warning: incompatible implicit declaration of built-in function 'memset'
+  623 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:623:2: note: include '<string.h>' or provide a declaration of 'memset'
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+12:42:41 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:357:11: warning: unused variable 'dt' [-Wunused-variable]
+  357 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:493:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  493 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:493:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:623:2: warning: incompatible implicit declaration of built-in function 'memset'
+  623 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:623:2: note: include '<string.h>' or provide a declaration of 'memset'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44404	    124	  27828	  72356	  11aa4	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+12:56:52 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:357:11: warning: unused variable 'dt' [-Wunused-variable]
+  357 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:497:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  497 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:497:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:627:2: warning: incompatible implicit declaration of built-in function 'memset'
+  627 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:627:2: note: include '<string.h>' or provide a declaration of 'memset'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44488	    124	  27828	  72440	  11af8	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+13:05:22 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:362:3: warning: implicit declaration of function 'Skprintf'; did you mean 'SKprintf'? [-Wimplicit-function-declaration]
+  362 |   Skprintf("RS485_COMMAND_01= %d\r\n", sizeof(RS485_COMMAND_01));
+      |   ^~~~~~~~
+      |   SKprintf
+../Core/Src/Src/usr_rs485_main.c:357:11: warning: unused variable 'dt' [-Wunused-variable]
+  357 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:507:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  507 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:507:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:637:2: warning: incompatible implicit declaration of built-in function 'memset'
+  637 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:637:2: note: include '<string.h>' or provide a declaration of 'memset'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: ./Core/Src/Src/usr_rs485_main.o: in function `rs485_com_task':
+D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:362: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:363: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:364: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:365: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:367: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: ./Core/Src/Src/usr_rs485_main.o:D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:368: more undefined references to `Skprintf' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:69: TEST001.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:06:18 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: ./Core/Src/Src/usr_rs485_main.o: in function `rs485_com_task':
+D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:362: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:363: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:364: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:365: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:367: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: ./Core/Src/Src/usr_rs485_main.o:D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:368: more undefined references to `Skprintf' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:69: TEST001.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:08:12 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: ./Core/Src/Src/usr_rs485_main.o: in function `rs485_com_task':
+D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:362: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:363: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:364: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:365: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:367: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: ./Core/Src/Src/usr_rs485_main.o:D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:368: more undefined references to `Skprintf' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:69: TEST001.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:08:49 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:364:3: warning: implicit declaration of function 'Skprintf'; did you mean 'SKprintf'? [-Wimplicit-function-declaration]
+  364 |   Skprintf("RS485_COMMAND_02= %d\r\n", sizeof(RS485_COMMAND_02));
+      |   ^~~~~~~~
+      |   SKprintf
+../Core/Src/Src/usr_rs485_main.c:357:11: warning: unused variable 'dt' [-Wunused-variable]
+  357 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:508:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  508 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:508:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:638:2: warning: incompatible implicit declaration of built-in function 'memset'
+  638 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:638:2: note: include '<string.h>' or provide a declaration of 'memset'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: ./Core/Src/Src/usr_rs485_main.o: in function `rs485_com_task':
+D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:364: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:365: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:366: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:368: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:369: undefined reference to `Skprintf'
+c:\st\stm32cubeide_1.12.0\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.200.202301161003\tools\arm-none-eabi\bin\ld.exe: ./Core/Src/Src/usr_rs485_main.o:D:/ST/git/STM32-NucleoF401RE/TEST001/Debug/../Core/Src/Src/usr_rs485_main.c:370: more undefined references to `Skprintf' follow
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:69: TEST001.elf] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+13:09:45 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:357:11: warning: unused variable 'dt' [-Wunused-variable]
+  357 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:508:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  508 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:508:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:638:2: warning: incompatible implicit declaration of built-in function 'memset'
+  638 |  memset(&Com, 0, sizeof(RS485_COMMAND_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:638:2: note: include '<string.h>' or provide a declaration of 'memset'
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44776	    124	  27828	  72728	  11c18	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:02:13 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:314:47: error: 'RS485_COMMAND_01' undeclared (first use in this function); did you mean 'RA485_COMMAND'?
+  314 |   SKprintf("RS485_COMMAND_01= %d\r\n", sizeof(RS485_COMMAND_01));
+      |                                               ^~~~~~~~~~~~~~~~
+      |                                               RA485_COMMAND
+../Core/Src/Src/usr_rs485_main.c:314:47: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:315:47: error: 'RS485_COMMAND_02' undeclared (first use in this function); did you mean 'RA485_COMMAND'?
+  315 |   SKprintf("RS485_COMMAND_02= %d\r\n", sizeof(RS485_COMMAND_02));
+      |                                               ^~~~~~~~~~~~~~~~
+      |                                               RA485_COMMAND
+../Core/Src/Src/usr_rs485_main.c:316:47: error: 'RS485_COMMAND_03' undeclared (first use in this function); did you mean 'RA485_COMMAND'?
+  316 |   SKprintf("RS485_COMMAND_03= %d\r\n", sizeof(RS485_COMMAND_03));
+      |                                               ^~~~~~~~~~~~~~~~
+      |                                               RA485_COMMAND
+../Core/Src/Src/usr_rs485_main.c:317:47: error: 'RS485_COMMAND_04' undeclared (first use in this function); did you mean 'RA485_COMMAND'?
+  317 |   SKprintf("RS485_COMMAND_04= %d\r\n", sizeof(RS485_COMMAND_04));
+      |                                               ^~~~~~~~~~~~~~~~
+      |                                               RA485_COMMAND
+../Core/Src/Src/usr_rs485_main.c:319:47: error: 'RS485_RESPONS_01' undeclared (first use in this function)
+  319 |   SKprintf("RS485_RESPONS_01= %d\r\n", sizeof(RS485_RESPONS_01));
+      |                                               ^~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:320:47: error: 'RS485_RESPONS_02' undeclared (first use in this function)
+  320 |   SKprintf("RS485_RESPONS_02= %d\r\n", sizeof(RS485_RESPONS_02));
+      |                                               ^~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:321:47: error: 'RS485_RESPONS_03' undeclared (first use in this function)
+  321 |   SKprintf("RS485_RESPONS_03= %d\r\n", sizeof(RS485_RESPONS_03));
+      |                                               ^~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:322:47: error: 'RS485_RESPONS_04' undeclared (first use in this function)
+  322 |   SKprintf("RS485_RESPONS_04= %d\r\n", sizeof(RS485_RESPONS_04));
+      |                                               ^~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:459:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  459 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:459:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:459:10: error: 'Res' undeclared (first use in this function)
+  459 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |          ^~~
+../Core/Src/Src/usr_rs485_main.c:459:25: error: 'RS485_RESPONS_STRUCT' undeclared (first use in this function)
+  459 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |                         ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: At top level:
+../Core/Src/Src/usr_rs485_main.c:558:9: error: conflicting types for 'Get_command_chksum'
+  558 | uint8_t Get_command_chksum(uint8_t start, uint8_t end,uint8_t *dt )
+      |         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:237:9: note: previous declaration of 'Get_command_chksum' was here
+  237 | uint8_t Get_command_chksum(uint8_t *start, uint8_t *end );
+      |         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:594:3: error: 'j' undeclared (first use in this function)
+  594 |   j = COM_START_TXT_00 + i ;
+      |   ^
+../Core/Src/Src/usr_rs485_main.c:650:19: error: 'Com' undeclared (first use in this function); did you mean 'com'?
+  650 |  pt = (uint8_t *)&Com;
+      |                   ^~~
+      |                   com
+../Core/Src/Src/usr_rs485_main.c:581:12: warning: variable 'pt' set but not used [-Wunused-but-set-variable]
+  581 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:02:49 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:314:47: error: 'RS485_COMMAND_01' undeclared (first use in this function); did you mean 'RA485_COMMAND'?
+  314 |   SKprintf("RS485_COMMAND_01= %d\r\n", sizeof(RS485_COMMAND_01));
+      |                                               ^~~~~~~~~~~~~~~~
+      |                                               RA485_COMMAND
+../Core/Src/Src/usr_rs485_main.c:314:47: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:315:47: error: 'RS485_COMMAND_02' undeclared (first use in this function); did you mean 'RA485_COMMAND'?
+  315 |   SKprintf("RS485_COMMAND_02= %d\r\n", sizeof(RS485_COMMAND_02));
+      |                                               ^~~~~~~~~~~~~~~~
+      |                                               RA485_COMMAND
+../Core/Src/Src/usr_rs485_main.c:316:47: error: 'RS485_COMMAND_03' undeclared (first use in this function); did you mean 'RA485_COMMAND'?
+  316 |   SKprintf("RS485_COMMAND_03= %d\r\n", sizeof(RS485_COMMAND_03));
+      |                                               ^~~~~~~~~~~~~~~~
+      |                                               RA485_COMMAND
+../Core/Src/Src/usr_rs485_main.c:317:47: error: 'RS485_COMMAND_04' undeclared (first use in this function); did you mean 'RA485_COMMAND'?
+  317 |   SKprintf("RS485_COMMAND_04= %d\r\n", sizeof(RS485_COMMAND_04));
+      |                                               ^~~~~~~~~~~~~~~~
+      |                                               RA485_COMMAND
+../Core/Src/Src/usr_rs485_main.c:319:47: error: 'RS485_RESPONS_01' undeclared (first use in this function)
+  319 |   SKprintf("RS485_RESPONS_01= %d\r\n", sizeof(RS485_RESPONS_01));
+      |                                               ^~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:320:47: error: 'RS485_RESPONS_02' undeclared (first use in this function)
+  320 |   SKprintf("RS485_RESPONS_02= %d\r\n", sizeof(RS485_RESPONS_02));
+      |                                               ^~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:321:47: error: 'RS485_RESPONS_03' undeclared (first use in this function)
+  321 |   SKprintf("RS485_RESPONS_03= %d\r\n", sizeof(RS485_RESPONS_03));
+      |                                               ^~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:322:47: error: 'RS485_RESPONS_04' undeclared (first use in this function)
+  322 |   SKprintf("RS485_RESPONS_04= %d\r\n", sizeof(RS485_RESPONS_04));
+      |                                               ^~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:459:2: warning: implicit declaration of function 'memset' [-Wimplicit-function-declaration]
+  459 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |  ^~~~~~
+../Core/Src/Src/usr_rs485_main.c:459:2: warning: incompatible implicit declaration of built-in function 'memset'
+../Core/Src/Src/usr_rs485_main.c:13:1: note: include '<string.h>' or provide a declaration of 'memset'
+   12 | #include "rs485_com.h"
+  +++ |+#include <string.h>
+   13 | 
+../Core/Src/Src/usr_rs485_main.c:459:10: error: 'Res' undeclared (first use in this function)
+  459 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |          ^~~
+../Core/Src/Src/usr_rs485_main.c:459:25: error: 'RS485_RESPONS_STRUCT' undeclared (first use in this function)
+  459 |  memset(&Res, 0, sizeof(RS485_RESPONS_STRUCT));
+      |                         ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: At top level:
+../Core/Src/Src/usr_rs485_main.c:558:9: error: conflicting types for 'Get_command_chksum'
+  558 | uint8_t Get_command_chksum(uint8_t start, uint8_t end,uint8_t *dt )
+      |         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:237:9: note: previous declaration of 'Get_command_chksum' was here
+  237 | uint8_t Get_command_chksum(uint8_t *start, uint8_t *end );
+      |         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:581:12: warning: unused variable 'pt' [-Wunused-variable]
+  581 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:09:36 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: At top level:
+../Core/Src/Src/usr_rs485_main.c:433:16: error: conflicting types for 'Set_Res_Message'
+  433 | RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist)
+      |                ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:235:16: note: previous declaration of 'Set_Res_Message' was here
+  235 | RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src );
+      |                ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:512:44: warning: passing argument 1 of 'Get_command_chksum' makes pointer from integer without a cast [-Wint-conversion]
+  512 |  if( dist[COM_CHKSUM] !=Get_command_chksum(COM_COUNTER_L, COM_CHKSUM_ID, dist);){
+      |                                            ^~~~~~~~~~~~~
+      |                                            |
+      |                                            int
+../Core/Src/Src/usr_rs485_main.c:237:37: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  237 | uint8_t Get_command_chksum(uint8_t *start, uint8_t *end );
+      |                            ~~~~~~~~~^~~~~
+../Core/Src/Src/usr_rs485_main.c:512:59: warning: passing argument 2 of 'Get_command_chksum' makes pointer from integer without a cast [-Wint-conversion]
+  512 |  if( dist[COM_CHKSUM] !=Get_command_chksum(COM_COUNTER_L, COM_CHKSUM_ID, dist);){
+      |                                                           ^~~~~~~~~~~~~
+      |                                                           |
+      |                                                           int
+../Core/Src/Src/usr_rs485_main.c:237:53: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'int'
+  237 | uint8_t Get_command_chksum(uint8_t *start, uint8_t *end );
+      |                                            ~~~~~~~~~^~~
+../Core/Src/Src/usr_rs485_main.c:512:25: error: too many arguments to function 'Get_command_chksum'
+  512 |  if( dist[COM_CHKSUM] !=Get_command_chksum(COM_COUNTER_L, COM_CHKSUM_ID, dist);){
+      |                         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:237:9: note: declared here
+  237 | uint8_t Get_command_chksum(uint8_t *start, uint8_t *end );
+      |         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:512:79: error: expected ')' before ';' token
+  512 |  if( dist[COM_CHKSUM] !=Get_command_chksum(COM_COUNTER_L, COM_CHKSUM_ID, dist);){
+      |    ~                                                                          ^
+      |                                                                               )
+../Core/Src/Src/usr_rs485_main.c: At top level:
+../Core/Src/Src/usr_rs485_main.c:543:9: error: conflicting types for 'Get_command_chksum'
+  543 | uint8_t Get_command_chksum(uint8_t start, uint8_t end,uint8_t *dt )
+      |         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:237:9: note: previous declaration of 'Get_command_chksum' was here
+  237 | uint8_t Get_command_chksum(uint8_t *start, uint8_t *end );
+      |         ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:10:05 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'Get_command_chksum':
+../Core/Src/Src/usr_rs485_main.c:244:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  244 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:265:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  265 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:278:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  278 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:288:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  288 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:303:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  303 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:403:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  403 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:434:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  434 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:544:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  544 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:562:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  562 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:669: error: expected '{' at end of input
+../Core/Src/Src/usr_rs485_main.c:669: warning: control reaches end of non-void function [-Wreturn-type]
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:10:18 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: At top level:
+../Core/Src/Src/usr_rs485_main.c:433:16: error: conflicting types for 'Set_Res_Message'
+  433 | RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist)
+      |                ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:235:16: note: previous declaration of 'Set_Res_Message' was here
+  235 | RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src );
+      |                ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:512:79: error: expected ')' before ';' token
+  512 |  if( dist[COM_CHKSUM] !=Get_command_chksum(COM_COUNTER_L, COM_CHKSUM_ID, dist);){
+      |    ~                                                                          ^
+      |                                                                               )
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:10:40 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:244:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  244 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:265:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  265 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:278:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  278 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:288:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  288 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:303:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  303 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:403:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  403 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:434:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  434 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:544:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  544 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:562:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  562 | {
+      | ^
+../Core/Src/Src/usr_rs485_main.c:235:16: error: old-style parameter declarations in prototyped function definition
+  235 | RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist)
+      |                ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:669: error: expected '{' at end of input
+../Core/Src/Src/usr_rs485_main.c:669: warning: control reaches end of non-void function [-Wreturn-type]
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:10:51 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:349:6: error: too few arguments to function 'Set_Res_Message'
+  349 |      Set_Res_Message(num, work_buf);
+      |      ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:235:16: note: declared here
+  235 | RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist);
+      |                ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Set_Res_Message':
+../Core/Src/Src/usr_rs485_main.c:512:79: error: expected ')' before ';' token
+  512 |  if( dist[COM_CHKSUM] !=Get_command_chksum(COM_COUNTER_L, COM_CHKSUM_ID, dist);){
+      |    ~                                                                          ^
+      |                                                                               )
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:11:09 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:349:6: error: too few arguments to function 'Set_Res_Message'
+  349 |      Set_Res_Message(num, work_buf);
+      |      ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:235:16: note: declared here
+  235 | RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist);
+      |                ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:11:36 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:349:36: error: 'Res_msg' undeclared (first use in this function); did you mean 'Res_mesg'?
+  349 |      Set_Res_Message(num, work_buf,Res_msg);
+      |                                    ^~~~~~~
+      |                                    Res_mesg
+../Core/Src/Src/usr_rs485_main.c:349:36: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+14:12:04 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44380	    124	  27740	  72244	  11a34	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+14:12:53 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-size   TEST001.elf 
+   text	   data	    bss	    dec	    hex	filename
+  44380	    124	  27740	  72244	  11a34	TEST001.elf
+Finished building: default.size.stdout
+ 
+14:16:21 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44368	    124	  27812	  72304	  11a70	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+15:20:00 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44388	    124	  27812	  72324	  11a84	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+15:30:59 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:566:12: warning: unused variable 'pt' [-Wunused-variable]
+  566 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44336	    124	  27812	  72272	  11a50	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+16:09:58 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:350:6: warning: implicit declaration of function 'f' [-Wimplicit-function-declaration]
+  350 |      f( status == RET_TRUE ){
+      |      ^
+../Core/Src/Src/usr_rs485_main.c:350:29: error: expected ';' before '{' token
+  350 |      f( status == RET_TRUE ){
+      |                             ^
+      |                             ;
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:574:12: warning: unused variable 'pt' [-Wunused-variable]
+  574 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+16:11:50 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:574:12: warning: unused variable 'pt' [-Wunused-variable]
+  574 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44388	    124	  27812	  72324	  11a84	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+16:19:54 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:574:12: warning: unused variable 'pt' [-Wunused-variable]
+  574 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  44344	    124	  27812	  72280	  11a58	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+16:36:58 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:604:12: warning: unused variable 'pt' [-Wunused-variable]
+  604 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  45480	    124	  27812	  73416	  11ec8	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+16:43:14 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:369:33: error: expected expression before ']' token
+  369 |    switch( Res_mesg[COM_COMMAND,] ){
+      |                                 ^
+../Core/Src/Src/usr_rs485_main.c:369:32: warning: left-hand operand of comma expression has no effect [-Wunused-value]
+  369 |    switch( Res_mesg[COM_COMMAND,] ){
+      |                                ^
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:604:12: warning: unused variable 'pt' [-Wunused-variable]
+  604 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+16:43:24 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:604:12: warning: unused variable 'pt' [-Wunused-variable]
+  604 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  45480	    124	  27812	  73416	  11ec8	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+16:48:43 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:11: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t dt;
+      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:604:12: warning: unused variable 'pt' [-Wunused-variable]
+  604 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  45480	    124	  27812	  73416	  11ec8	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+17:02:48 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:12: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:602:12: warning: unused variable 'pt' [-Wunused-variable]
+  602 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  45448	    124	  27812	  73384	  11ea8	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+17:10:18 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:12: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:602:12: warning: unused variable 'pt' [-Wunused-variable]
+  602 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  45448	    124	  27812	  73384	  11ea8	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+17:16:35 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:12: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:618:12: warning: unused variable 'pt' [-Wunused-variable]
+  618 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  45576	    124	  27812	  73512	  11f28	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+17:19:08 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:308:12: warning: unused variable 'dt' [-Wunused-variable]
+  308 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:618:12: warning: unused variable 'pt' [-Wunused-variable]
+  618 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  45576	    124	  27812	  73512	  11f28	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+09:08:12 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:360:12: warning: unused variable 'dt' [-Wunused-variable]
+  360 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:670:12: warning: unused variable 'pt' [-Wunused-variable]
+  670 |  uint8_t  *pt;
+      |            ^~
+../Core/Src/main.c: In function 'StartTask02':
+../Core/Src/main.c:603:3: warning: implicit declaration of function 'uart_Rcv_init'; did you mean 'uart1_Rcv_init'? [-Wimplicit-function-declaration]
+  603 |   uart_Rcv_init(SK_UART2_DEBUG);
+      |   ^~~~~~~~~~~~~
+      |   uart1_Rcv_init
+../Core/Src/main.c: In function 'StartTask03':
+../Core/Src/main.c:636:2: warning: implicit declaration of function 'tasuk3_init' [-Wimplicit-function-declaration]
+  636 |  tasuk3_init();
+      |  ^~~~~~~~~~~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  43640	    124	  27580	  71344	  116b0	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+09:58:12 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:286:27: error: invalid operands to binary % (have 'float' and 'int')
+  286 |         *buf = '0' + (num % 10);
+      |                           ^
+../Core/Src/Src/usr_rs485_main.c: In function 'tasuk3_init':
+../Core/Src/Src/usr_rs485_main.c:309:23: error: 'mybuf' undeclared (first use in this function); did you mean 'my_buf'?
+  309 |   my_putfloat(dtf, 3, mybuf);
+      |                       ^~~~~
+      |                       my_buf
+../Core/Src/Src/usr_rs485_main.c:309:23: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:302:10: warning: unused variable 'my_buf' [-Wunused-variable]
+  302 |  uint8_t my_buf[30];
+      |          ^~~~~~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:403:12: warning: unused variable 'dt' [-Wunused-variable]
+  403 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:713:12: warning: unused variable 'pt' [-Wunused-variable]
+  713 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+09:58:44 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:286:27: error: invalid operands to binary % (have 'float' and 'int')
+  286 |         *buf = '0' + (num % 10);
+      |                           ^
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:403:12: warning: unused variable 'dt' [-Wunused-variable]
+  403 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:713:12: warning: unused variable 'pt' [-Wunused-variable]
+  713 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+09:59:33 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:286:38: error: invalid operands to binary % (have 'float' and 'int')
+  286 |         *buf = (uint8_t )('0' + (num % 10));
+      |                                      ^
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:403:12: warning: unused variable 'dt' [-Wunused-variable]
+  403 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:713:12: warning: unused variable 'pt' [-Wunused-variable]
+  713 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:02:51 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:288:24: error: invalid operands to binary % (have 'float' and 'int')
+  288 |         dt = (int)(num % 10))
+      |                        ^
+../Core/Src/Src/usr_rs485_main.c:288:29: error: expected ';' before ')' token
+  288 |         dt = (int)(num % 10))
+      |                             ^
+      |                             ;
+../Core/Src/Src/usr_rs485_main.c:288:29: error: expected statement before ')' token
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:406:12: warning: unused variable 'dt' [-Wunused-variable]
+  406 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:716:12: warning: unused variable 'pt' [-Wunused-variable]
+  716 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:03:04 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:288:24: error: invalid operands to binary % (have 'float' and 'int')
+  288 |         dt = (int)(num % 10));
+      |                        ^
+../Core/Src/Src/usr_rs485_main.c:288:29: error: expected ';' before ')' token
+  288 |         dt = (int)(num % 10));
+      |                             ^
+      |                             ;
+../Core/Src/Src/usr_rs485_main.c:288:29: error: expected statement before ')' token
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:406:12: warning: unused variable 'dt' [-Wunused-variable]
+  406 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:716:12: warning: unused variable 'pt' [-Wunused-variable]
+  716 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:03:20 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:288:24: error: invalid operands to binary % (have 'float' and 'int')
+  288 |         dt = (int)(num % 10);
+      |                        ^
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:406:12: warning: unused variable 'dt' [-Wunused-variable]
+  406 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:716:12: warning: unused variable 'pt' [-Wunused-variable]
+  716 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:06:03 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:291:25: error: invalid operands to binary % (have 'float' and 'int')
+  291 |         dtf = (int)(num % 10);
+      |                         ^
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:410:12: warning: unused variable 'dt' [-Wunused-variable]
+  410 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:720:12: warning: unused variable 'pt' [-Wunused-variable]
+  720 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:06:28 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:291:20: error: invalid operands to binary % (have 'float' and 'int')
+  291 |         dtf = (num % 10);
+      |                    ^
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:410:12: warning: unused variable 'dt' [-Wunused-variable]
+  410 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:720:12: warning: unused variable 'pt' [-Wunused-variable]
+  720 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:06:56 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:291:19: error: invalid operands to binary % (have 'float' and 'int')
+  291 |         dtf = num % 10;
+      |                   ^
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:410:12: warning: unused variable 'dt' [-Wunused-variable]
+  410 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:720:12: warning: unused variable 'pt' [-Wunused-variable]
+  720 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:09:26 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:293:19: error: invalid operands to binary % (have 'float' and 'int')
+  293 |         dtf = dtf % 10;
+      |                   ^
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:413:12: warning: unused variable 'dt' [-Wunused-variable]
+  413 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:723:12: warning: unused variable 'pt' [-Wunused-variable]
+  723 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:13:54 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:274:6: warning: unused variable 'digit' [-Wunused-variable]
+  274 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:272:17: warning: unused variable 'dtf' [-Wunused-variable]
+  272 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:271:6: warning: unused variable 'dt' [-Wunused-variable]
+  271 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:409:12: warning: unused variable 'dt' [-Wunused-variable]
+  409 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:719:12: warning: unused variable 'pt' [-Wunused-variable]
+  719 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  42888	    124	  27580	  70592	  113c0	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:15:31 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:274:6: warning: unused variable 'digit' [-Wunused-variable]
+  274 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:272:17: warning: unused variable 'dtf' [-Wunused-variable]
+  272 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:271:6: warning: unused variable 'dt' [-Wunused-variable]
+  271 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:410:12: warning: unused variable 'dt' [-Wunused-variable]
+  410 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:720:12: warning: unused variable 'pt' [-Wunused-variable]
+  720 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  42924	    124	  27580	  70628	  113e4	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:20:35 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:274:6: warning: unused variable 'digit' [-Wunused-variable]
+  274 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:272:17: warning: unused variable 'dtf' [-Wunused-variable]
+  272 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:271:6: warning: unused variable 'dt' [-Wunused-variable]
+  271 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:410:12: warning: unused variable 'dt' [-Wunused-variable]
+  410 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:720:12: warning: unused variable 'pt' [-Wunused-variable]
+  720 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  42936	    124	  27580	  70640	  113f0	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:29:04 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:276:6: warning: unused variable 'digit' [-Wunused-variable]
+  276 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:274:17: warning: unused variable 'dtf' [-Wunused-variable]
+  274 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:273:6: warning: unused variable 'dt' [-Wunused-variable]
+  273 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:412:12: warning: unused variable 'dt' [-Wunused-variable]
+  412 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:722:12: warning: unused variable 'pt' [-Wunused-variable]
+  722 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  43016	    124	  27580	  70720	  11440	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:30:01 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:276:6: warning: unused variable 'digit' [-Wunused-variable]
+  276 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:274:17: warning: unused variable 'dtf' [-Wunused-variable]
+  274 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:273:6: warning: unused variable 'dt' [-Wunused-variable]
+  273 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:412:12: warning: unused variable 'dt' [-Wunused-variable]
+  412 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:722:12: warning: unused variable 'pt' [-Wunused-variable]
+  722 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  43016	    124	  27580	  70720	  11440	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:36:09 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:278:6: warning: unused variable 'digit' [-Wunused-variable]
+  278 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:276:17: warning: unused variable 'dtf' [-Wunused-variable]
+  276 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:275:6: warning: unused variable 'dt' [-Wunused-variable]
+  275 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:414:12: warning: unused variable 'dt' [-Wunused-variable]
+  414 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:724:12: warning: unused variable 'pt' [-Wunused-variable]
+  724 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  43032	    124	  27580	  70736	  11450	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:37:02 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:278:6: warning: unused variable 'digit' [-Wunused-variable]
+  278 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:276:17: warning: unused variable 'dtf' [-Wunused-variable]
+  276 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:275:6: warning: unused variable 'dt' [-Wunused-variable]
+  275 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:414:12: warning: unused variable 'dt' [-Wunused-variable]
+  414 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:724:12: warning: unused variable 'pt' [-Wunused-variable]
+  724 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  43032	    124	  27580	  70736	  11450	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:38:21 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:278:6: warning: unused variable 'digit' [-Wunused-variable]
+  278 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:276:17: warning: unused variable 'dtf' [-Wunused-variable]
+  276 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:275:6: warning: unused variable 'dt' [-Wunused-variable]
+  275 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:414:12: warning: unused variable 'dt' [-Wunused-variable]
+  414 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:724:12: warning: unused variable 'pt' [-Wunused-variable]
+  724 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  43036	    124	  27580	  70740	  11454	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:45:18 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:278:6: warning: unused variable 'digit' [-Wunused-variable]
+  278 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:276:17: warning: unused variable 'dtf' [-Wunused-variable]
+  276 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:275:6: warning: unused variable 'dt' [-Wunused-variable]
+  275 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:425:12: warning: unused variable 'dt' [-Wunused-variable]
+  425 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:735:12: warning: unused variable 'pt' [-Wunused-variable]
+  735 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  43192	    124	  27580	  70896	  114f0	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 
+10:52:43 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:278:6: warning: unused variable 'digit' [-Wunused-variable]
+  278 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:276:17: warning: unused variable 'dtf' [-Wunused-variable]
+  276 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:275:6: warning: unused variable 'dt' [-Wunused-variable]
+  275 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:521:25: error: 'mybuf' undeclared (first use in this function)
+  521 |     my_putfloat(dtf, 3, mybuf);
+      |                         ^~~~~
+../Core/Src/Src/usr_rs485_main.c:521:25: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c:429:13: warning: unused variable 'pt2' [-Wunused-variable]
+  429 |   uint8_t  *pt2;
+      |             ^~~
+../Core/Src/Src/usr_rs485_main.c:427:10: warning: unused variable 'dtf2' [-Wunused-variable]
+  427 |   float  dtf2;
+      |          ^~~~
+../Core/Src/Src/usr_rs485_main.c:425:12: warning: unused variable 'dt' [-Wunused-variable]
+  425 |   uint8_t  dt;
+      |            ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:721:12: warning: unused variable 'pt' [-Wunused-variable]
+  721 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+make: *** Waiting for unfinished jobs....
+../Core/Src/main.c: In function 'StartTask02':
+../Core/Src/main.c:603:3: warning: implicit declaration of function 'uart_Rcv_init'; did you mean 'uart1_Rcv_init'? [-Wimplicit-function-declaration]
+  603 |   uart_Rcv_init(SK_UART2_DEBUG);
+      |   ^~~~~~~~~~~~~
+      |   uart1_Rcv_init
+../Core/Src/main.c: In function 'StartTask03':
+../Core/Src/main.c:636:2: warning: implicit declaration of function 'tasuk3_init' [-Wimplicit-function-declaration]
+  636 |  tasuk3_init();
+      |  ^~~~~~~~~~~
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:54:29 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:278:6: warning: unused variable 'digit' [-Wunused-variable]
+  278 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:276:17: warning: unused variable 'dtf' [-Wunused-variable]
+  276 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:275:6: warning: unused variable 'dt' [-Wunused-variable]
+  275 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
+../Core/Src/Src/usr_rs485_main.c:521:25: error: 'mybuf' undeclared (first use in this function)
+  521 |     my_putfloat(dtf, 3, mybuf);
+      |                         ^~~~~
+../Core/Src/Src/usr_rs485_main.c:521:25: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:721:12: warning: unused variable 'pt' [-Wunused-variable]
+  721 |  uint8_t  *pt;
+      |            ^~
+make: *** [Core/Src/Src/subdir.mk:34: Core/Src/Src/usr_rs485_main.o] Error 1
+"make -j8 all" terminated with exit code 2. Build might be incomplete.
+10:54:58 **** Incremental Build of configuration Debug for project TEST001 ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:278:6: warning: unused variable 'digit' [-Wunused-variable]
+  278 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:276:17: warning: unused variable 'dtf' [-Wunused-variable]
+  276 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:275:6: warning: unused variable 'dt' [-Wunused-variable]
+  275 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:721:12: warning: unused variable 'pt' [-Wunused-variable]
+  721 |  uint8_t  *pt;
+      |            ^~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
+arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
+   text	   data	    bss	    dec	    hex	filename
+  45432	    124	  27820	  73376	  11ea0	TEST001.elf
+Finished building: default.size.stdout
+ 
+Finished building: TEST001.list
+ 

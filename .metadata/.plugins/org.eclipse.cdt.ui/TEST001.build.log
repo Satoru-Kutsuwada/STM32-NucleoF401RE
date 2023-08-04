@@ -1,21 +1,31 @@
-16:57:06 **** Incremental Build of configuration Debug for project TEST001 ****
+10:54:58 **** Incremental Build of configuration Debug for project TEST001 ****
 make -j8 all 
 arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
-../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
-../Core/Src/Src/usr_rs485_main.c:245:11: warning: unused variable 'dt' [-Wunused-variable]
-  245 |   uint8_t dt;
-      |           ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'my_putfloat':
+../Core/Src/Src/usr_rs485_main.c:278:6: warning: unused variable 'digit' [-Wunused-variable]
+  278 |  int digit;
+      |      ^~~~~
+../Core/Src/Src/usr_rs485_main.c:276:17: warning: unused variable 'dtf' [-Wunused-variable]
+  276 |  float fracPart,dtf;
+      |                 ^~~
+../Core/Src/Src/usr_rs485_main.c:275:6: warning: unused variable 'dt' [-Wunused-variable]
+  275 |  int dt;
+      |      ^~
+../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
+../Core/Src/Src/usr_rs485_main.c:721:12: warning: unused variable 'pt' [-Wunused-variable]
+  721 |  uint8_t  *pt;
+      |            ^~
 arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: TEST001.elf
  
 arm-none-eabi-size   TEST001.elf 
 arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
    text	   data	    bss	    dec	    hex	filename
-  44124	    124	  27812	  72060	  1197c	TEST001.elf
+  45432	    124	  27820	  73376	  11ea0	TEST001.elf
 Finished building: default.size.stdout
  
 Finished building: TEST001.list
  
 
-16:57:08 Build Finished. 0 errors, 1 warnings. (took 1s.519ms)
+10:54:59 Build Finished. 0 errors, 4 warnings. (took 1s.670ms)
 

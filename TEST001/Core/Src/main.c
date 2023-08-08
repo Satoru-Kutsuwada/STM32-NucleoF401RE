@@ -109,6 +109,8 @@ void debu_main(void);
 int getch_uart1(void);
 int	SKprintf_uart1 (const char *string, ...);
 void rs485_com_task(void);
+void LogInfo_display(void);
+void LogInfo_clear(void);
 
 
 /* USER CODE END PFP */
@@ -153,6 +155,7 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
   //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+  LogInfo_clear();
   user_init();		// SK ADDSKprint
 
   /* USER CODE END 2 */
@@ -174,13 +177,13 @@ int main(void)
 
   /* Create the queue(s) */
   /* creation of myQueue01 */
-  myQueue01Handle = osMessageQueueNew (16, sizeof(uint8_t), &myQueue01_attributes);
+  myQueue01Handle = osMessageQueueNew (16, sizeof(void *), &myQueue01_attributes);
 
   /* creation of myQueue02 */
-  myQueue02Handle = osMessageQueueNew (16, sizeof(uint8_t), &myQueue02_attributes);
+  myQueue02Handle = osMessageQueueNew (16, sizeof(void *), &myQueue02_attributes);
 
   /* creation of myQueue03 */
-  myQueue03Handle = osMessageQueueNew (16, sizeof(uint8_t), &myQueue03_attributes);
+  myQueue03Handle = osMessageQueueNew (16, sizeof(void *), &myQueue03_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -584,7 +587,10 @@ void StartDefaultTask(void *argument)
   {
 //	  rtc_display();
 	  //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    osDelay(200);
+    osDelay(100);
+    //Set_logInfo("100msec task wakup");
+    //rtc_display();
+    //LogInfo_display();
   }
   /* USER CODE END 5 */
 }
@@ -600,7 +606,7 @@ void StartTask02(void *argument)
 {
   /* USER CODE BEGIN StartTask02 */
 	 SKprintf("task2 start()\r\n");
-		uart_Rcv_init(SK_UART2_DEBUG);
+
 	task_chk_init();
 
 
@@ -608,11 +614,12 @@ void StartTask02(void *argument)
   /* Infinite loop */
   for(;;)
   {
-	  task_stack_chk();
+	  //task_stack_chk();
 	  debu_main();
-
+	  TimerEventCtrl();
+	  //Set_logInfo("10msec task wakup");
 //	  user_main_loop();		// SK ADD
-    osDelay(100);
+    //osDelay(10);
   }
   /* USER CODE END StartTask02 */
 }
@@ -642,6 +649,7 @@ __weak void StartTask03(void *argument)
 	for(;;)
 	{
 		rs485_com_task();
+		osDelay(100);
 	}
   /* USER CODE END StartTask03 */
 }

@@ -1,4 +1,10 @@
-usr_log.c:84:6:Set_logflg	2
-usr_log.c:98:6:Set_logInfo	13
-usr_log.c:165:6:LogInfo_display	6
-usr_log.c:208:6:LogInfo_clear	1
+usr_log.c:56:10:my_putint	3
+usr_log.c:79:10:my_putfloat	3
+usr_log.c:119:10:my_putchar	1
+usr_log.c:131:10:my_puts	2
+usr_log.c:155:10:my_putshex	11
+usr_log.c:209:6:Set_logflg	2
+usr_log.c:223:6:Set_logInfo	13
+usr_log.c:295:6:Set_logInfo2	18
+usr_log.c:448:6:LogInfo_display	5
+usr_log.c:480:6:LogInfo_clear	1

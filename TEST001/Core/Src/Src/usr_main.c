@@ -129,6 +129,11 @@ extern osThreadAttr_t Task_sub1_attributes;
 extern osThreadAttr_t Task_sub2_attributes;
 
 
+extern osMessageQueueId_t myQueue01Handle;
+extern osMessageQueueId_t myQueue02Handle;
+extern osMessageQueueId_t myQueue03Handle;
+
+
 
 
 /* Public function prototypes ------------------------------------------------*/
@@ -163,6 +168,30 @@ TASK_STACK_CHECK task_chk_table[SK_TASK_MAX];
 
 /* Private function prototypes -----------------------------------------------*/
 void Get_UART_Handle(UART_HandleTypeDef *uart_handle);
+void uart_Data_init(void);
+
+
+//==============================================================================
+//
+//==============================================================================
+osMessageQueueId_t GetMessageQue(SK_TASK task)
+{
+	osMessageQueueId_t 	handle;
+
+	switch(task){
+	case SK_TASK_main:
+		handle = myQueue01Handle;
+		break;
+	case SK_TASK_sub1:
+		handle = myQueue02Handle;
+		break;
+	case SK_TASK_sub2:
+		handle = myQueue03Handle;
+		break;
+	}
+
+	return handle;
+}
 
 //==============================================================================
 //
@@ -459,8 +488,10 @@ void user_init(void)
 	//-----------------------------------------------
 	// 受信割込み準備
 	//-----------------------------------------------
-	// 受信準備
-	status = Recive_rs485_prepaer();
+	uart_Data_init();
+
+	uart_Rcv_init(SK_UART1_RS485);
+	uart_Rcv_init(SK_UART2_DEBUG);
 
 }
 
@@ -553,8 +584,133 @@ void rtc_display(void)
 
 	HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 	HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-	SKprintf("20%02d.%02d.%02d %02d:%02d:%02d\r\n", sDate.Year, sDate.Month, sDate.Date, sTime.Hours, sTime.Minutes, sTime.Seconds);
-	SKprintf("av=%d max=%d\r\n",timer.dt_av,timer.dt_max);
-	SKprintf("dt_buf=%d, %d, %d\r\n", timer.dt_buf[0],timer.dt_buf[1],timer.dt_buf[2]);
+	SKprintf("\r\n20%02d.%02d.%02d %02d:%02d:%02d\r\n", sDate.Year, sDate.Month, sDate.Date, sTime.Hours, sTime.Minutes, sTime.Seconds);
+	//SKprintf("av=%d max=%d\r\n",timer.dt_av,timer.	dt_max);
+	//SKprintf("dt_buf=%d, %d, %d\r\n", timer.dt_buf[0],timer.dt_buf[1],timer.dt_buf[2]);
 }
+
+
+#define TIMER_EVENT_MAX		10
+typedef enum{
+	TIMER_NO_USED=0,
+	TIMER_USED,
+	TIMER_ACTIVE
+
+}TIMER_STATAS;
+
+typedef struct{
+	uint16_t			counter;
+	TIMER_STATAS		flag;
+
+	osMessageQueueId_t 	hmsg;
+	void 				*message;
+} TIMER_REC;
+
+TIMER_REC	timer_event[TIMER_EVENT_MAX];
+
+
+//==============================================================================
+//
+//==============================================================================
+uint8_t GetTimerEventID(void)
+{
+	uint8_t				i;
+	uint8_t				rtn;
+
+	rtn = 0xff;
+	for(i=0; i<TIMER_EVENT_MAX; i++){
+		if( timer_event[i].flag == TIMER_NO_USED){
+			timer_event[i].flag = TIMER_USED;
+			rtn = i;
+			break;
+		}
+	}
+
+	return rtn;
+}
+//==============================================================================
+//
+//==============================================================================
+void ReleaceTimerEvent(uint8_t timer_id)
+{
+	Set_logInfo2("ReleaceTimerEvent(%d)",timer_id);
+	timer_event[timer_id].flag = TIMER_NO_USED;
+}
+
+//==============================================================================
+//
+//==============================================================================
+void TimerEventCtrl(void)
+{
+	uint8_t				i;
+	void 				*msgQueBuf;
+	uint8_t				rcvbuff[sizeof(void *)];
+	TIMER_EVENT_FORM	*tm_form;
+	osStatus_t			os_status;
+
+	msgQueBuf = (void *)rcvbuff;
+
+		//-------------------------------------------------------------------------
+		//	タイマー
+		//-------------------------------------------------------------------------
+		for(i=0; i<TIMER_EVENT_MAX; i++){
+			if( timer_event[i].flag == TIMER_ACTIVE){
+				if( timer_event[i].counter != 0 ){
+					timer_event[i].counter --;
+				}
+				else{
+					os_status = osMessageQueuePut (timer_event[i].hmsg, (void *)timer_event[i].message, 0,0);
+
+			    	switch( os_status ){
+					case osOK:
+						Set_logInfo("TimerEvent(). Send MsgQue OK");
+						break;
+					default:
+						Set_logInfo("TimerEvent(). Send MsgQue ERROR");
+						break;
+					}
+
+			    	timer_event[i].flag = TIMER_NO_USED;
+
+				}
+			}
+		}
+		//extern osMessageQueueId_t myQueue01Handle;
+		//extern osMessageQueueId_t myQueue02Handle;
+		//extern osMessageQueueId_t myQueue03Handle;
+
+
+		//-------------------------------------------------------------------------
+		//	メッセージ待ち
+		//-------------------------------------------------------------------------
+		//os_status = osMessageQueueGet (GetMessageQue(SK_TASK_sub2), msgQueBuf, 0, 0);
+//		os_status = osMessageQueueGet (GetMessageQue(SK_TASK_sub1), msgQueBuf, 0, osWaitForever);
+		os_status = osMessageQueueGet (GetMessageQue(SK_TASK_sub1), msgQueBuf, 0, 10);
+		tm_form = (TIMER_EVENT_FORM *)msgQueBuf;
+		tm_form = (TIMER_EVENT_FORM	*)tm_form->maroc_ptr;
+
+		switch( os_status ){
+		case osOK:
+			SKprintf("TimerEventCtrl(2):os_status=OK(%d)\r\n",os_status);
+			Set_logInfo("TimerEvent(). Recive MsgQue OK");
+
+			i = tm_form->timer_id;
+
+			timer_event[i].counter 	= tm_form->time;
+			timer_event[i].flag 	= TIMER_ACTIVE;
+			timer_event[i].hmsg 	= tm_form->hmsg;
+			timer_event[i].message 	= tm_form->mail_form;
+
+			SKprintf("tm_form=%p,.message=%p\r\n",tm_form,timer_event[i].message);
+
+			vPortFree(tm_form->maroc_ptr);
+			break;
+		case osErrorTimeout:
+			break;
+		default:
+			SKprintf("TimerEventCtrl(2):os_status=Error(%d)\r\n",os_status);
+			break;
+		}
+}
+
 

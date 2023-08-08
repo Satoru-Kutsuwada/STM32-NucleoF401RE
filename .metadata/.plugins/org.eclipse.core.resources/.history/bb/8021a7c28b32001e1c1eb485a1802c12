@@ -1,0 +1,122 @@
+/*
+ * usr_system.h
+ *
+ *  Created on: Jul 21, 2023
+ *      Author: nosak
+ */
+
+#ifndef INC_USR_SYSTEM_H_
+#define INC_USR_SYSTEM_H_
+
+
+/* Public includes -----------------------------------------------------------*/
+
+#define TIMER_AV_NUM	3
+
+/* Public typedef ------------------------------------------------------------*/
+typedef struct{
+	uint32_t	dt;
+	uint32_t	dt_buf[TIMER_AV_NUM];
+	uint32_t	dt_max;
+	uint32_t	dt_av;
+	uint8_t		av_wcnt;
+	uint8_t		start;
+
+	uint16_t	usec;
+	uint16_t	msec;
+	uint16_t	usec_max;
+	uint16_t	msec_max;
+} TIMER_TIC;
+
+
+/* Public typedef ------------------------------------------------------------*/
+typedef struct{
+	uint8_t		*pxTopOfStack;
+	uint8_t		*pxStack;
+	uint16_t	size;
+} STACK_INFO;
+
+
+
+/* Public typedef ------------------------------------------------------------*/
+typedef enum {
+	RET_FALSE = 0,
+	RET_TRUE
+
+}RETURN_STATUS;
+
+
+
+/* Public define -------------------------------------------------------------*/
+#define PRiNTF_BUFFMAX 50
+
+
+typedef enum{
+	LF_NON_STOP = 0,
+	LF_IMMMEDIATE_STOP,
+	LF_MAX_DATA_STOP,
+
+	LF_MAX
+} LOG_FLAG;
+
+typedef enum{
+	SK_TASK_main = 0,
+	SK_TASK_sub1,
+	SK_TASK_sub2,
+
+	SK_TASK_MAX
+} SK_TASK;
+
+typedef enum{
+	SK_UART1_RS485 = 0,
+	SK_UART2_DEBUG,
+
+	SK_UART_MAX
+} SK_UART;
+
+/* Public define -------------------------------------------------------------*/
+typedef struct{
+	uint16_t	event;
+	SK_TASK		task;
+}MESSAGE_QUE_DATA;
+
+
+
+/* Public macro --------------------------------------------------------------*/
+
+/* Public variables ----------------------------------------------------------*/
+extern TIMER_TIC timer;
+
+
+/* Public function prototypes ------------------------------------------------*/
+
+void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc);
+void usr_isr_tim1_up(void);
+void LogInfo_clear(void);
+void Set_logInfo(const char *string, ...);
+void LogInfo_display(void);
+void debu_main(void);
+
+int getch(SK_UART id);
+
+void rtc_display(void);
+void Set_logflg(LOG_FLAG flg);
+
+void Get_task_stackptr(SK_TASK taskid, STACK_INFO *ptr);
+
+int	SKprintf (const char *string, ...);
+void task_chk_init(void);
+void task_stack_chk(void);
+
+int	putch_uart1 (const char *string);
+
+void uart1_Rcv_init(void);
+
+uint8_t	Get_rs485_rcvflg(void);
+void Set_rs485_rcvflg(uint8_t dt);
+
+RETURN_STATUS Recive_rs485(uint8_t *pData, uint16_t Size);
+RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size);
+
+
+#endif /* INC_USR_SYSTEM_H_ */

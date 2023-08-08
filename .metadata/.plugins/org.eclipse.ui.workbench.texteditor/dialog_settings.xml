@@ -1,42 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="com_c"/>
+		<item key="selection" value="rcvnum"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
-			<item value="com_c"/>
-			<item value="ERROR Recive Command None"/>
-			<item value="Set_Res_Message"/>
-			<item value="COM_COM_"/>
-			<item value="Set_Res_Messag"/>
-			<item value="Rcv_rx485_message"/>
-			<item value="Send_rx485_cmd_messag"/>
-			<item value="Respons Recive"/>
-			<item value="Send_rs485"/>
-			<item value="None"/>
-			<item value="COM_PROTOCOL_STEP"/>
-			<item value="Comand Send"/>
-			<item value="work_buf"/>
-			<item value="Get_rcv_data"/>
-			<item value="&apos;.&apos;"/>
+			<item value="rcvnum"/>
+			<item value="rcv_dt"/>
+			<item value="RT_EVENT_UART_RX"/>
+			<item value="RT_EVENT_ST"/>
+			<item value="SendMsgQue"/>
+			<item value="os_status"/>
+			<item value="my_putfloat"/>
+			<item value="RS485_CMD_MESUR_DATA"/>
+			<item value="Bmanue_log"/>
+			<item value="COMMAND_REQ"/>
+			<item value="my_putshex"/>
+			<item value="temp"/>
+			<item value="Set_logInfo"/>
+			<item value=" RSrespons_recive"/>
+			<item value="Send MsgQue OK"/>
 		</list>
 		<list key="replacehistory">
+			<item value="SKprintf"/>
+			<item value="ap"/>
+			<item value="string"/>
+			<item value="uint8_t command, uint8_t state"/>
+			<item value="msgQueBuf"/>
 			<item value=""/>
 			<item value="COM_"/>
 			<item value="src"/>
 			<item value="res_ptr"/>
 			<item value="Res_mesg"/>
 			<item value="num++"/>
-			<item value="SKprintf"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item key="DIALOG_X_ORIGIN" value="983"/>
-		<item key="DIALOG_Y_ORIGIN" value="543"/>
+		<item key="DIALOG_X_ORIGIN" value="-381"/>
+		<item key="DIALOG_Y_ORIGIN" value="265"/>
 		<item key="DIALOG_WIDTH" value="322"/>
 		<item key="DIALOG_HEIGHT" value="411"/>
 		<item key="DIALOG_FONT_NAME" value="1|Yu Gothic UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Yu Gothic UI"/>

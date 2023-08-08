@@ -1,4 +1,10 @@
-../Core/Src/Src/usr_log.c:84:6:Set_logflg	16	static
-../Core/Src/Src/usr_log.c:98:6:Set_logInfo	96	static
-../Core/Src/Src/usr_log.c:165:6:LogInfo_display	24	static
-../Core/Src/Src/usr_log.c:208:6:LogInfo_clear	8	static
+../Core/Src/Src/usr_log.c:56:10:my_putint	16	static
+../Core/Src/Src/usr_log.c:79:10:my_putfloat	56	static
+../Core/Src/Src/usr_log.c:119:10:my_putchar	16	static
+../Core/Src/Src/usr_log.c:131:10:my_puts	24	static
+../Core/Src/Src/usr_log.c:155:10:my_putshex	24	static
+../Core/Src/Src/usr_log.c:209:6:Set_logflg	16	static
+../Core/Src/Src/usr_log.c:223:6:Set_logInfo	32	static
+../Core/Src/Src/usr_log.c:295:6:Set_logInfo2	64	static
+../Core/Src/Src/usr_log.c:448:6:LogInfo_display	24	static
+../Core/Src/Src/usr_log.c:480:6:LogInfo_clear	8	static

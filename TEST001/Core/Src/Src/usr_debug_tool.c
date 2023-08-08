@@ -9,9 +9,11 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os2.h"
 #include "usr_system.h"
 
 #include <stdio.h>
+#include <stddef.h>
 
 /* Public includes -----------------------------------------------------------*/
 
@@ -24,7 +26,7 @@
 /* Public variables ----------------------------------------------------------*/
 
 /* Public function prototypes ------------------------------------------------*/
-
+size_t xPortGetFreeHeapSize( void );
 
 
 
@@ -78,6 +80,7 @@ INPUT_STRING input_string;
     CMD_LOG,
     CMD_RS485,
 	CMD_MEM_DUMP,
+	CMD_MSG_QUE,
 
 
     CMD_MAX
@@ -94,7 +97,8 @@ INPUT_STRING input_string;
      { CMD_LOG,      "log" },
 	 { CMD_RS485,    "rs485" },
 	 { CMD_MEM_DUMP,    "mem" },
-
+	 { CMD_MSG_QUE,    "msg" },
+//	 { CMD_MSG_QUE,		"msg" ),
 
 
      { CMD_MAX, "none" }
@@ -109,6 +113,7 @@ INPUT_STRING input_string;
      DEB_RS485_MENUE,
      DEB_MEM_MENUE,
 	 DEB_MEM_INPUT_MENUE,
+	 DEB_RS485_SCAN_MENUE,
 
 
      DEB_DISP_MAX
@@ -162,6 +167,15 @@ const MENUE Deb_menue03[] = {
     " ADDRESS INPUT (r.Return) = 0x"
 };
 
+const MENUE Deb_menue04[] = {
+    "\r\nRS485 SCAN MENUE\r\n",
+    " 1.Single run\r\n",
+    " 2.Continuous run\r\n",
+    " 3.Stop\r\n",
+    " ",
+
+    " r.EXIT\r\n"
+};
 
 typedef struct
 {
@@ -173,7 +187,8 @@ const MENUE_NUM_PAGE MenueList[]={
    Deb_menue00, (uint8_t)(sizeof(Deb_menue00 )/sizeof(MENUE)),
    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE)),
    Deb_menue02, (uint8_t)(sizeof(Deb_menue02 )/sizeof(MENUE)),
-   Deb_menue03, (uint8_t)(sizeof(Deb_menue03 )/sizeof(MENUE))
+   Deb_menue03, (uint8_t)(sizeof(Deb_menue03 )/sizeof(MENUE)),
+   Deb_menue04, (uint8_t)(sizeof(Deb_menue04 )/sizeof(MENUE))
 };
 
 
@@ -189,7 +204,7 @@ void hex_dmp(uint8_t *buf, uint16_t size);
 void debu_main(void)
 {
 	//char ch;
-
+	//SKprintf("debu_main:001\r\n");
 	if(read_line_streem() == INPUT_DATA_FIX){
 
 		input_char_step = INPUT_INIT;
@@ -211,6 +226,9 @@ void debu_main(void)
 			break;
 		case DEB_MEM_INPUT_MENUE:
 			DBmanue_mem_input();
+			break;
+		case DEB_RS485_SCAN_MENUE:
+			DBmanue_rs485_scan();
 			break;
 		default:
 			break;
@@ -238,12 +256,21 @@ void DispMenue(uint8_t type)
         }
     }
 }
+
 //=============================================================================
 //
 //=============================================================================
+extern osMessageQueueId_t myQueue01Handle;
+
+
 void DBmanue_prompt(void)
 {
-    switch( input2menu() ){
+
+
+//	size_t 	lsize2;
+//	size_t 	lsize1;
+
+	switch( input2menu() ){
     case CMD_RTC:
     	rtc_display();
         break;
@@ -256,12 +283,82 @@ void DBmanue_prompt(void)
     case CMD_MEM_DUMP:
         dev_menue_type = DEB_MEM_MENUE;
     	break;
+    case CMD_MSG_QUE:
+    	dev_menue_type = DEB_RS485_SCAN_MENUE;
+    	break;
 
     default:
         break;
     }
 }
 
+//=============================================================================
+//
+//=============================================================================
+void DBmanue_rs485_scan(void)
+{
+	osStatus_t 			osStatus;
+	MESSAGE_QUE_DATA	*msg;
+
+	switch( input_string.main[0] ){
+	case '1':
+
+		//    	lsize1 = xPortGetFreeHeapSize();
+		    	msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
+		    	msg->u.cmd_msg.event = RT_EVENT_START_REQ;
+		    	msg->send_task = 0xfe;
+		    	msg->maroc_ptr = (void *)msg;
+
+		    	msg->u.cmd_msg.address = RS485_AD_SLEVE01;
+				msg->u.cmd_msg.command = RS485_CMD_MESUR_DATA;
+				msg->u.cmd_msg.command_sub = 1;
+				msg->u.cmd_msg.sub1 = 0;
+
+		    	SKprintf("event=0x%x, task=0x%x,msgpt=%p\r\n", msg->u.cmd_msg.event, msg->send_task, msg->maroc_ptr);
+
+		//   	lsize2 = xPortGetFreeHeapSize();
+		// 		SKprintf("lsize1=0x%x,lsize2=%x\r\n",lsize1,lsize2);
+		//    	SKprintf("MESSAGE_QUE_DATA=%p\r\n",msg);
+		    	osStatus = osMessageQueuePut (GetMessageQue(SK_TASK_sub2), (void *)msg->maroc_ptr, 0,0);
+		    	SKprintf("osStatus=%d\r\n",osStatus);
+
+		break;
+	case '2':
+
+		//    	lsize1 = xPortGetFreeHeapSize();
+		    	msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
+		    	msg->u.cmd_msg.event = RT_EVENT_START_REQ;
+		    	msg->send_task = 0xfe;
+		    	msg->maroc_ptr = (void *)msg;
+
+		    	msg->u.cmd_msg.address = RS485_AD_SLEVE01;
+				msg->u.cmd_msg.command = RS485_CMD_MESUR_DATA;
+				msg->u.cmd_msg.command_sub = 3;
+				msg->u.cmd_msg.sub1 = 0;
+
+		    	SKprintf("event=0x%x, task=0x%x,msgpt=%p\r\n", msg->u.cmd_msg.event, msg->send_task, msg->maroc_ptr);
+
+		//   	lsize2 = xPortGetFreeHeapSize();
+		// 		SKprintf("lsize1=0x%x,lsize2=%x\r\n",lsize1,lsize2);
+		//    	SKprintf("MESSAGE_QUE_DATA=%p\r\n",msg);
+		    	osStatus = osMessageQueuePut (GetMessageQue(SK_TASK_sub2), (void *)msg->maroc_ptr, 0,0);
+		    	SKprintf("osStatus=%d\r\n",osStatus);
+
+		break;
+	case '3':
+		break;
+	case '4':
+		break;
+	case '5':
+		break;
+	case 'r':
+	case 'R':
+		dev_menue_type = DEB_PROMPT_MODE;
+	default:
+		break;
+	}
+
+}
 //=============================================================================
 //
 //=============================================================================

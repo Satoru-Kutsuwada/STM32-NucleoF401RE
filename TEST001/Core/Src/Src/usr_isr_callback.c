@@ -34,7 +34,6 @@
 
 /* Private typedef -----------------------------------------------------------*/
 
-
 /* Private define ------------------------------------------------------------*/
 
 
@@ -42,6 +41,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 TIMER_TIC timer;
+TIMER_DATA tm;
+
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -84,6 +85,19 @@ void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc)
 
 //==============================================================================
 //
+//typedef struct{
+//	uint32_t	dt;
+//	uint32_t	dt_buf[TIMER_AV_NUM];
+//	uint32_t	dt_max;
+//	uint32_t	dt_av;
+//	uint8_t		av_wcnt;
+//	uint8_t		start;
+//	uint16_t	usec;
+//	uint16_t	msec;
+//	uint16_t	usec_max;
+//	uint16_t	msec_max;
+//} TIMER_TIC;
+//
 //==============================================================================
 void usr_isr_tim1_up(void)
 {
@@ -91,5 +105,29 @@ void usr_isr_tim1_up(void)
 
 	timer.dt += 10;
 
+	tm.usec += 1;
+
+	if( tm.usec >= 100 ){
+		tm.usec = 0;
+		tm.msec ++;
+		if( tm.msec >= 1000 ){
+			tm.msec = 0;
+			tm.sec ++;
+			if( tm.sec >= 60 ){
+				tm.sec = 0;
+				tm.min ++;
+				if( tm.min >= 60 ){
+					tm.min = 0;
+					tm.hour ++;
+				}
+			}
+		}
+	}
+
 }
+void GetTime_tim1up(TIMER_DATA *time)
+{
+	*time = tm;
+}
+
 

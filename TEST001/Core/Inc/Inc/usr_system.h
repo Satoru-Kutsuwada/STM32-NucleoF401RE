@@ -10,6 +10,13 @@
 
 
 /* Public includes -----------------------------------------------------------*/
+#include "main.h"
+#include "cmsis_os2.h"
+#include <stdarg.h>
+
+
+
+
 
 #define TIMER_AV_NUM	3
 
@@ -27,6 +34,15 @@ typedef struct{
 	uint16_t	usec_max;
 	uint16_t	msec_max;
 } TIMER_TIC;
+
+typedef struct{
+	uint16_t	usec;
+	uint16_t	msec;
+	uint16_t	sec;
+	uint16_t	min;
+	uint16_t	hour;
+}TIMER_DATA;
+
 
 
 /* Public typedef ------------------------------------------------------------*/
@@ -74,8 +90,139 @@ typedef enum{
 	SK_UART_MAX
 } SK_UART;
 
+/* Public define -------------------------------------------------------------*/
+typedef enum {
+	RS485_AD_MASTER = 0,
+	RS485_AD_SLEVE01,
+	RS485_AD_SLEVE02,
+
+
+	RS485_AD_MAX
+}RA485_ADDRESS;
+
+#define MY_RS485_ADDRESS RS485_AD_MASTER
+
+
+typedef enum {
+	RS485_CMD_STATUS = 1,
+	RS485_CMD_VERSION,
+	RS485_CMD_MESUR,
+	RS485_CMD_MESUR_DATA,
+
+	RS485_CMD_MAX
+}RA485_COMMAND;
+
+
+typedef enum{
+	RT_EVENT_START_REQ = 0,
+	RT_EVENT_UART_RX,
+	RT_EVENT_RESPONS,
+	RT_EVENT_STOP_REQ,
+	RT_EVENT_TIMEOUT,
+
+	RT_EVENT_MAX
+} RS485_TASK_EVENT;
+typedef enum{
+	RT_STATE_INIT = 0,
+	RT_STATE_READY,
+	RT_STATE_RESPONS_RECIVE,
+	RT_STATE_RESPONS,
+
+	RT_STATE_MAX
+} RS485_TASK_STATE;
+
+typedef struct{
+	RS485_TASK_EVENT	event;
+	RS485_TASK_STATE	state;
+
+	RA485_COMMAND		command;
+	uint8_t				command_sub;
+	RA485_ADDRESS		address;
+	uint8_t				sub1;
+	uint8_t				timer_id;
+
+} CMD_MSG;
+
+
+typedef union{
+	CMD_MSG				cmd_msg;
+}MESSAGE_CMD_DETAIL;
+
+typedef struct{
+	void				*maroc_ptr;
+	SK_TASK				send_task;
+
+	MESSAGE_CMD_DETAIL	u;
+}MESSAGE_QUE_DATA;
+
+typedef struct{
+	void				*maroc_ptr;
+	SK_TASK				send_task;
+
+	osMessageQueueId_t 	hmsg;
+	uint16_t			time;
+	void				*mail_form;
+	uint8_t				timer_id;
+}TIMER_EVENT_FORM;
+
+
+/* Private variables ---------------------------------------------------------*/
+#define  	RCV_BUF_SIZE 	128
+
+typedef struct{
+	uint8_t		rcv_dt[2];
+	uint8_t		rcvbuf[RCV_BUF_SIZE];
+	uint8_t		rcvnum;
+	uint8_t		totalnum;
+	uint8_t		rcv_wpt;
+	uint8_t		rcv_rpt;
+	uint8_t		Sem_rs485_rcv;
+} UART_BUF;
 
 /* Public macro --------------------------------------------------------------*/
+/* Private typedef -----------------------------------------------------------*/
+
+
+
+typedef struct{
+
+	// RTC_TimeTypeDef -----------------------------------------------------
+	uint8_t Hours;
+	uint8_t Minutes;
+	uint8_t Seconds;
+	uint8_t usec;
+	uint16_t msec;
+
+
+	// TIMER_TIC ------------------------------------------------------------
+	//uint32_t	dt;
+	//uint32_t	dt_av;
+
+	// LOG ------------------------------------------------------------------
+	char	string[PRiNTF_BUFFMAX] ;
+
+} LOG_RECODE;
+
+#define LOG_RECODE_MAX	100
+
+
+
+typedef struct{
+	uint16_t 	wptr;
+	uint16_t 	rptr;
+	uint16_t 	num;
+	LOG_FLAG		flg;
+
+	LOG_RECODE	rec[LOG_RECODE_MAX];
+} LOG_DATA;
+
+
+
+
+
+
+
+
 
 /* Public variables ----------------------------------------------------------*/
 extern TIMER_TIC timer;
@@ -86,7 +233,7 @@ extern TIMER_TIC timer;
 void HAL_RTCEx_WakeUpTimerEventCallback(RTC_HandleTypeDef *hrtc);
 void usr_isr_tim1_up(void);
 void LogInfo_clear(void);
-void Set_logInfo(const char *string, ...);
+void Set_logInfo2(const char *string, ...);
 void LogInfo_display(void);
 void debu_main(void);
 
@@ -94,6 +241,7 @@ int getch(SK_UART id);
 
 void rtc_display(void);
 void Set_logflg(LOG_FLAG flg);
+void Set_logInfo(char *string);
 
 void Get_task_stackptr(SK_TASK taskid, STACK_INFO *ptr);
 
@@ -110,6 +258,11 @@ void Set_rs485_rcvflg(uint8_t dt);
 
 RETURN_STATUS Recive_rs485(uint8_t *pData, uint16_t Size);
 RETURN_STATUS Send_rs485(uint8_t *pData, uint16_t Size);
+
+uint8_t *my_putint(int num, uint8_t *buf) ;
+uint8_t *my_putfloat(double num, int precision, uint8_t *buf);
+uint8_t *my_putchar(char c, uint8_t *buf );
+uint8_t *my_puts(char* str, uint8_t *buf );
 
 
 #endif /* INC_USR_SYSTEM_H_ */

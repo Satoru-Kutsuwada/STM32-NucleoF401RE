@@ -27,12 +27,14 @@
 /* Public variables ----------------------------------------------------------*/
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef huart2;
-
+extern UART_BUF	uart[];
 /* Public function prototypes ------------------------------------------------*/
 
 /* Private includes ----------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
+
+
 int 	Sem_Printf = 0;
 char 	uart1_rcvbuf[2];
 char 	uart2_rcvbuf[2];
@@ -73,11 +75,32 @@ const UART_MENBER UartList[]={
 
 /* Private function prototypes -----------------------------------------------*/
 
-UART_HandleTypeDef * Get_huart(void)
+//==============================================================================
+//
+//==============================================================================
+
+UART_HandleTypeDef * Get_huart(SK_UART sel)
 {
-	return UartList[SK_UART1_RS485].huart;
+	return UartList[sel].huart;
 }
 
+//==============================================================================
+//
+//==============================================================================
+
+SK_UART	Get_uart_port(UART_HandleTypeDef *huart)
+{
+	SK_UART	rtn;
+
+	if( UartList[0].huart == huart){
+		rtn = SK_UART1_RS485 ;
+	}
+	else if( UartList[1].huart == huart){
+		rtn = SK_UART2_DEBUG;
+	}
+
+	return rtn;
+}
 //==============================================================================
 //
 //==============================================================================
@@ -122,6 +145,23 @@ void Set_rs485_rcvflg(uint8_t dt)
 }
 
 
+//==============================================================================
+//
+//==============================================================================
+void uart_Data_init(void)
+{
+	SKprintf("uart_Data_init()\r\n");
+	Set_logInfo("uart_Data_init()");
+
+	uart[SK_UART1_RS485].rcv_wpt = 0;
+	uart[SK_UART1_RS485].rcv_rpt = 0;
+	uart[SK_UART1_RS485].rcvnum = 0;
+
+	uart[SK_UART2_DEBUG].rcv_wpt = 0;
+	uart[SK_UART2_DEBUG].rcv_rpt = 0;
+	uart[SK_UART2_DEBUG].rcvnum = 0;
+
+}
 
 
 //==============================================================================
@@ -130,10 +170,13 @@ void Set_rs485_rcvflg(uint8_t dt)
 //		PA09：TX
 //		PA10:RX
 //==============================================================================
-void uart_Rcv_init(SK_UART id)
+void uart_Rcv_init(SK_UART sel)
 {
 	HAL_StatusTypeDef s;
-	s= HAL_UART_Receive_IT(UartList[id].huart, UartList[id].rcvbuf, 1);
+
+	//SKprintf("uart_Rcv_init(%d)\r\n",sel);
+	//Set_logInfo("uart_Rcv_init()");
+	s= HAL_UART_Receive_IT(Get_huart(sel), &uart[sel].rcv_dt[0], 1);
 
 	switch(s){
 	case HAL_OK:
@@ -141,7 +184,7 @@ void uart_Rcv_init(SK_UART id)
 	case HAL_ERROR:
 	case HAL_BUSY:
 	case HAL_TIMEOUT:
-		SKprintf("ERROR %s RECIVE = %d\r\n",UartList[id].name, s);
+		//SKprintf("ERROR %s RECIVE = %d\r\n",UartList[sel].name, s);
 		break;
 	}
 }
@@ -239,10 +282,10 @@ int getch(SK_UART id)
 {
 	int rtn = 0;
 
-	if( *UartList[id].RcvFlg == 1 ){
-		rtn = (int) UartList[id].rcvbuf[0];
-		*UartList[id].RcvFlg = 0;
-		uart_Rcv_init(id);
+	if( uart[SK_UART2_DEBUG].rcvnum  > 0 ){
+
+		//SKprintf("DATA RECIVED \r\n");
+		rtn = Get_rcv_data(SK_UART2_DEBUG);
 	}
 
 	return rtn;

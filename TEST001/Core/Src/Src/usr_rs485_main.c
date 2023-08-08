@@ -8,9 +8,14 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
+#include "cmsis_os2.h"
 #include "usr_system.h"
 #include "rs485_com.h"
+#include <stddef.h>
 
+
+#include <stdarg.h>
 /* Public includes -----------------------------------------------------------*/
 
 /* Public typedef ------------------------------------------------------------*/
@@ -20,7 +25,9 @@
 /* Public macro --------------------------------------------------------------*/
 
 /* Public variables ----------------------------------------------------------*/
+extern RTC_HandleTypeDef hrtc;
 
+extern LOG_DATA	log;
 /* Public function prototypes ------------------------------------------------*/
 
 /* Private includes ----------------------------------------------------------*/
@@ -63,13 +70,10 @@ typedef struct {
 SLAVE_DATA slv_dt[RS485_AD_MAX];
 
 /* Private variables ---------------------------------------------------------*/
-#define  	RCV_BUF_SIZE 	128
-uint8_t		rcv_dt[2];
-uint8_t		rcvbuf[RCV_BUF_SIZE];
+
 uint8_t		work_buf[RCV_BUF_SIZE];
-uint8_t		rcvnum = 0;
-uint8_t		rcv_wpt = 0;
-uint8_t		rcv_rpt = 0;
+uint8_t		work_buf_num;
+UART_BUF	uart[SK_UART_MAX];
 
 
 
@@ -168,13 +172,10 @@ uint8_t		res_ptr = 0;
 uint16_t	com_counter = 0;
 
 
+uint8_t		Sem_rs485_rcv = 0;
+
 
 /* Private variables ---------------------------------------------------------*/
-typedef struct{
-	RA485_COMMAND		command;
-	RA485_ADDRESS		address;
-	uint8_t				sub1;
-} CMD_MSG;
 
 
 const CMD_MSG	com[] = {
@@ -233,7 +234,16 @@ typedef enum {
 
 COM_STEP    com_step_flg;
 
+
+
+
+CMD_MSG				RTtaskISR;
 /* Private function prototypes -----------------------------------------------*/
+
+
+
+
+
 //RETURN_STATUS Send_rx485_cmd_message( CMD_MSG *com_msg );
 
 RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg );
@@ -241,150 +251,69 @@ UART_HandleTypeDef * Get_huart(void);
 
 uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf );
 RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist);
-uint8_t Get_rcv_data(void);
+uint8_t Get_rcv_data(SK_UART sel);
 uint8_t Get_command_chksum(uint8_t start, uint8_t end,uint8_t *dt );
+osMessageQueueId_t GetMessageQue(SK_TASK task);
 
+void uart_Rcv_init(SK_UART sel);
 
+void RS_nop(CMD_MSG	*rt_task );
+void RScomand_send(CMD_MSG	*rt_task );
+void RSrespons_recive(CMD_MSG	*rt_task );
+void RSrespons_proc(CMD_MSG	*rt_task );
+void RSTimeout( CMD_MSG	*rt_task );
+void Set_logInfo(char *string);
+void SendMsgQueISR(RS485_TASK_EVENT event, uint8_t task);
+void SendMsgQue(CMD_MSG	*rt_task );
+void Set_logInfo2(const char *string, ...);
+
+uint8_t *log_txt_conv(uint8_t *buffer, uint8_t *st1, uint8_t *st2, uint8_t dt1, uint8_t dt2 );
 //==============================================================================
 //
 //==============================================================================
+const void (*rs485_func_table[RT_EVENT_MAX][RT_STATE_MAX])( CMD_MSG	*rt_task )={
+	// 	_INIT 		_READY			_RESPONS_RECIVE		_RESPONS
 
-uint8_t *my_putint(int num, uint8_t *buf) {
-	SKprintf("num=%d,num/10=%d,num%%10=%d\r\n",num,num/10,num%10);
+		{ RS_nop,	RScomand_send,	RS_nop,				RS_nop			},	// RT_EVENT_COMMAND_REQ
+		{ RS_nop,	RS_nop,			RSrespons_recive,	RS_nop			},	// RT_EVENT_UART_RX
+		{ RS_nop,	RS_nop,			RS_nop,				RSrespons_proc	},	// RT_EVENT_RESPONS
+		{ RS_nop,	RS_nop,			RS_nop,				RS_nop			},	// RT_EVENT_STOP_REQ
+		{ RS_nop,	RS_nop,			RSTimeout,				RS_nop			}	// RT_EVENT_TIMEOUT
+};
 
-	if (num < 0) {
-        *buf = '-';
-        buf++;
-        num = -num;
-    }
 
-    if (num / 10 != 0) {
-        buf = my_putint(num / 10, buf);
-    }
 
-    *buf = '0' + (num % 10);
-    buf++;
 
-    return buf;
-}
-//==============================================================================
-//
-//==============================================================================
-
-void my_putfloat(float num, int precision, uint8_t *buf) {
-	int dt;
-	float fracPart,dtf;
-	int intPart;
-	int digit;
-
-	intPart = (int)num;
-    buf = my_putint(intPart, buf);
-    *buf = '.';
-    buf ++;
-
-    fracPart = num - intPart;
-
-    if (fracPart < 0) {
-        fracPart = -fracPart;
-    }
-
-    int count = 0;
-    while (count < precision) {
-        fracPart *= 10;
-        int digit = (int)fracPart;
-
-        *buf = '0' + digit;
-        buf ++;
-
-        fracPart -= digit;
-        count++;
-    }
-
-    *buf = '\0';
-
-}
 
 //==============================================================================
 //
 //==============================================================================
 void  tasuk3_init(void)
 {
-	uint8_t	mybuf[30];
-    float   dtf;
-    uint8_t dt8[10];
-    uint8_t *pt;
-    float   *ptf;
-
-    SKprintf("tasuk3_init(void)\r\n");
-	 dtf = 3.14;
-	 my_putfloat(dtf, 3, mybuf);
-	 SKprintf("dtf= %s\r\n",mybuf);
-
-	 dtf = -543.14;
-	 my_putfloat(dtf, 2, mybuf);
-	 SKprintf("dtf= %s\r\n",mybuf);
-
-
-	 pt = (uint8_t *)&dtf;
-	    dt8[0]=*pt;
-	    pt++;
-	    dt8[1]=*pt;
-	    pt++;
-	    dt8[2]=*pt;
-	    pt++;
-	    dt8[3]=*pt;
-
-	    SKprintf("dt8[]= %02x %02x %02x %02x \r\n",dt8[0],dt8[1],dt8[2],dt8[3]);
-
-	    ptf=(float *)dt8;
-		 my_putfloat(*ptf, 3, mybuf);
-		 SKprintf("*ptf=%s",mybuf);
-
-		 SKprintf("");
-
-		 SKprintf("char=%d\r\n",sizeof(char));
-		 SKprintf("short=%d\r\n",sizeof(short));
-		 SKprintf("int=%d\r\n",sizeof(int));
-		 SKprintf("long=%d\r\n",sizeof(long));
-		 SKprintf("float=%d\r\n",sizeof(float));
-		 SKprintf("double=%d\r\n",sizeof(double));
-
-
-
+	SKprintf("tasuk3_init(void)\r\n");
 }
+
+
 
 
 //==============================================================================
 //
 //==============================================================================
-void Recive_rs485_prepaer(void)
+void Set_rcv_data(SK_UART sel)
 {
-	HAL_StatusTypeDef s;
+	while(uart[sel].Sem_rs485_rcv==1);
 
-		// 受信準備
-		s= HAL_UART_Receive_IT(Get_huart(), rcv_dt, 1);
+	uart[sel].Sem_rs485_rcv= 1;
+	uart[sel].rcvnum ++;
+	uart[sel].Sem_rs485_rcv= 0;
 
-		switch(s){
-		case HAL_OK:
-			break;
-		case HAL_ERROR:
-		case HAL_BUSY:
-		case HAL_TIMEOUT:
-			// SKprintf("ERROR %s RS485 RECIVE = %d\r\n",UartList[SK_UART1_RS485].name, s);
-			break;
-		}
-}
+	uart[sel].rcvbuf[uart[sel].rcv_wpt] = uart[sel].rcv_dt[0];
+//	uart[sel].rcvnum ++;
+	uart[sel].totalnum ++;
 
-//==============================================================================
-//
-//==============================================================================
-void Set_rcv_data(void)
-{
-    rcvbuf[rcv_wpt] = rcv_dt[0];
-    rcvnum ++;
-    rcv_wpt ++ ;
-    if( rcv_wpt > RCV_BUF_SIZE ){
-        rcv_wpt = 0;
+	uart[sel].rcv_wpt ++ ;
+    if( uart[sel].rcv_wpt > RCV_BUF_SIZE ){
+    	uart[sel].rcv_wpt = 0;
     }
 }
 
@@ -393,33 +322,60 @@ void Set_rcv_data(void)
 //==============================================================================
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-	Set_rcv_data();
-	Recive_rs485_prepaer();
+
+	if( Get_uart_port(huart) == SK_UART1_RS485 ){
+		Set_rcv_data(SK_UART1_RS485);
+		uart_Rcv_init(SK_UART1_RS485);
+		if(uart[SK_UART1_RS485].totalnum >= COM_TABLE_MAX){
+			Set_logInfo("HAL_UART_RxCpltCallback(RS485)");
+			SendMsgQueISR(RT_EVENT_UART_RX, 0xff);
+		}
+	}
+	else if( Get_uart_port(huart) == SK_UART2_DEBUG ){
+		//Set_logInfo("HAL_UART_RxCpltCallback(DEBUG)");
+		Set_rcv_data(SK_UART2_DEBUG);
+		uart_Rcv_init(SK_UART2_DEBUG);
+	}
+	else{
+	}
 }
 
 
 //==============================================================================
 //
 //==============================================================================
-uint8_t Get_rcv_data(void)
+uint8_t Get_rcv_data(SK_UART sel)
 {
     uint8_t dt;
-    rcvnum --;
-    dt =  rcvbuf[rcv_rpt];
-    rcv_rpt ++ ;
-    if( rcv_rpt > RCV_BUF_SIZE ){
-        rcv_rpt = 0;
-    }
+
+  	while(uart[sel].Sem_rs485_rcv==1);
+
+	uart[sel].Sem_rs485_rcv = 1;
+	uart[sel].rcvnum --;
+	uart[sel].Sem_rs485_rcv = 0;
+
+	dt =  uart[sel].rcvbuf[uart[sel].rcv_rpt];
+	uart[sel].rcv_rpt ++ ;
+	if( uart[sel].rcv_rpt > RCV_BUF_SIZE ){
+		uart[sel].rcv_rpt = 0;
+	}
+
     return dt;
 
 }
+
+
 //==============================================================================
 //
 //==============================================================================
+//extern osMessageQueueId_t myQueue01Handle;
+
+
+
 void rs485_com_task(void)
 {
-		RETURN_STATUS		status = RET_TRUE;
-		CMD_MSG				com_msg;
+#ifdef ___NOP
+	RETURN_STATUS		status = RET_TRUE;
 		COM_PROTOCOL_STEP	cp_step = COM_PROTOCOL_SEND;
 		uint8_t 			num = 0;
 //		uint8_t 	dt;
@@ -428,11 +384,390 @@ void rs485_com_task(void)
 		uint8_t		*pt;
 //		uint8_t		*pt2;
 		uint16_t	dt16;
-		uint8_t 	mybuf[10];
+		uint32_t	dt32;
+		uint8_t 	*msgQueBuf;
+		osStatus_t	*rtn;
+		void 		*void_ptr;
+
+#endif	// ___NOP
+
+	CMD_MSG				RTtask;
+	osStatus_t			os_status;
+	MESSAGE_QUE_DATA	*msg;
+	uint8_t				msgQueBuf[sizeof(void *)];
+	uint8_t				i,j;
+	uint8_t				event;
+	uint8_t				state;
+	uint32_t			timer;
+	uint8_t				*temp;
+	uint8_t 			*buffer;
+
+	RTtask.state = RT_STATE_INIT;
+	timer = osWaitForever;
+	RTtask.state = RT_STATE_READY;
+
+
 
 
 	while(1){
 
+		//-------------------------------------------------------------------------
+		//	メッセージ待ち
+		//-------------------------------------------------------------------------
+		os_status = osMessageQueueGet (GetMessageQue(SK_TASK_sub2), &msgQueBuf, 0, osWaitForever);
+		msg = (MESSAGE_QUE_DATA *)msgQueBuf;
+		msg = (MESSAGE_QUE_DATA	*)msg->maroc_ptr;
+
+
+		event = 0;
+		state = 0;
+		switch( os_status ){
+		case osOK:
+			RTtask.event = msg->u.cmd_msg.event;
+
+			if(RTtask.event == RT_EVENT_START_REQ){
+				RTtask.command = msg->u.cmd_msg.command;
+				RTtask.address = msg->u.cmd_msg.address;
+				RTtask.sub1 = msg->u.cmd_msg.sub1;
+			}
+
+			event = RTtask.event;
+			state = RTtask.state;
+			break;
+
+		case osErrorTimeout:
+		default:
+			SKprintf("rs485_com_task():os_status=Error(%d)\r\n",os_status);
+			break;
+		}
+
+		if( msg->maroc_ptr != &RTtaskISR ){
+			vPortFree(msg->maroc_ptr);
+		}
+
+		//-------------------------------------------------------------------------
+		//	処理関数
+		//-------------------------------------------------------------------------
+		//Set_logInfo2("RS485 MAIN: event=%d, state=%d\r\n",event,state);
+		(*rs485_func_table[event][state ])( &RTtask );
+
+
+
+	}
+}
+
+//==============================================================================
+//　割込み用
+//==============================================================================
+void SendMsgQueISR(RS485_TASK_EVENT event, uint8_t task)
+{
+	osStatus_t 			osStatus;
+	MESSAGE_QUE_DATA	*msg;
+
+
+	//msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
+
+	msg = &RTtaskISR;
+	msg->u.cmd_msg.event = event;
+	msg->send_task = task;
+	msg->maroc_ptr = (void *)msg;
+
+	//SKprintf("event=0x%x, task=0x%x,msgpt=%p\r\n", msg->event,msg->send_task, msg->maroc_ptr);
+	//   	lsize2 = xPortGetFreeHeapSize();
+	// 		SKprintf("lsize1=0x%x,lsize2=%x\r\n",lsize1,lsize2);
+	//    	SKprintf("MESSAGE_QUE_DATA=%p\r\n",msg);
+	osStatus = osMessageQueuePut (GetMessageQue(SK_TASK_sub2), (void *)msg->maroc_ptr, 0,0);
+	if( osStatus == osOK ){
+		//Set_logInfo("Rs485 RxRecived. Send MsgQue OK");
+	}
+	else{
+		Set_logInfo("Rs485 RxRecived. Send MsgQue ERROR");
+	}
+}
+
+//==============================================================================
+//
+//==============================================================================
+void SendMsgQue( CMD_MSG	*rt_task )
+{
+	osStatus_t 			osStatus;
+	MESSAGE_QUE_DATA	*msg;
+
+
+	msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
+
+	msg->u.cmd_msg.event = rt_task->event;
+	//msg->send_task = task;
+	msg->maroc_ptr = (void *)msg;
+
+	msg->u.cmd_msg.address = rt_task->address;
+	msg->u.cmd_msg.command = rt_task->command;
+	msg->u.cmd_msg.command_sub = rt_task->command_sub;
+	msg->u.cmd_msg.sub1 = rt_task->sub1;
+
+
+	//SKprintf("event=0x%x, task=0x%x,msgpt=%p\r\n", msg->event,msg->send_task, msg->maroc_ptr);
+	//   	lsize2 = xPortGetFreeHeapSize();
+	// 		SKprintf("lsize1=0x%x,lsize2=%x\r\n",lsize1,lsize2);
+	//    	SKprintf("MESSAGE_QUE_DATA=%p\r\n",msg);
+	osStatus = osMessageQueuePut (GetMessageQue(SK_TASK_sub2), (void *)msg->maroc_ptr, 0,0);
+	if( osStatus == osOK ){
+		Set_logInfo("Rs485 RxRecived. Send MsgQue OK");
+	}
+	else{
+		Set_logInfo("Rs485 RxRecived. Send MsgQue ERROR");
+	}
+}
+
+//==============================================================================
+//
+//==============================================================================
+void RS_nop( CMD_MSG	*rt_task )
+{
+	Set_logInfo2("★RS_nop(S=%d,E=%d)",rt_task->state, rt_task->event);
+//	SKprintf("RS_nop(%d,%d)\r\n", rt_task->state, rt_task->event);
+}
+//==============================================================================
+//
+//==============================================================================
+void RScomand_send( CMD_MSG	*rt_task )
+{
+	RETURN_STATUS		status = RET_TRUE;
+	TIMER_EVENT_FORM	*te_form;
+	MESSAGE_QUE_DATA	*msg;
+	uint8_t				timer_id;
+
+
+
+//	Set_logInfo("RScomand_send()");
+	Set_logInfo2("★RScomand_send(S=%d,E=%d)",rt_task->state, rt_task->event);
+
+//	SKprintf("RScomand_send(%d,%d)\r\n", rt_task->state, rt_task->event);
+
+	status = Send_rx485_cmd_message( rt_task );
+
+	if( status == RET_TRUE ){
+		rt_task->state = RT_STATE_RESPONS_RECIVE;
+		uart[SK_UART1_RS485].totalnum = 0;
+		work_buf_num = 0;
+		SKprintf("RScomand_send(%d,%d)\r\n", rt_task->state, rt_task->event);
+
+
+		// タイムアウト　イベントをセット
+		msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
+		msg->maroc_ptr = msg;
+		msg->u.cmd_msg.event = RT_EVENT_TIMEOUT;
+
+		te_form = (TIMER_EVENT_FORM *)pvPortMalloc(sizeof(TIMER_EVENT_FORM));
+		te_form->maroc_ptr = te_form;
+		te_form->mail_form = msg;
+		te_form->hmsg = GetMessageQue(SK_TASK_sub2);
+		te_form->time = 1000;
+		timer_id = GetTimerEventID();
+		if( timer_id == 0xff ){
+			SKprintf("TIMER EVENT NOT AVAILABLE\r\n");
+		}
+		te_form->timer_id = rt_task->timer_id = timer_id;
+
+
+		SKprintf("tm_form=%p, msg=%p\r\n",te_form, msg);
+
+		status = osMessageQueuePut (GetMessageQue(SK_TASK_sub1), (void *)te_form->maroc_ptr, 0,0);
+		if( status == osOK ){
+			//Set_logInfo("RScomand_send(). Send MsgQue OK");
+		}
+		else{
+			Set_logInfo("RScomand_send(). Send MsgQue ERROR");
+		}
+		SKprintf("RScomand_send() End \r\n");
+	}
+}
+//==============================================================================
+//
+//==============================================================================
+void RSrespons_recive( CMD_MSG	*rt_task )
+{
+	RETURN_STATUS		status = RET_TRUE;
+	CMD_MSG				msg;
+
+	Set_logInfo2("★RSrespons_recive(S=%d,E=%d)",rt_task->state, rt_task->event);
+
+//	Set_logInfo("RSrespons_recive()");
+//	SKprintf("RSrespons_recive(%d,%d)\r\n", rt_task->state, rt_task->event);
+
+	while( uart[SK_UART1_RS485].rcvnum  > 0 ){
+		work_buf[work_buf_num ++] = Get_rcv_data(SK_UART1_RS485);
+
+		if( Get_end_test_pt(work_buf_num, work_buf) != 0 ){
+			SKprintf("Respons Recive\r\n");
+			ReleaceTimerEvent(rt_task->timer_id);
+			status = Set_Res_Message(work_buf_num, work_buf,Res_mesg);
+			if( status == RET_TRUE ){
+				rt_task->state = RT_STATE_RESPONS;
+
+				msg.event = RT_EVENT_RESPONS;
+				SendMsgQue(&msg);
+			}
+			else{
+				rt_task->state  = RT_STATE_READY;
+			}
+			break;
+		}
+	}
+}
+
+//==============================================================================
+//
+//==============================================================================
+void RSTimeout( CMD_MSG	*rt_task )
+{
+	char	 	c[17];
+	uint8_t		i,j,k;
+
+	Set_logInfo2("★RSTimeout(S=%d,E=%d)",rt_task->state, rt_task->event);
+
+	rt_task->state = RT_STATE_READY;
+	Set_logInfo2("TIME OUT END");
+
+
+
+	SKprintf("totalnum =%d\r\n",uart[SK_UART1_RS485].totalnum);
+	SKprintf("rcvnum   =%d\r\n",uart[SK_UART1_RS485].rcvnum);
+	SKprintf("rcv_wpt  =%d\r\n",uart[SK_UART1_RS485].rcv_wpt);
+	SKprintf("rcv_rpt  =%d\r\n",uart[SK_UART1_RS485].rcv_rpt);
+
+	c[16] = '\0';
+	for(i=0; i< RCV_BUF_SIZE/16; i++ ){
+
+		SKprintf(" [%03d] ", i*16 );
+
+		for(j=0; j< 16; j++ ){
+			k = uart[SK_UART1_RS485].rcvbuf[i*16+j];
+			SKprintf(" %02x ", k );
+			c[j] =  (uint8_t)((k<0x20||k>=0x7f)? '.': k);
+		}
+		SKprintf("  %s\r\n",c );
+	}
+
+	SKprintf("\r\nwork_buf_num =%d\r\n",work_buf_num);
+
+	c[16] = '\0';
+	for(i=0; i< RCV_BUF_SIZE/16; i++ ){
+
+		SKprintf(" [%03d] ", i*16 );
+
+		for(j=0; j< 16; j++ ){
+			k = work_buf[i*16+j];
+			SKprintf(" %02x ", k );
+			c[j] =  (uint8_t)((k<0x20||k>=0x7f)? '.': k);
+		}
+		SKprintf("  %s\r\n",c );
+	}
+
+}
+
+//==============================================================================
+//
+//==============================================================================
+void RSrespons_proc( CMD_MSG	*rt_task )
+{
+	RETURN_STATUS		status = RET_TRUE;
+	CMD_MSG				msg;
+	uint16_t	dt16;
+	float		dtf;
+	uint8_t		*pt;
+	uint8_t 	*msgQueBuf;
+
+
+//	Set_logInfo("RSrespons_proc(()");
+	Set_logInfo2("★RSrespons_proc(S=%d,E=%d)",rt_task->state, rt_task->event);
+//	SKprintf("RSrespons_proc(%d,%d)\r\n", );
+
+	status = RET_TRUE;
+	switch( Res_mesg[COM_COMMAND] ){
+	case RS485_CMD_STATUS:
+		SKprintf("RS485_CMD_STATUS\r\n");
+
+		break;
+	case RS485_CMD_VERSION:
+		SKprintf("RS485_CMD_VERSION\r\n");
+
+		dt16 = Res_mesg[COM_SLV_VERSION_H];
+		dt16 <<= 8;
+		dt16 |= Res_mesg[COM_SLV_VERSION_L];
+
+		SKprintf("  SLV VER = %04x, ",dt16);
+
+		dt16 = Res_mesg[COM_SNS_VERSION_H];
+		dt16 <<= 8;
+		dt16 |= Res_mesg[COM_SNS_VERSION_L];
+		SKprintf("  SNS VER = %04x \r\n",dt16);
+
+		break;
+	case RS485_CMD_MESUR:
+		SKprintf("RS485_CMD_MESUR\r\n");
+
+		break;
+	case RS485_CMD_MESUR_DATA:
+		SKprintf("RS485_CMD_MESUR_DATA\r\n");
+
+		pt = (uint8_t *)&dtf;
+		pt[3] = Res_mesg[COM_MESUR_DATA_H];
+		pt[2] = Res_mesg[COM_MESUR_DATA_MH];
+		pt[1] = Res_mesg[COM_MESUR_DATA_ML];
+		pt[0] = Res_mesg[COM_MESUR_DATA_L];
+
+
+		if( rt_task->address == RS485_AD_SLEVE01){
+			Set_logInfo2("SLAVE01 DATA = %fmm",dtf);
+		}
+		else{
+			Set_logInfo2("SLAVE02 DATA = %fmm",dtf);
+		}
+
+
+
+		break;
+	default:
+		status = RET_FALSE;
+		//SKprintf("ERROR Recive Command None \r\n");
+		break;
+	}
+
+	if( status == RET_TRUE ){
+		rt_task->state = RT_STATE_READY;
+		cmd_ptr ++;
+
+		rt_task->command_sub --;
+
+		if(rt_task->command_sub > 0 ){
+			msg.event = RT_EVENT_START_REQ;
+
+			if( rt_task->address == RS485_AD_SLEVE01){
+				msg.address = RS485_AD_SLEVE02;
+			}
+			else{
+				msg.address = RS485_AD_SLEVE01;
+			}
+
+			msg.command = rt_task->command;
+			msg.command_sub = rt_task->command_sub;
+			msg.sub1 = rt_task->sub1;
+
+			SendMsgQue(&msg);
+
+		}
+		else{
+			Set_logInfo2("END RSrespons_OK");
+		}
+	}
+
+
+}
+
+
+
+#ifdef ___NOP
 		switch( cp_step ){
 		case COM_PROTOCOL_SEND:
 			//SKprintf("rs485_com_task(001) cmd_ptr=%d \r\n",cmd_ptr);
@@ -518,8 +853,8 @@ void rs485_com_task(void)
 				pt[1] = Res_mesg[COM_MESUR_DATA_ML];
 				pt[0] = Res_mesg[COM_MESUR_DATA_L];
 
-				my_putfloat(dtf, 3, mybuf);
-				SKprintf("MEASUR DATA =  %s\r\n",mybuf);
+				my_putfloat(dtf, 3, msgQueBuf);
+				SKprintf("MEASUR DATA =  %s\r\n",msgQueBuf);
 
 
 
@@ -547,6 +882,7 @@ void rs485_com_task(void)
 		}
 	}
 }
+#endif
 
 //==============================================================================
 //

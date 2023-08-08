@@ -29,7 +29,8 @@ Core/Src/Src/usr_log.o: ../Core/Src/Src/usr_log.c ../Core/Inc/main.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/usr_system.h
+ D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/usr_system.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h
 ../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
@@ -62,3 +63,4 @@ Core/Src/Src/usr_log.o: ../Core/Src/Src/usr_log.c ../Core/Inc/main.h \
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
 D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/usr_system.h:
+../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.h:

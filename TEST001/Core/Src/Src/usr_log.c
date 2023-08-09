@@ -478,38 +478,38 @@ void LogInfo_display(void)
 	}
 }
 
+//=============================================================================
+//
+//
+//=============================================================================
 void LogdisplayISR(void)
 {
 	uint16_t	i,j;
 	uint16_t	rptr = log.rptr;
-	uint8_t		buf[PRiNTF_BUFFMAX+2];
-	uint8_t		flg = 0;
 
-	buf[PRiNTF_BUFFMAX] = '\r';
-	buf[PRiNTF_BUFFMAX+1] = '\n';
+
 
 	if( log.num != 0 ){
+		HAL_UART_Transmit(Get_huart(SK_UART2_DEBUG), "\r\n", 3, HAL_MAX_DELAY);
+
 		for(i=0; i<LOG_RECODE_MAX; i++){
 
 			for(j=0; j<PRiNTF_BUFFMAX; j++ ){
-				if( flg == 1){
-					log.rec[rptr].string[j] = ' ';
-				}
-				else if(log.rec[rptr].string[j] == '\0'){
-					flg = 1;
-					log.rec[rptr].string[j] = ' ';
-				}
-				else{
-					buf[j]=log.rec[rptr].string[j];
+				if( log.rec[rptr].string[j] == '\0'){
+					break;
 				}
 			}
+			//SKprintf(" %s\r\n", buf);
+			//SKprintf("%s\r\n", &log.rec[rptr].string[0]);
 
-			HAL_UART_Transmit(Get_huart(SK_UART2_DEBUG), buf, PRiNTF_BUFFMAX+2, HAL_MAX_DELAY);
+			HAL_UART_Transmit(Get_huart(SK_UART2_DEBUG), &log.rec[rptr].string[0], j, HAL_MAX_DELAY);
+			HAL_UART_Transmit(Get_huart(SK_UART2_DEBUG), "\r\n", 3, HAL_MAX_DELAY);
 
 			rptr ++;
 			if( rptr > LOG_RECODE_MAX ){
 				rptr = 0;
 			}
+
 			if( log.wptr == rptr ){
 				break;
 			}

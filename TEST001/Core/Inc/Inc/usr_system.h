@@ -14,8 +14,11 @@
 #include "cmsis_os2.h"
 #include <stdarg.h>
 
+/* Log Display ^^^------------------------------------------------------------*/
 
-// #define __HEAP_DBUG
+//#define ___TASK_CHK_DISPLAY		// タスクスタック検知表示
+//#define __HEAP_DBUG
+//#define __COM_LOG_DISPLAY
 
 
 #define TIMER_AV_NUM	3

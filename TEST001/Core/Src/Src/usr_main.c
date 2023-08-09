@@ -104,8 +104,6 @@ typedef struct tskTaskControlBlock 			/* The old naming convention is used to pr
 #define ___UART_POLING
 
 
-//#define ___TASK_CHK_DISPLAY		// タスクスタック検知表示
-
 
 /* Public macro --------------------------------------------------------------*/
 
@@ -276,6 +274,22 @@ void task_stack_chk(void)
 
 	}
 }
+
+void task_stack_display(void)
+{
+	int		i;
+
+	SKprintf("\r\nStack Info\r\n");
+	for( i=0; i < SK_TASK_MAX; i++ ){
+//		SKprintf(" %s:Used Size= %d(%d%%)\r\n", &task_chk_table[i].name[0], task_chk_table[i].used, (100*task_chk_table[i].used/task_chk_table[i].size));
+		SKprintf(" %s\r\n", &task_chk_table[i].name[0]);
+		SKprintf("  Check Start Address = %p\r\n", task_chk_table[i].chk_stack);
+		SKprintf("  Size          = %d\r\n", task_chk_table[i].size);
+		SKprintf("  Used Size     = %d(%d%%)\r\n\r\n", task_chk_table[i].used, 100*task_chk_table[i].used/task_chk_table[i].size);
+	}
+
+}
+
 //==============================================================================
 //
 //==============================================================================
@@ -700,7 +714,7 @@ void TimerEventCtrl(void)
 
 		switch( os_status ){
 		case osOK:
-			SKprintf("TimerEventCtrl(2):os_status=OK(%d)\r\n",os_status);
+			//SKprintf("TimerEventCtrl(2):os_status=OK(%d)\r\n",os_status);
 			Set_logInfo2("TimerEvent(). Recive MsgQue OK");
 
 			i = tm_form->timer_id;
@@ -710,7 +724,7 @@ void TimerEventCtrl(void)
 			timer_event[i].hmsg 	= tm_form->hmsg;
 			timer_event[i].message 	= tm_form->mail_form;
 
-			SKprintf("tm_form=%p,.message=%p\r\n",tm_form,timer_event[i].message);
+			//SKprintf("tm_form=%p,.message=%p\r\n",tm_form,timer_event[i].message);
 
 			vPortFree(tm_form->maroc_ptr);
 

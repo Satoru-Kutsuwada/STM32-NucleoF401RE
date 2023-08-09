@@ -53,7 +53,7 @@ UART_HandleTypeDef huart2;
 osThreadId_t Task_mainHandle;
 const osThreadAttr_t Task_main_attributes = {
   .name = "Task_main",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for Task_sub1 */
@@ -582,12 +582,14 @@ static void MX_GPIO_Init(void)
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN 5 */
+	task_chk_init();
   /* Infinite loop */
   for(;;)
   {
 //	  rtc_display();
 	  //HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
-    osDelay(100);
+	  task_stack_chk();
+    osDelay(1000);
     //Set_logInfo("100msec task wakup");
     //rtc_display();
     //LogInfo_display();
@@ -607,7 +609,7 @@ void StartTask02(void *argument)
   /* USER CODE BEGIN StartTask02 */
 	 SKprintf("task2 start()\r\n");
 
-	task_chk_init();
+
 
 
 	 SKprintf("task2 loop()\r\n");

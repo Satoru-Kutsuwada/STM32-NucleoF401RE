@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value="Malloc"/>
+		<item key="selection" value="Send_rx485_cmd_message"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<list key="findhistory">
+			<item value="Send_rx485_cmd_message"/>
+			<item value=" ___TASK_CHK_DISPLAY"/>
+			<item value="Check Start Addres"/>
 			<item value="Malloc"/>
+			<item value="FIX"/>
+			<item value="Respons Recive"/>
+			<item value="TimerEventCtrl"/>
+			<item value="RScomand_send"/>
 			<item value="TimerEvent"/>
 			<item value="Set_logInfo2("/>
 			<item value="Set_logInfo("/>
@@ -16,13 +23,6 @@
 			<item value="vPortFree"/>
 			<item value="HeapSize 007"/>
 			<item value="HeapSize 008"/>
-			<item value="Set_logInfo2"/>
-			<item value="pvPortMalloc"/>
-			<item value="SendMsgQue"/>
-			<item value="x Info"/>
-			<item value="SKprintf"/>
-			<item value="rcvnum"/>
-			<item value="rcv_dt"/>
 		</list>
 		<list key="replacehistory">
 			<item value="Set_logInfo2("/>

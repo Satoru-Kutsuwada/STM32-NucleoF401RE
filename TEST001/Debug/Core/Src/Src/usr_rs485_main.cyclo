@@ -11,7 +11,7 @@ usr_rs485_main.c:652:6:RSrespons_recive	4
 usr_rs485_main.c:716:6:RSTimeout	11
 usr_rs485_main.c:809:6:RSstop_req	1
 usr_rs485_main.c:818:6:RSrespons_proc	9
-usr_rs485_main.c:1037:11:Get_end_test_pt	9
-usr_rs485_main.c:1068:16:Set_Res_Message	29
-usr_rs485_main.c:1181:9:Get_command_chksum	2
-usr_rs485_main.c:1199:15:Send_rx485_cmd_message	11
+usr_rs485_main.c:1038:11:Get_end_test_pt	9
+usr_rs485_main.c:1069:16:Set_Res_Message	24
+usr_rs485_main.c:1185:9:Get_command_chksum	2
+usr_rs485_main.c:1203:15:Send_rx485_cmd_message	6

@@ -596,7 +596,7 @@ void RScomand_send( CMD_MSG	*rt_task )
 		rt_task->state = RT_STATE_RESPONS_RECIVE;
 		uart[SK_UART1_RS485].totalnum = 0;
 		work_buf_num = 0;
-		SKprintf("RScomand_send(%d,%d)\r\n", rt_task->state, rt_task->event);
+		//SKprintf("RScomand_send(%d,%d)\r\n", rt_task->state, rt_task->event);
 
 
 		// タイムアウト　イベントをセット
@@ -643,7 +643,7 @@ void RScomand_send( CMD_MSG	*rt_task )
 		else{
 			Set_logInfo2("RScomand_send(). Send MsgQue ERROR");
 		}
-		SKprintf("RScomand_send() End \r\n");
+		//SKprintf("RScomand_send() End \r\n");
 	}
 }
 //==============================================================================
@@ -663,7 +663,7 @@ void RSrespons_recive( CMD_MSG	*rt_task )
 		work_buf[work_buf_num ++] = Get_rcv_data(SK_UART1_RS485);
 
 		if( Get_end_test_pt(work_buf_num, work_buf) != 0 ){
-			SKprintf("Respons Recive\r\n");
+			//SKprintf("Respons Recive\r\n");
 			ReleaceTimerEvent(rt_task->timer_id);
 			status = Set_Res_Message(work_buf_num, work_buf,Res_mesg);
 			if( status == RET_TRUE ){
@@ -885,6 +885,7 @@ void RSrespons_proc( CMD_MSG	*rt_task )
 		cmd_ptr ++;
 
 		Set_logInfo2("command_sub=%d",rt_task->command_sub);
+		SKprintf("command_sub=%d\r\n",rt_task->command_sub);
 		rt_task->command_sub --;
 
 		if(rt_task->command_sub > 0 ){
@@ -1054,7 +1055,7 @@ uint16_t  Get_end_test_pt(uint16_t num,uint8_t *buf )
 				&& buf[i+4] == message_end_text[4]
 				&& buf[i+5] == message_end_text[5] ){
 
-			SKprintf("FIX\r\n");
+			//SKprintf("FIX\r\n");
 			rtn = i;
 			break;
 		}
@@ -1155,6 +1156,8 @@ RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist)
 	//-------------------------------------------------------------
 	// レスポンスデータをログ表示
 	//-------------------------------------------------------------
+#ifdef __COM_LOG_DISPLAY
+
 	for( i=0;  i < COM_TABLE_MAX ; i++ ){
 		cmd_char[i] =  (uint8_t)((dist[i]<0x20||dist[i]>=0x7f)? '.': dist[i]);
 	}
@@ -1170,6 +1173,7 @@ RETURN_STATUS  Set_Res_Message(uint16_t num, uint8_t *src, uint8_t *dist)
 		SKprintf(" %s ", c);
 	}
 	SKprintf("\r\n");
+#endif	// __COM_LOG_DISPLAY
 
 
 	return status;
@@ -1270,7 +1274,7 @@ RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg )
 	//-------------------------------------------------------
 	// デバック用ログ
 	//-------------------------------------------------------
-
+#ifdef __COM_LOG_DISPLAY
 	for( i=0;  i < COM_TABLE_MAX; i++ ){
 		cmd_char[i] =  (uint8_t)((Cmd_mesg[i]<0x20||Cmd_mesg[i]>=0x7f)? '.': Cmd_mesg[i]);
 	}
@@ -1286,6 +1290,7 @@ RETURN_STATUS Send_rx485_cmd_message( CMD_MSG	 *com_msg )
 		SKprintf(" %s ", c);
 	}
 	SKprintf("\r\n");
+#endif //__COM_LOG_DISPLAY
 
 	//-------------------------------------------------------
 	// コマンド送信

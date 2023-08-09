@@ -7,5 +7,5 @@ usr_log.c:210:6:Set_logflg	2
 usr_log.c:224:6:Set_logInfo	13
 usr_log.c:299:6:Set_logInfo2	18
 usr_log.c:453:6:LogInfo_display	5
-usr_log.c:481:6:LogdisplayISR	8
+usr_log.c:485:6:LogdisplayISR	7
 usr_log.c:526:6:LogInfo_clear	1

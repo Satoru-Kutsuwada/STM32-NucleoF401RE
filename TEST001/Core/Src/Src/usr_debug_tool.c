@@ -34,6 +34,7 @@ extern osMessageQueueId_t myQueue03Handle;
 size_t xPortGetFreeHeapSize( void );
 
 void SendMsgQue( CMD_MSG	*rt_task );
+void task_stack_display(void);
 
 
 /* Private includes ----------------------------------------------------------*/
@@ -408,8 +409,13 @@ void DBmanue_rs485_scan(void)
 		SKprintf("  Space   = 0x%02x  ",osMessageQueueGetSpace(myQueue01Handle));
 		SKprintf("0x%02x  ",osMessageQueueGetSpace(myQueue02Handle));
 		SKprintf("0x%02x \r\n",osMessageQueueGetSpace(myQueue03Handle));
+
+		task_stack_display();
+
+
 		break;
 	case '5':
+		LogdisplayISR();
 		break;
 	case 'r':
 	case 'R':

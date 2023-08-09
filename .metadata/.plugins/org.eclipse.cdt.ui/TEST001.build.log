@@ -1,63 +1,10 @@
-09:08:44 **** Incremental Build of configuration Debug for project TEST001 ****
+14:28:54 **** Incremental Build of configuration Debug for project TEST001 ****
 make -j8 all 
-arm-none-eabi-gcc "../Core/Src/Src/usr_rs485_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_rs485_main.d" -MT"Core/Src/Src/usr_rs485_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_rs485_main.o"
-../Core/Src/Src/usr_rs485_main.c:30:17: warning: built-in function 'log' declared as non-function [-Wbuiltin-declaration-mismatch]
-   30 | extern LOG_DATA log;
-      |                 ^~~
-../Core/Src/Src/usr_rs485_main.c: In function 'HAL_UART_RxCpltCallback':
-../Core/Src/Src/usr_rs485_main.c:352:6: warning: implicit declaration of function 'Get_uart_port' [-Wimplicit-function-declaration]
-  352 |  if( Get_uart_port(huart) == SK_UART1_RS485 ){
-      |      ^~~~~~~~~~~~~
-../Core/Src/Src/usr_rs485_main.c: In function 'SendMsgQueISR':
-../Core/Src/Src/usr_rs485_main.c:382:6: warning: assignment to 'MESSAGE_QUE_DATA *' from incompatible pointer type 'CMD_MSG *' [-Wincompatible-pointer-types]
-  382 |  msg = &RTtaskISR;
-      |      ^
-../Core/Src/Src/usr_rs485_main.c: In function 'rs485_com_task':
-../Core/Src/Src/usr_rs485_main.c:470:14: warning: unused variable 'buffer' [-Wunused-variable]
-  470 |  uint8_t    *buffer;
-      |              ^~~~~~
-../Core/Src/Src/usr_rs485_main.c:469:14: warning: unused variable 'temp' [-Wunused-variable]
-  469 |  uint8_t    *temp;
-      |              ^~~~
-../Core/Src/Src/usr_rs485_main.c:468:13: warning: variable 'timer' set but not used [-Wunused-but-set-variable]
-  468 |  uint32_t   timer;
-      |             ^~~~~
-../Core/Src/Src/usr_rs485_main.c:465:15: warning: unused variable 'j' [-Wunused-variable]
-  465 |  uint8_t    i,j;
-      |               ^
-../Core/Src/Src/usr_rs485_main.c:465:13: warning: unused variable 'i' [-Wunused-variable]
-  465 |  uint8_t    i,j;
-      |             ^
-../Core/Src/Src/usr_rs485_main.c: In function 'RScomand_send':
-../Core/Src/Src/usr_rs485_main.c:578:14: warning: implicit declaration of function 'GetTimerEventID' [-Wimplicit-function-declaration]
-  578 |   timer_id = GetTimerEventID();
-      |              ^~~~~~~~~~~~~~~
-../Core/Src/Src/usr_rs485_main.c:588:14: warning: comparison between 'RETURN_STATUS' and 'enum <anonymous>' [-Wenum-compare]
-  588 |   if( status == osOK ){
-      |              ^~
-../Core/Src/Src/usr_rs485_main.c: In function 'RSrespons_recive':
-../Core/Src/Src/usr_rs485_main.c:615:4: warning: implicit declaration of function 'ReleaceTimerEvent' [-Wimplicit-function-declaration]
-  615 |    ReleaceTimerEvent(rt_task->timer_id);
-      |    ^~~~~~~~~~~~~~~~~
-../Core/Src/Src/usr_rs485_main.c: In function 'RSrespons_proc':
-../Core/Src/Src/usr_rs485_main.c:721:12: warning: unused variable 'msgQueBuf' [-Wunused-variable]
-  721 |  uint8_t  *msgQueBuf;
-      |            ^~~~~~~~~
-../Core/Src/Src/usr_rs485_main.c: In function 'Send_rx485_cmd_message':
-../Core/Src/Src/usr_rs485_main.c:1100:12: warning: unused variable 'pt' [-Wunused-variable]
- 1100 |  uint8_t  *pt;
-      |            ^~
-arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: TEST001.elf
- 
 arm-none-eabi-size   TEST001.elf 
-arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
    text	   data	    bss	    dec	    hex	filename
-  52668	    204	  27316	  80188	  1393c	TEST001.elf
+  65116	    568	  27712	  93396	  16cd4	TEST001.elf
 Finished building: default.size.stdout
  
-Finished building: TEST001.list
- 
 
-09:08:45 Build Finished. 0 errors, 13 warnings. (took 934ms)
+14:28:55 Build Finished. 0 errors, 0 warnings. (took 227ms)
 

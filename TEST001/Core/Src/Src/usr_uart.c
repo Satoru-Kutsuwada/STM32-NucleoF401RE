@@ -71,7 +71,7 @@ const UART_MENBER UartList[]={
 /* Private macro -------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
-
+extern ESC_SEQ		esc;
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -151,7 +151,7 @@ void Set_rs485_rcvflg(uint8_t dt)
 void uart_Data_init(void)
 {
 	SKprintf("uart_Data_init()\r\n");
-	Set_logInfo("uart_Data_init()");
+	Set_logInfo2("uart_Data_init()");
 
 	uart[SK_UART1_RS485].rcv_wpt = 0;
 	uart[SK_UART1_RS485].rcv_rpt = 0;
@@ -161,6 +161,7 @@ void uart_Data_init(void)
 	uart[SK_UART2_DEBUG].rcv_rpt = 0;
 	uart[SK_UART2_DEBUG].rcvnum = 0;
 
+	esc.ptr = 0;
 }
 
 
@@ -189,6 +190,9 @@ void uart_Rcv_init(SK_UART sel)
 	}
 }
 
+
+char Skprintf_buf[CHARA_MAX];
+
 //==============================================================================
 //	huart1： RS485用のUART
 //		PA09：TX
@@ -202,7 +206,9 @@ int	SKprintf_uart1 (const char *string, ...)
 
 	while( Sem_Printf != 0 );
 
-	buffer = (char *)pvPortMalloc(CHARA_MAX);
+//	buffer = (char *)pvPortMalloc(CHARA_MAX);
+	buffer = Skprintf_buf;
+
 
 	if( buffer != NULL ){
 
@@ -225,12 +231,11 @@ int	SKprintf_uart1 (const char *string, ...)
 
 	}
 
-	vPortFree(buffer);
+	//vPortFree(buffer);
 
 	Sem_Printf = 0;
 
 }
-
 //==============================================================================
 //
 // 総和を求める関数（値は int 型を想定）
@@ -245,7 +250,8 @@ int	SKprintf (const char *string, ...)
 
 	while( Sem_Printf != 0 );
 
-	buffer = (char *)pvPortMalloc(CHARA_MAX);
+//	buffer = (char *)pvPortMalloc(CHARA_MAX);
+	buffer = Skprintf_buf;
 
 	if( buffer != NULL ){
 
@@ -268,7 +274,7 @@ int	SKprintf (const char *string, ...)
 
 	}
 
-	vPortFree(buffer);
+//	vPortFree(buffer);
 
 	Sem_Printf = 0;
 

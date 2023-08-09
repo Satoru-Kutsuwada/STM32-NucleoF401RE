@@ -15,7 +15,7 @@
 #include <stdarg.h>
 
 
-
+// #define __HEAP_DBUG
 
 
 #define TIMER_AV_NUM	3
@@ -140,6 +140,7 @@ typedef struct{
 	RA485_ADDRESS		address;
 	uint8_t				sub1;
 	uint8_t				timer_id;
+	uint8_t				retry_num;
 
 } CMD_MSG;
 
@@ -168,6 +169,14 @@ typedef struct{
 
 /* Private variables ---------------------------------------------------------*/
 #define  	RCV_BUF_SIZE 	128
+
+typedef struct{
+
+	uint8_t	buf[10];
+	uint8_t	ptr;
+
+} ESC_SEQ;
+
 
 typedef struct{
 	uint8_t		rcv_dt[2];

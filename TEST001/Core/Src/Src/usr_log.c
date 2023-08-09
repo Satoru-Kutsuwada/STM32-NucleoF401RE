@@ -48,6 +48,7 @@ LOG_DATA	log;
 /* Private function prototypes -----------------------------------------------*/
 void Set_logInfo2(const char *string, ...);
 void GetTime_tim1up(TIMER_DATA *time);
+UART_HandleTypeDef * Get_huart(SK_UART sel);
 
 //==============================================================================
 //
@@ -287,7 +288,10 @@ void Set_logInfo(char *string)
 		}
 	}
 }
+#ifdef ___NOP
+#endif
 
+char	loginfo_buf[128];
 //=============================================================================
 //
 //
@@ -311,7 +315,8 @@ void Set_logInfo2(const char *string, ...)
 
 
 
-	temp = buffer = (char *)pvPortMalloc(128);
+	temp = buffer = (char *)loginfo_buf;
+//	temp = buffer = (char *)pvPortMalloc(128);
 	//SKprintf("_logInfo2() 0001 temp= %p\r\n",temp);
 
 	switch(log.flg){
@@ -438,7 +443,7 @@ void Set_logInfo2(const char *string, ...)
 		}
 	}
 	//SKprintf("_logInfo2() 0006 temp= %p\r\n",temp);
-	vPortFree(temp);
+//	vPortFree(temp);
 }
 
 //=============================================================================
@@ -472,6 +477,47 @@ void LogInfo_display(void)
 		SKprintf("LOG NONE\r\n");
 	}
 }
+
+void LogdisplayISR(void)
+{
+	uint16_t	i,j;
+	uint16_t	rptr = log.rptr;
+	uint8_t		buf[PRiNTF_BUFFMAX+2];
+	uint8_t		flg = 0;
+
+	buf[PRiNTF_BUFFMAX] = '\r';
+	buf[PRiNTF_BUFFMAX+1] = '\n';
+
+	if( log.num != 0 ){
+		for(i=0; i<LOG_RECODE_MAX; i++){
+
+			for(j=0; j<PRiNTF_BUFFMAX; j++ ){
+				if( flg == 1){
+					log.rec[rptr].string[j] = ' ';
+				}
+				else if(log.rec[rptr].string[j] == '\0'){
+					flg = 1;
+					log.rec[rptr].string[j] = ' ';
+				}
+				else{
+					buf[j]=log.rec[rptr].string[j];
+				}
+			}
+
+			HAL_UART_Transmit(Get_huart(SK_UART2_DEBUG), buf, PRiNTF_BUFFMAX+2, HAL_MAX_DELAY);
+
+			rptr ++;
+			if( rptr > LOG_RECODE_MAX ){
+				rptr = 0;
+			}
+			if( log.wptr == rptr ){
+				break;
+			}
+		}
+	}
+
+}
+
 
 //=============================================================================
 //

@@ -633,8 +633,17 @@ uint8_t GetTimerEventID(void)
 //==============================================================================
 void ReleaceTimerEvent(uint8_t timer_id)
 {
+	MESSAGE_QUE_DATA 	*msg;
 	Set_logInfo2("ReleaceTimerEvent(%d)",timer_id);
 	timer_event[timer_id].flag = TIMER_NO_USED;
+	msg = timer_event[timer_id].message;
+	msg->maroc_ptr;
+	vPortFree(msg->maroc_ptr);
+
+#ifdef	 __HEAP_DBUG
+	Set_logInfo2("vPortFree=%x",msg->maroc_ptr);
+	Set_logInfo2("HeapSize 010 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
 }
 
 //==============================================================================
@@ -663,10 +672,10 @@ void TimerEventCtrl(void)
 
 			    	switch( os_status ){
 					case osOK:
-						Set_logInfo("TimerEvent(). Send MsgQue OK");
+						Set_logInfo2("TimerEvent(). Send MsgQue OK");
 						break;
 					default:
-						Set_logInfo("TimerEvent(). Send MsgQue ERROR");
+						Set_logInfo2("TimerEvent(). Send MsgQue ERROR");
 						break;
 					}
 
@@ -692,7 +701,7 @@ void TimerEventCtrl(void)
 		switch( os_status ){
 		case osOK:
 			SKprintf("TimerEventCtrl(2):os_status=OK(%d)\r\n",os_status);
-			Set_logInfo("TimerEvent(). Recive MsgQue OK");
+			Set_logInfo2("TimerEvent(). Recive MsgQue OK");
 
 			i = tm_form->timer_id;
 
@@ -704,6 +713,12 @@ void TimerEventCtrl(void)
 			SKprintf("tm_form=%p,.message=%p\r\n",tm_form,timer_event[i].message);
 
 			vPortFree(tm_form->maroc_ptr);
+
+#ifdef	 __HEAP_DBUG
+			Set_logInfo2("vPortFree=%x",tm_form);
+			Set_logInfo2("HeapSize 007 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+
 			break;
 		case osErrorTimeout:
 			break;

@@ -9,4 +9,4 @@ usr_main.c:503:6:user_main_loop	1
 usr_main.c:580:6:rtc_display	1
 usr_main.c:615:9:GetTimerEventID	3
 usr_main.c:634:6:ReleaceTimerEvent	1
-usr_main.c:643:6:TimerEventCtrl	7
+usr_main.c:652:6:TimerEventCtrl	7

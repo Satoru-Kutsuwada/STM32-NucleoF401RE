@@ -24,6 +24,11 @@
 /* Public macro --------------------------------------------------------------*/
 
 /* Public variables ----------------------------------------------------------*/
+extern osMessageQueueId_t myQueue01Handle;
+extern osMessageQueueId_t myQueue02Handle;
+extern osMessageQueueId_t myQueue03Handle;
+
+
 
 /* Public function prototypes ------------------------------------------------*/
 size_t xPortGetFreeHeapSize( void );
@@ -173,6 +178,7 @@ const MENUE Deb_menue04[] = {
     " 1.Single run\r\n",
     " 2.Continuous run\r\n",
     " 3.Stop\r\n",
+    " 4.Message Que Info\r\n",
     " ",
 
     " r.EXIT\r\n"
@@ -266,7 +272,7 @@ extern osMessageQueueId_t myQueue01Handle;
 
 void DBmanue_prompt(void)
 {
-
+	uint8_t		i;
 
 //	size_t 	lsize2;
 //	size_t 	lsize1;
@@ -289,6 +295,12 @@ void DBmanue_prompt(void)
     	break;
 
     default:
+    	SKprintf("Command not found.\r\n");
+    	SKprintf("Support Comand ...\r\n");
+    	for( i=0; i<CMD_MAX ; i++ ){
+        	SKprintf(" %s\r\n",&com_list[i].command[0]);
+    	}
+
         break;
     }
 }
@@ -304,12 +316,16 @@ void DBmanue_rs485_scan(void)
 
 	switch( input_string.main[0] ){
 	case '1':
+
+		Set_logInfo2("HeapSize 001 = 0x%x",xPortGetFreeHeapSize());
+
 		rt_task.address		= RS485_AD_SLEVE01;
 		rt_task.command		= RS485_CMD_MESUR_DATA;
 		rt_task.command_sub	= 1;
 		rt_task.event 		= RT_EVENT_START_REQ;
 		rt_task.sub1 		= 0;
 		SendMsgQue( &rt_task );
+		Set_logInfo2("HeapSize 001 = 0x%x",xPortGetFreeHeapSize());
 
 		#ifdef ___NOP
 
@@ -360,7 +376,7 @@ void DBmanue_rs485_scan(void)
 
 		rt_task.address		= RS485_AD_SLEVE01;
 		rt_task.command		= RS485_CMD_MESUR_DATA;
-		rt_task.command_sub	= 100;
+		rt_task.command_sub	= 300;
 		rt_task.event 		= RT_EVENT_START_REQ;
 		rt_task.sub1 		= 0;
 		SendMsgQue( &rt_task );
@@ -371,6 +387,27 @@ void DBmanue_rs485_scan(void)
 		SendMsgQue( &rt_task );
 		break;
 	case '4':
+		SKprintf("\r\nHeap Info\r\n");
+		SKprintf("  FreeHeapSize = 0x%x\r\n",xPortGetFreeHeapSize());
+		//SKprintf("  MinimumEverFreeHeapSize= %x\r\n",xPortGetMiniumEverFreeHeapSize());
+
+		SKprintf("\r\nMessage Que Info\r\n");
+		SKprintf("            Que1  Que2  Que3\r\n");
+		SKprintf("  Capacity= 0x%02x  ",osMessageQueueGetCapacity(myQueue01Handle));
+		SKprintf("0x%02x  ",osMessageQueueGetCapacity(myQueue02Handle));
+		SKprintf("0x%02x \r\n",osMessageQueueGetCapacity(myQueue03Handle));
+
+		SKprintf("  MsgSize = 0x%02x  ",osMessageQueueGetMsgSize(myQueue01Handle));
+		SKprintf("0x%02x  ",osMessageQueueGetMsgSize(myQueue02Handle));
+		SKprintf("0x%02x \r\n",osMessageQueueGetMsgSize(myQueue03Handle));
+
+		SKprintf("  Count   = 0x%02x  ",osMessageQueueGetCount(myQueue01Handle));
+		SKprintf("0x%02x  ",osMessageQueueGetCount(myQueue02Handle));
+		SKprintf("0x%02x \r\n",osMessageQueueGetCount(myQueue03Handle));
+
+		SKprintf("  Space   = 0x%02x  ",osMessageQueueGetSpace(myQueue01Handle));
+		SKprintf("0x%02x  ",osMessageQueueGetSpace(myQueue02Handle));
+		SKprintf("0x%02x \r\n",osMessageQueueGetSpace(myQueue03Handle));
 		break;
 	case '5':
 		break;

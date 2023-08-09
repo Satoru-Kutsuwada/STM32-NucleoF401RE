@@ -8,5 +8,5 @@
 ../Core/Src/Src/usr_main.c:503:6:user_main_loop	8	static
 ../Core/Src/Src/usr_main.c:580:6:rtc_display	56	static
 ../Core/Src/Src/usr_main.c:615:9:GetTimerEventID	16	static
-../Core/Src/Src/usr_main.c:634:6:ReleaceTimerEvent	16	static
-../Core/Src/Src/usr_main.c:643:6:TimerEventCtrl	32	static
+../Core/Src/Src/usr_main.c:634:6:ReleaceTimerEvent	24	static
+../Core/Src/Src/usr_main.c:652:6:TimerEventCtrl	32	static

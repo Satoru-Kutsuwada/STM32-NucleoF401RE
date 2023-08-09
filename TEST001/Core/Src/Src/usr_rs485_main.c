@@ -173,6 +173,7 @@ uint16_t	com_counter = 0;
 
 
 uint8_t		Sem_rs485_rcv = 0;
+ESC_SEQ		esc;
 
 
 /* Private variables ---------------------------------------------------------*/
@@ -263,12 +264,14 @@ void RSrespons_recive(CMD_MSG	*rt_task );
 void RSrespons_proc(CMD_MSG	*rt_task );
 void RSTimeout( CMD_MSG	*rt_task );
 void RSstop_req( CMD_MSG	*rt_task );
-void Set_logInfo(char *string);
 void SendMsgQueISR(RS485_TASK_EVENT event, uint8_t task);
 void SendMsgQue(CMD_MSG	*rt_task );
 void Set_logInfo2(const char *string, ...);
 
 uint8_t *log_txt_conv(uint8_t *buffer, uint8_t *st1, uint8_t *st2, uint8_t dt1, uint8_t dt2 );
+
+void LogdisplayISR(void);
+
 //==============================================================================
 //
 //==============================================================================
@@ -359,6 +362,22 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	}
 	else if( Get_uart_port(huart) == SK_UART2_DEBUG ){
 		//Set_logInfo("HAL_UART_RxCpltCallback(DEBUG)");
+
+		if(uart[SK_UART2_DEBUG].rcv_dt[0] == '!'){
+			esc.buf[esc.ptr] = uart[SK_UART2_DEBUG].rcv_dt[0];
+			esc.ptr++;
+		}
+		else if(esc.ptr == 1){
+			esc.buf[esc.ptr] = uart[SK_UART2_DEBUG].rcv_dt[0];
+			esc.ptr = 0;
+
+			// Esc + L
+			if(esc.buf[0]=='!' && esc.buf[1]=='l'){
+				LogdisplayISR();
+
+			}
+		}
+
 		Set_rcv_data(SK_UART2_DEBUG);
 		uart_Rcv_init(SK_UART2_DEBUG);
 	}
@@ -406,7 +425,12 @@ void SendMsgQue( CMD_MSG	*rt_task )
 	MESSAGE_QUE_DATA	*msg;
 
 
+
 	msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
+
+	#ifdef	 __HEAP_DBUG
+	Set_logInfo2("pvPortMalloc=%x",msg);
+#endif	//	 __HEAP_DBUG
 
 	msg->u.cmd_msg.event = rt_task->event;
 	//msg->send_task = task;
@@ -424,10 +448,10 @@ void SendMsgQue( CMD_MSG	*rt_task )
 	//    	SKprintf("MESSAGE_QUE_DATA=%p\r\n",msg);
 	osStatus = osMessageQueuePut (GetMessageQue(SK_TASK_sub2), (void *)msg->maroc_ptr, 0,0);
 	if( osStatus == osOK ){
-		Set_logInfo("Rs485 RxRecived. Send MsgQue OK");
+		//Set_logInfo2("Rs485 RxRecived. Send MsgQue OK");
 	}
 	else{
-		Set_logInfo("Rs485 RxRecived. Send MsgQue ERROR");
+		Set_logInfo2("Send MsgQue ERROR=%d",osStatus);
 	}
 }
 
@@ -518,7 +542,17 @@ void rs485_com_task(void)
 
 		if( msg->maroc_ptr != &RTtaskISR ){
 			vPortFree(msg->maroc_ptr);
+
+#ifdef	 __HEAP_DBUG
+			Set_logInfo2("vPortFree=%x",msg);
+#endif	//	 __HEAP_DBUG
+
 		}
+
+#ifdef	 __HEAP_DBUG
+		Set_logInfo2("HeapSize 002 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+
 
 		//-------------------------------------------------------------------------
 		//	処理関数
@@ -551,7 +585,7 @@ void RScomand_send( CMD_MSG	*rt_task )
 
 
 
-//	Set_logInfo("RScomand_send()");
+//	Set_logInfo2("RScomand_send()");
 	Set_logInfo2("★RScomand_send(S=%d,E=%d)",rt_task->state, rt_task->event);
 
 //	SKprintf("RScomand_send(%d,%d)\r\n", rt_task->state, rt_task->event);
@@ -566,11 +600,26 @@ void RScomand_send( CMD_MSG	*rt_task )
 
 
 		// タイムアウト　イベントをセット
+#ifdef	 __HEAP_DBUG
+		Set_logInfo2("HeapSize 008 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+
 		msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
+
+#ifdef	 __HEAP_DBUG
+		Set_logInfo2("pvPortMalloc=%x",msg);
+		Set_logInfo2("HeapSize 008 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+
 		msg->maroc_ptr = msg;
 		msg->u.cmd_msg.event = RT_EVENT_TIMEOUT;
 
 		te_form = (TIMER_EVENT_FORM *)pvPortMalloc(sizeof(TIMER_EVENT_FORM));
+
+#ifdef	 __HEAP_DBUG
+		Set_logInfo2("pvPortMalloc=%x",te_form);
+#endif	//	 __HEAP_DBUG
+
 		te_form->maroc_ptr = te_form;
 		te_form->mail_form = msg;
 		te_form->hmsg = GetMessageQue(SK_TASK_sub2);
@@ -582,14 +631,17 @@ void RScomand_send( CMD_MSG	*rt_task )
 		te_form->timer_id = rt_task->timer_id = timer_id;
 
 
+#ifdef	 __HEAP_DBUG
 		SKprintf("tm_form=%p, msg=%p\r\n",te_form, msg);
+		Set_logInfo2("HeapSize 008 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
 
 		status = osMessageQueuePut (GetMessageQue(SK_TASK_sub1), (void *)te_form->maroc_ptr, 0,0);
 		if( status == osOK ){
-			//Set_logInfo("RScomand_send(). Send MsgQue OK");
+			//Set_logInfo2("RScomand_send(). Send MsgQue OK");
 		}
 		else{
-			Set_logInfo("RScomand_send(). Send MsgQue ERROR");
+			Set_logInfo2("RScomand_send(). Send MsgQue ERROR");
 		}
 		SKprintf("RScomand_send() End \r\n");
 	}
@@ -604,7 +656,7 @@ void RSrespons_recive( CMD_MSG	*rt_task )
 
 	Set_logInfo2("★RSrespons_recive(S=%d,E=%d)",rt_task->state, rt_task->event);
 
-//	Set_logInfo("RSrespons_recive()");
+//	Set_logInfo2("RSrespons_recive()");
 //	SKprintf("RSrespons_recive(%d,%d)\r\n", rt_task->state, rt_task->event);
 
 	while( (uart[SK_UART1_RS485].Set_cnt - uart[SK_UART1_RS485].Get_cnt)   > 0 ){
@@ -616,9 +668,19 @@ void RSrespons_recive( CMD_MSG	*rt_task )
 			status = Set_Res_Message(work_buf_num, work_buf,Res_mesg);
 			if( status == RET_TRUE ){
 				rt_task->state = RT_STATE_RESPONS;
+				rt_task->retry_num = 0;
 
 				msg.event = RT_EVENT_RESPONS;
+
+#ifdef	 __HEAP_DBUG
+				Set_logInfo2("HeapSize 003 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+
 				SendMsgQue(&msg);
+
+#ifdef	 __HEAP_DBUG
+				Set_logInfo2("HeapSize 003 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
 			}
 			else{
 				Set_logInfo2("RETRY:Recive data error");
@@ -630,7 +692,16 @@ void RSrespons_recive( CMD_MSG	*rt_task )
 				msg.command = rt_task->command;
 				msg.command_sub = rt_task->command_sub;
 				msg.sub1 = rt_task->sub1;
+
+#ifdef	 __HEAP_DBUG
+				Set_logInfo2("HeapSize 004 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+
 				SendMsgQue(&msg);
+
+#ifdef	 __HEAP_DBUG
+Set_logInfo2("HeapSize 004 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
 
 
 			}
@@ -690,14 +761,47 @@ void RSTimeout( CMD_MSG	*rt_task )
 		SKprintf("  %s\r\n",c );
 	}
 
-	// 再送する
-	msg.event = RT_EVENT_START_REQ;
-	msg.address = rt_task->address ;
-	msg.command = rt_task->command;
-	msg.command_sub = rt_task->command_sub;
-	msg.sub1 = rt_task->sub1;
-	SendMsgQue(&msg);
+	if(rt_task->retry_num < 2){
+		// 同じデバイスに再送する
+		msg.event = RT_EVENT_START_REQ;
+		msg.address = rt_task->address ;
+		msg.command = rt_task->command;
+		msg.command_sub = rt_task->command_sub;
+		msg.sub1 = rt_task->sub1;
 
+#ifdef	 __HEAP_DBUG
+		Set_logInfo2("HeapSize 005 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+
+		SendMsgQue(&msg);
+
+#ifdef	 __HEAP_DBUG
+		Set_logInfo2("HeapSize 005 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+	}
+	else{
+		// デバイスを変更して再送する
+		if( rt_task->address == RS485_AD_SLEVE01){
+			msg.address = RS485_AD_SLEVE02;
+		}
+		else{
+			msg.address = RS485_AD_SLEVE01;
+		}
+		msg.event = RT_EVENT_START_REQ;
+		msg.command = rt_task->command;
+		msg.command_sub = rt_task->command_sub;
+		msg.sub1 = rt_task->sub1;
+
+#ifdef	 __HEAP_DBUG
+Set_logInfo2("HeapSize 006 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+
+		SendMsgQue(&msg);
+
+#ifdef	 __HEAP_DBUG
+		Set_logInfo2("HeapSize 006 = 0x%x",xPortGetFreeHeapSize());
+#endif	//	 __HEAP_DBUG
+	}
 }
 //==============================================================================
 //
@@ -721,7 +825,7 @@ void RSrespons_proc( CMD_MSG	*rt_task )
 	uint8_t 	*msgQueBuf;
 
 
-//	Set_logInfo("RSrespons_proc(()");
+//	Set_logInfo2("RSrespons_proc(()");
 	Set_logInfo2("★RSrespons_proc(S=%d,E=%d)",rt_task->state, rt_task->event);
 //	SKprintf("RSrespons_proc(%d,%d)\r\n", );
 

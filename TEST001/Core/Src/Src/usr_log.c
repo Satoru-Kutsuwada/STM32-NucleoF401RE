@@ -346,21 +346,21 @@ void Set_logInfo2(const char *string, ...)
 	            }
 #ifdef ___NOP
 	            else if (*string == 'f') {
-	            	SKprintf("_logInfo2() 0002 val =%d\r\n",intvalue);
+	            	//SKprintf("_logInfo2() 0002 val =%d\r\n",intvalue);
 	            	uint32value = va_arg(ap, uint32_t);
 	            	floatvalue = (float) uint32value;
 	            	//SKprintf("_logInfo2() 0002 val =%g\r\n",floatvalue);
 	            	//SKprintf("_logInfo2() 0010 val =%f\r\n",floatvalue);
 	                buffer = my_putfloat(floatvalue, 2, buffer );
-	                SKprintf("val =%s\r\n",temp);
+	               // SKprintf("val =%s\r\n",temp);
 
 	            }
 #endif
 	            else if (*string == 'f') {
-	            	SKprintf("_logInfo2() 0002 val =%d\r\n",intvalue);
+	            	//SKprintf("_logInfo2() 0002 val =%d\r\n",intvalue);
 	            	floatvalue = va_arg(ap, double);
-	            	SKprintf("_logInfo2() 0002 val =%g\r\n",floatvalue);
-	            	SKprintf("_logInfo2() 0010 val =%f\r\n",floatvalue);
+	            	//SKprintf("_logInfo2() 0002 val =%g\r\n",floatvalue);
+	            	//SKprintf("_logInfo2() 0010 val =%f\r\n",floatvalue);
 	                buffer = my_putfloat(floatvalue, 2, buffer );
 	            }
 

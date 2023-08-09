@@ -262,6 +262,7 @@ void RScomand_send(CMD_MSG	*rt_task );
 void RSrespons_recive(CMD_MSG	*rt_task );
 void RSrespons_proc(CMD_MSG	*rt_task );
 void RSTimeout( CMD_MSG	*rt_task );
+void RSstop_req( CMD_MSG	*rt_task );
 void Set_logInfo(char *string);
 void SendMsgQueISR(RS485_TASK_EVENT event, uint8_t task);
 void SendMsgQue(CMD_MSG	*rt_task );
@@ -277,8 +278,8 @@ const void (*rs485_func_table[RT_EVENT_MAX][RT_STATE_MAX])( CMD_MSG	*rt_task )={
 		{ RS_nop,	RScomand_send,	RS_nop,				RS_nop			},	// RT_EVENT_COMMAND_REQ
 		{ RS_nop,	RS_nop,			RSrespons_recive,	RS_nop			},	// RT_EVENT_UART_RX
 		{ RS_nop,	RS_nop,			RS_nop,				RSrespons_proc	},	// RT_EVENT_RESPONS
-		{ RS_nop,	RS_nop,			RS_nop,				RS_nop			},	// RT_EVENT_STOP_REQ
-		{ RS_nop,	RS_nop,			RSTimeout,				RS_nop			}	// RT_EVENT_TIMEOUT
+		{ RS_nop,	RSstop_req,		RSstop_req,			RSstop_req		},	// RT_EVENT_STOP_REQ
+		{ RS_nop,	RS_nop,			RSTimeout,			RS_nop			}	// RT_EVENT_TIMEOUT
 };
 
 
@@ -301,6 +302,8 @@ void  tasuk3_init(void)
 //==============================================================================
 void Set_rcv_data(SK_UART sel)
 {
+	uart[sel].Set_cnt++;
+
 	while(uart[sel].Sem_rs485_rcv==1);
 
 	uart[sel].Sem_rs485_rcv= 1;
@@ -315,6 +318,29 @@ void Set_rcv_data(SK_UART sel)
     if( uart[sel].rcv_wpt > RCV_BUF_SIZE ){
     	uart[sel].rcv_wpt = 0;
     }
+}
+//==============================================================================
+//
+//==============================================================================
+uint8_t Get_rcv_data(SK_UART sel)
+{
+    uint8_t dt;
+	uart[sel].Get_cnt++;
+
+  	while(uart[sel].Sem_rs485_rcv==1);
+
+	uart[sel].Sem_rs485_rcv = 1;
+	uart[sel].rcvnum --;
+	uart[sel].Sem_rs485_rcv = 0;
+
+	dt =  uart[sel].rcvbuf[uart[sel].rcv_rpt];
+	uart[sel].rcv_rpt ++ ;
+	if( uart[sel].rcv_rpt > RCV_BUF_SIZE ){
+		uart[sel].rcv_rpt = 0;
+	}
+
+    return dt;
+
 }
 
 //==============================================================================
@@ -341,120 +367,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 }
 
 
-//==============================================================================
-//
-//==============================================================================
-uint8_t Get_rcv_data(SK_UART sel)
-{
-    uint8_t dt;
-
-  	while(uart[sel].Sem_rs485_rcv==1);
-
-	uart[sel].Sem_rs485_rcv = 1;
-	uart[sel].rcvnum --;
-	uart[sel].Sem_rs485_rcv = 0;
-
-	dt =  uart[sel].rcvbuf[uart[sel].rcv_rpt];
-	uart[sel].rcv_rpt ++ ;
-	if( uart[sel].rcv_rpt > RCV_BUF_SIZE ){
-		uart[sel].rcv_rpt = 0;
-	}
-
-    return dt;
-
-}
-
-
-//==============================================================================
-//
-//==============================================================================
-//extern osMessageQueueId_t myQueue01Handle;
-
-
-
-void rs485_com_task(void)
-{
-#ifdef ___NOP
-	RETURN_STATUS		status = RET_TRUE;
-		COM_PROTOCOL_STEP	cp_step = COM_PROTOCOL_SEND;
-		uint8_t 			num = 0;
-//		uint8_t 	dt;
-		float		dtf;
-//		float		dtf2;
-		uint8_t		*pt;
-//		uint8_t		*pt2;
-		uint16_t	dt16;
-		uint32_t	dt32;
-		uint8_t 	*msgQueBuf;
-		osStatus_t	*rtn;
-		void 		*void_ptr;
-
-#endif	// ___NOP
-
-	CMD_MSG				RTtask;
-	osStatus_t			os_status;
-	MESSAGE_QUE_DATA	*msg;
-	uint8_t				msgQueBuf[sizeof(void *)];
-	uint8_t				i,j;
-	uint8_t				event;
-	uint8_t				state;
-	uint32_t			timer;
-	uint8_t				*temp;
-	uint8_t 			*buffer;
-
-	RTtask.state = RT_STATE_INIT;
-	timer = osWaitForever;
-	RTtask.state = RT_STATE_READY;
-
-
-
-
-	while(1){
-
-		//-------------------------------------------------------------------------
-		//	メッセージ待ち
-		//-------------------------------------------------------------------------
-		os_status = osMessageQueueGet (GetMessageQue(SK_TASK_sub2), &msgQueBuf, 0, osWaitForever);
-		msg = (MESSAGE_QUE_DATA *)msgQueBuf;
-		msg = (MESSAGE_QUE_DATA	*)msg->maroc_ptr;
-
-
-		event = 0;
-		state = 0;
-		switch( os_status ){
-		case osOK:
-			RTtask.event = msg->u.cmd_msg.event;
-
-			if(RTtask.event == RT_EVENT_START_REQ){
-				RTtask.command = msg->u.cmd_msg.command;
-				RTtask.address = msg->u.cmd_msg.address;
-				RTtask.sub1 = msg->u.cmd_msg.sub1;
-			}
-
-			event = RTtask.event;
-			state = RTtask.state;
-			break;
-
-		case osErrorTimeout:
-		default:
-			SKprintf("rs485_com_task():os_status=Error(%d)\r\n",os_status);
-			break;
-		}
-
-		if( msg->maroc_ptr != &RTtaskISR ){
-			vPortFree(msg->maroc_ptr);
-		}
-
-		//-------------------------------------------------------------------------
-		//	処理関数
-		//-------------------------------------------------------------------------
-		//Set_logInfo2("RS485 MAIN: event=%d, state=%d\r\n",event,state);
-		(*rs485_func_table[event][state ])( &RTtask );
-
-
-
-	}
-}
 
 //==============================================================================
 //　割込み用
@@ -519,6 +431,106 @@ void SendMsgQue( CMD_MSG	*rt_task )
 	}
 }
 
+
+//==============================================================================
+//
+//==============================================================================
+//extern osMessageQueueId_t myQueue01Handle;
+
+
+
+void rs485_com_task(void)
+{
+#ifdef ___NOP
+	RETURN_STATUS		status = RET_TRUE;
+		COM_PROTOCOL_STEP	cp_step = COM_PROTOCOL_SEND;
+		uint8_t 			num = 0;
+//		uint8_t 	dt;
+		float		dtf;
+//		float		dtf2;
+		uint8_t		*pt;
+//		uint8_t		*pt2;
+		uint16_t	dt16;
+		uint32_t	dt32;
+		uint8_t 	*msgQueBuf;
+		osStatus_t	*rtn;
+		void 		*void_ptr;
+
+#endif	// ___NOP
+
+	CMD_MSG				RTtask;
+	osStatus_t			os_status;
+	MESSAGE_QUE_DATA	*msg;
+	uint8_t				msgQueBuf[sizeof(void *)];
+	uint8_t				i,j;
+	uint8_t				event;
+	uint8_t				state;
+	uint32_t			timer;
+	uint8_t				*temp;
+	uint8_t 			*buffer;
+
+	RTtask.state = RT_STATE_INIT;
+	timer = osWaitForever;
+	RTtask.state = RT_STATE_READY;
+
+
+
+
+	while(1){
+
+		//-------------------------------------------------------------------------
+		//	メッセージ待ち
+		//-------------------------------------------------------------------------
+		os_status = osMessageQueueGet (GetMessageQue(SK_TASK_sub2), &msgQueBuf, 0, osWaitForever);
+		msg = (MESSAGE_QUE_DATA *)msgQueBuf;
+		msg = (MESSAGE_QUE_DATA	*)msg->maroc_ptr;
+
+
+		event = 0;
+		state = 0;
+		switch( os_status ){
+		case osOK:
+			RTtask.event = msg->u.cmd_msg.event;
+
+			switch(RTtask.event){
+			case RT_EVENT_START_REQ:
+				RTtask.command = msg->u.cmd_msg.command;
+				RTtask.command_sub = msg->u.cmd_msg.command_sub;
+				RTtask.address = msg->u.cmd_msg.address;
+				RTtask.sub1 = msg->u.cmd_msg.sub1;
+				break;
+			case RT_EVENT_STOP_REQ:
+				RTtask.command_sub = 1;
+				break;
+			default:
+				break;
+			}
+
+			event = RTtask.event;
+			state = RTtask.state;
+			break;
+
+		case osErrorTimeout:
+		default:
+			SKprintf("rs485_com_task():os_status=Error(%d)\r\n",os_status);
+			break;
+		}
+
+		if( msg->maroc_ptr != &RTtaskISR ){
+			vPortFree(msg->maroc_ptr);
+		}
+
+		//-------------------------------------------------------------------------
+		//	処理関数
+		//-------------------------------------------------------------------------
+		//Set_logInfo2("RS485 MAIN: event=%d, state=%d\r\n",event,state);
+		(*rs485_func_table[event][state ])( &RTtask );
+
+
+
+	}
+}
+
 //==============================================================================
 //
 //==============================================================================
@@ -562,7 +574,7 @@ void RScomand_send( CMD_MSG	*rt_task )
 		te_form->maroc_ptr = te_form;
 		te_form->mail_form = msg;
 		te_form->hmsg = GetMessageQue(SK_TASK_sub2);
-		te_form->time = 1000;
+		te_form->time = 50;		// 約500msec
 		timer_id = GetTimerEventID();
 		if( timer_id == 0xff ){
 			SKprintf("TIMER EVENT NOT AVAILABLE\r\n");
@@ -595,7 +607,7 @@ void RSrespons_recive( CMD_MSG	*rt_task )
 //	Set_logInfo("RSrespons_recive()");
 //	SKprintf("RSrespons_recive(%d,%d)\r\n", rt_task->state, rt_task->event);
 
-	while( uart[SK_UART1_RS485].rcvnum  > 0 ){
+	while( (uart[SK_UART1_RS485].Set_cnt - uart[SK_UART1_RS485].Get_cnt)   > 0 ){
 		work_buf[work_buf_num ++] = Get_rcv_data(SK_UART1_RS485);
 
 		if( Get_end_test_pt(work_buf_num, work_buf) != 0 ){
@@ -609,7 +621,18 @@ void RSrespons_recive( CMD_MSG	*rt_task )
 				SendMsgQue(&msg);
 			}
 			else{
+				Set_logInfo2("RETRY:Recive data error");
 				rt_task->state  = RT_STATE_READY;
+
+				// 再送する
+				msg.event = RT_EVENT_START_REQ;
+				msg.address = rt_task->address ;
+				msg.command = rt_task->command;
+				msg.command_sub = rt_task->command_sub;
+				msg.sub1 = rt_task->sub1;
+				SendMsgQue(&msg);
+
+
 			}
 			break;
 		}
@@ -621,6 +644,7 @@ void RSrespons_recive( CMD_MSG	*rt_task )
 //==============================================================================
 void RSTimeout( CMD_MSG	*rt_task )
 {
+	CMD_MSG				msg;
 	char	 	c[17];
 	uint8_t		i,j,k;
 
@@ -631,6 +655,8 @@ void RSTimeout( CMD_MSG	*rt_task )
 
 
 
+	SKprintf("Get_cnt  =%d\r\n",uart[SK_UART1_RS485].Get_cnt);
+	SKprintf("Set_cnt  =%d\r\n",uart[SK_UART1_RS485].Set_cnt);
 	SKprintf("totalnum =%d\r\n",uart[SK_UART1_RS485].totalnum);
 	SKprintf("rcvnum   =%d\r\n",uart[SK_UART1_RS485].rcvnum);
 	SKprintf("rcv_wpt  =%d\r\n",uart[SK_UART1_RS485].rcv_wpt);
@@ -664,7 +690,23 @@ void RSTimeout( CMD_MSG	*rt_task )
 		SKprintf("  %s\r\n",c );
 	}
 
+	// 再送する
+	msg.event = RT_EVENT_START_REQ;
+	msg.address = rt_task->address ;
+	msg.command = rt_task->command;
+	msg.command_sub = rt_task->command_sub;
+	msg.sub1 = rt_task->sub1;
+	SendMsgQue(&msg);
+
 }
+//==============================================================================
+//
+//==============================================================================
+void RSstop_req( CMD_MSG	*rt_task )
+{
+	Set_logInfo2("★RSstop_req(S=%d,E=%d)",rt_task->state, rt_task->event);
+}
+
 
 //==============================================================================
 //
@@ -738,6 +780,7 @@ void RSrespons_proc( CMD_MSG	*rt_task )
 		rt_task->state = RT_STATE_READY;
 		cmd_ptr ++;
 
+		Set_logInfo2("command_sub=%d",rt_task->command_sub);
 		rt_task->command_sub --;
 
 		if(rt_task->command_sub > 0 ){

@@ -28,6 +28,7 @@
 /* Public function prototypes ------------------------------------------------*/
 size_t xPortGetFreeHeapSize( void );
 
+void SendMsgQue( CMD_MSG	*rt_task );
 
 
 /* Private includes ----------------------------------------------------------*/
@@ -299,9 +300,18 @@ void DBmanue_rs485_scan(void)
 {
 	osStatus_t 			osStatus;
 	MESSAGE_QUE_DATA	*msg;
+	CMD_MSG				rt_task;
 
 	switch( input_string.main[0] ){
 	case '1':
+		rt_task.address		= RS485_AD_SLEVE01;
+		rt_task.command		= RS485_CMD_MESUR_DATA;
+		rt_task.command_sub	= 1;
+		rt_task.event 		= RT_EVENT_START_REQ;
+		rt_task.sub1 		= 0;
+		SendMsgQue( &rt_task );
+
+		#ifdef ___NOP
 
 		//    	lsize1 = xPortGetFreeHeapSize();
 		    	msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
@@ -321,10 +331,12 @@ void DBmanue_rs485_scan(void)
 		//    	SKprintf("MESSAGE_QUE_DATA=%p\r\n",msg);
 		    	osStatus = osMessageQueuePut (GetMessageQue(SK_TASK_sub2), (void *)msg->maroc_ptr, 0,0);
 		    	SKprintf("osStatus=%d\r\n",osStatus);
+#endif	// ___NOP
 
 		break;
 	case '2':
 
+#ifdef ___NOP
 		//    	lsize1 = xPortGetFreeHeapSize();
 		    	msg = (MESSAGE_QUE_DATA *)pvPortMalloc(sizeof(MESSAGE_QUE_DATA));
 		    	msg->u.cmd_msg.event = RT_EVENT_START_REQ;
@@ -343,9 +355,20 @@ void DBmanue_rs485_scan(void)
 		//    	SKprintf("MESSAGE_QUE_DATA=%p\r\n",msg);
 		    	osStatus = osMessageQueuePut (GetMessageQue(SK_TASK_sub2), (void *)msg->maroc_ptr, 0,0);
 		    	SKprintf("osStatus=%d\r\n",osStatus);
+#endif	// ___NOP
+
+
+		rt_task.address		= RS485_AD_SLEVE01;
+		rt_task.command		= RS485_CMD_MESUR_DATA;
+		rt_task.command_sub	= 100;
+		rt_task.event 		= RT_EVENT_START_REQ;
+		rt_task.sub1 		= 0;
+		SendMsgQue( &rt_task );
 
 		break;
 	case '3':
+		rt_task.event 		= RT_EVENT_STOP_REQ;
+		SendMsgQue( &rt_task );
 		break;
 	case '4':
 		break;

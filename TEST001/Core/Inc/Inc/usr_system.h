@@ -172,11 +172,15 @@ typedef struct{
 typedef struct{
 	uint8_t		rcv_dt[2];
 	uint8_t		rcvbuf[RCV_BUF_SIZE];
-	uint8_t		rcvnum;
-	uint8_t		totalnum;
-	uint8_t		rcv_wpt;
-	uint8_t		rcv_rpt;
-	uint8_t		Sem_rs485_rcv;
+	uint16_t		rcvnum;
+	uint16_t		totalnum;
+	uint16_t		rcv_wpt;
+	uint16_t		rcv_rpt;
+	uint16_t		Sem_rs485_rcv;
+	uint16_t		Set_cnt;
+	uint16_t		Get_cnt;
+
+
 } UART_BUF;
 
 /* Public macro --------------------------------------------------------------*/

@@ -1,10 +1,52 @@
-16:23:51 **** Incremental Build of configuration Debug for project TEST001 ****
+16:51:50 **** Incremental Build of configuration Debug for project TEST001 ****
 make -j8 all 
+arm-none-eabi-gcc "../Core/Src/Src/usr_vl53_main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F401xE -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -I"D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc" -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/Src/usr_vl53_main.d" -MT"Core/Src/Src/usr_vl53_main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Src/usr_vl53_main.o"
+../Core/Src/Src/usr_vl53_main.c: In function 'vl53_mesure_new_proc':
+../Core/Src/Src/usr_vl53_main.c:247:3: warning: implicit declaration of function 'print_range_status' [-Wimplicit-function-declaration]
+  247 |   print_range_status(&RangingData);
+      |   ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_vl53_main.c: At top level:
+../Core/Src/Src/usr_vl53_main.c:296:6: warning: conflicting types for 'print_range_status'
+  296 | void print_range_status(VL53L0X_RangingMeasurementData_t* pRangingMeasurementData)
+      |      ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_vl53_main.c:247:3: note: previous implicit declaration of 'print_range_status' was here
+  247 |   print_range_status(&RangingData);
+      |   ^~~~~~~~~~~~~~~~~~
+../Core/Src/Src/usr_vl53_main.c: In function 'SK_RangingTest':
+../Core/Src/Src/usr_vl53_main.c:467:45: warning: implicit declaration of function 'malloc' [-Wimplicit-function-declaration]
+  467 |             uint16_t* pResults = (uint16_t*)malloc(sizeof(uint16_t) * no_of_measurements);
+      |                                             ^~~~~~
+../Core/Src/Src/usr_vl53_main.c:467:45: warning: incompatible implicit declaration of built-in function 'malloc'
+../Core/Src/Src/usr_vl53_main.c:16:1: note: include '<stdlib.h>' or provide a declaration of 'malloc'
+   15 | #include "vl53l0x_api.h"
+  +++ |+#include <stdlib.h>
+   16 | /* USER CODE END Includes */
+../Core/Src/Src/usr_vl53_main.c:511:13: warning: implicit declaration of function 'free' [-Wimplicit-function-declaration]
+  511 |             free(pResults);
+      |             ^~~~
+../Core/Src/Src/usr_vl53_main.c:511:13: warning: incompatible implicit declaration of built-in function 'free'
+../Core/Src/Src/usr_vl53_main.c:511:13: note: include '<stdlib.h>' or provide a declaration of 'free'
+../Core/Src/Src/usr_vl53_main.c: In function 'vl53l0x_Racing_test':
+../Core/Src/Src/usr_vl53_main.c:760:9: warning: unused variable 'NecleoAutoCom' [-Wunused-variable]
+  760 |     int NecleoAutoCom = 1;
+      |         ^~~~~~~~~~~~~
+../Core/Src/Src/usr_vl53_main.c:759:9: warning: unused variable 'NecleoComStatus' [-Wunused-variable]
+  759 |     int NecleoComStatus = 0;
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/Src/usr_vl53_main.c:758:13: warning: unused variable 'init_done' [-Wunused-variable]
+  758 |     int32_t init_done = 0;
+      |             ^~~~~~~~~
+arm-none-eabi-gcc -o "TEST001.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\ST\git\STM32-NucleoF401RE\TEST001\STM32F401RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TEST001.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: TEST001.elf
+ 
 arm-none-eabi-size   TEST001.elf 
+arm-none-eabi-objdump -h -S  TEST001.elf  > "TEST001.list"
    text	   data	    bss	    dec	    hex	filename
-  64908	    568	  27680	  93156	  16be4	TEST001.elf
+ 109252	   1272	  28264	 138788	  21e24	TEST001.elf
 Finished building: default.size.stdout
  
+Finished building: TEST001.list
+ 
 
-16:23:51 Build Finished. 0 errors, 0 warnings. (took 633ms)
+16:51:51 Build Finished. 0 errors, 9 warnings. (took 1s.180ms)
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ImportExportAction">
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.ui.wizards.import.FileSystem"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.cdt.ui.importWizardCategory"/>
+			<item value="org.eclipse.equinox.p2.category"/>
+			<item value="org.eclipse.debug.ui"/>
+			<item value="org.eclipse.team.ui.importWizards"/>
+		</list>
+	</section>
+	<section name="FileSystemImportWizard">
+		<item key="WizardFileSystemResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID" value="false"/>
+		<item key="WizardFileSystemResourceImportPage1.STORE_CREATE_CONTAINER_STRUCTURE_ID" value="false"/>
+		<list key="WizardFileSystemResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="D:\ST\git\work\VL53L0X_API_STM32_HAL-master\Drivers\VL53L0X\platform\inc"/>
+			<item value="D:\ST\git\work\VL53L0X_API_STM32_HAL-master\Drivers\VL53L0X\platform\src"/>
+			<item value="D:\ST\git\work\VL53L0X_API_STM32_HAL-master\Drivers\VL53L0X\core\inc"/>
+			<item value="D:\ST\git\work\VL53L0X_API_STM32_HAL-master\Drivers\VL53L0X\core\src"/>
+		</list>
+	</section>
+</section>

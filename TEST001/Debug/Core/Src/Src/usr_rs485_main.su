@@ -8,7 +8,7 @@
 ../Core/Src/Src/usr_rs485_main.c:571:6:RS_nop	16	static
 ../Core/Src/Src/usr_rs485_main.c:579:6:RScomand_send	32	static
 ../Core/Src/Src/usr_rs485_main.c:652:6:RSrespons_recive	40	static
-../Core/Src/Src/usr_rs485_main.c:716:6:RSTimeout	48	static
+../Core/Src/Src/usr_rs485_main.c:716:6:RSTimeout	56	static
 ../Core/Src/Src/usr_rs485_main.c:809:6:RSstop_req	16	static
 ../Core/Src/Src/usr_rs485_main.c:818:6:RSrespons_proc	40	static
 ../Core/Src/Src/usr_rs485_main.c:1038:11:Get_end_test_pt	24	static

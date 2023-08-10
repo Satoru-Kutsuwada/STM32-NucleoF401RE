@@ -88,7 +88,7 @@ INPUT_STRING input_string;
     CMD_RS485,
 	CMD_MEM_DUMP,
 	CMD_MSG_QUE,
-
+	CMD_VL53,
 
     CMD_MAX
  }COMMAND_MENUE;
@@ -100,11 +100,12 @@ INPUT_STRING input_string;
  } COMAND_LIST;
 
  const COMAND_LIST com_list[] = {
-     { CMD_RTC,      "rtc"  },
-     { CMD_LOG,      "log" },
-	 { CMD_RS485,    "rs485" },
+     { CMD_RTC,      	"rtc"  },
+     { CMD_LOG,      	"log" },
+	 { CMD_RS485,    	"rs485" },
 	 { CMD_MEM_DUMP,    "mem" },
-	 { CMD_MSG_QUE,    "msg" },
+	 { CMD_MSG_QUE,    	"msg" },
+	 { CMD_VL53,    	"vl53" },
 //	 { CMD_MSG_QUE,		"msg" ),
 
 
@@ -121,6 +122,7 @@ INPUT_STRING input_string;
      DEB_MEM_MENUE,
 	 DEB_MEM_INPUT_MENUE,
 	 DEB_RS485_SCAN_MENUE,
+	 DEB_VL53_MENUE,
 
 
      DEB_DISP_MAX
@@ -185,6 +187,21 @@ const MENUE Deb_menue04[] = {
     " r.EXIT\r\n"
 };
 
+const MENUE Deb_menue05[] = {
+     "\r\nVL53 MENUE\r\n",
+     " 1.VL53_INIT\r\n",
+     " 2.CONTIIOUS RANGING\r\n",
+     " 3.SINGLE RANGING\r\n",
+     " 4.SINGLE RANGING HA\r\n",
+     " 5.SINGLE RANGING HS\r\n",
+     " 6.SINGLE RANGING LR\r\n",
+     " 7.VL53 Data DISPLAY\r\n",
+     " 8.   Init\r\n",
+     " 9.   MESURE\r\n",
+
+     " r.EXIT\r\n"
+ };
+
 typedef struct
 {
    MENUE *pt;
@@ -196,7 +213,8 @@ const MENUE_NUM_PAGE MenueList[]={
    Deb_menue01, (uint8_t)(sizeof(Deb_menue01 )/sizeof(MENUE)),
    Deb_menue02, (uint8_t)(sizeof(Deb_menue02 )/sizeof(MENUE)),
    Deb_menue03, (uint8_t)(sizeof(Deb_menue03 )/sizeof(MENUE)),
-   Deb_menue04, (uint8_t)(sizeof(Deb_menue04 )/sizeof(MENUE))
+   Deb_menue04, (uint8_t)(sizeof(Deb_menue04 )/sizeof(MENUE)),
+   Deb_menue05, (uint8_t)(sizeof(Deb_menue05 )/sizeof(MENUE))
 };
 
 
@@ -205,6 +223,10 @@ INPUT_CHAR_STEP read_line_streem(void);
 COMMAND_MENUE input2menu(void);
 void DBmanue_memdump(void);
 void hex_dmp(uint8_t *buf, uint16_t size);
+void vl53_mesure_new_proc(void);
+void vl53_init(void);
+void vl53l0x_Racing_test(RASING_MODE sel);
+
 
 //=============================================================================
 //
@@ -237,6 +259,9 @@ void debu_main(void)
 			break;
 		case DEB_RS485_SCAN_MENUE:
 			DBmanue_rs485_scan();
+			break;
+		case DEB_VL53_MENUE:
+			DBmanue_vl53();
 			break;
 		default:
 			break;
@@ -294,6 +319,9 @@ void DBmanue_prompt(void)
     case CMD_MSG_QUE:
     	dev_menue_type = DEB_RS485_SCAN_MENUE;
     	break;
+    case CMD_VL53:
+    	dev_menue_type = DEB_VL53_MENUE;
+    	break;
 
     default:
     	SKprintf("Command not found.\r\n");
@@ -304,6 +332,53 @@ void DBmanue_prompt(void)
 
         break;
     }
+}
+
+//=============================================================================
+//
+//=============================================================================
+void DBmanue_vl53(void)
+{
+	switch( input_string.main[0] ){
+	case '1':
+        // VL53_init();
+        break;
+    case '2':
+        //vl53l0x_test();
+        vl53l0x_Racing_test( RASING_MODE_CONTINUE );
+        break;
+    case '3':
+        //vl53l0x_Single_test();
+        vl53l0x_Racing_test( RASING_MODE_SINGLE );
+        break;
+    case '4':
+        //vl53l0x_SingleHA_test();
+        vl53l0x_Racing_test( RASING_MODE_SINGLE_HA );
+        break;
+    case '5':
+        //vl53l0x_SingleHS_test();
+        vl53l0x_Racing_test( RASING_MODE_SINGLE_HS );
+        break;
+    case '6':
+        //vl53l0x_SingleLR_test();
+        vl53l0x_Racing_test( RASING_MODE_SINGLE_LR );
+        break;
+    case '7':
+        vl53data_disp();
+		break;
+	case '8':
+		vl53_init();
+		break;
+	case '9':
+		vl53_mesure_new_proc();
+
+		break;
+	case 'r':
+	case 'R':
+		dev_menue_type = DEB_PROMPT_MODE;
+	default:
+		break;
+	}
 }
 
 //=============================================================================

@@ -139,7 +139,7 @@ typedef struct{
 	RS485_TASK_STATE	state;
 
 	RA485_COMMAND		command;
-	uint8_t				command_sub;
+	uint16_t			command_sub;
 	RA485_ADDRESS		address;
 	uint8_t				sub1;
 	uint8_t				timer_id;
@@ -234,6 +234,17 @@ typedef struct{
 
 
 
+/* Public variables ----------------------------------------------------------*/
+
+typedef enum{
+    RASING_MODE_SINGLE,
+    RASING_MODE_SINGLE_HA,
+    RASING_MODE_SINGLE_HS,
+    RASING_MODE_SINGLE_LR,
+    RASING_MODE_CONTINUE,
+
+    RASING_MODE_MAX
+}RASING_MODE;
 
 
 

@@ -832,11 +832,11 @@ void RSrespons_proc( CMD_MSG	*rt_task )
 	status = RET_TRUE;
 	switch( Res_mesg[COM_COMMAND] ){
 	case RS485_CMD_STATUS:
-		SKprintf("RS485_CMD_STATUS\r\n");
+		Set_logInfo2("RS485_CMD_STATUS\r\n");
 
 		break;
 	case RS485_CMD_VERSION:
-		SKprintf("RS485_CMD_VERSION\r\n");
+		Set_logInfo2("RS485_CMD_VERSION\r\n");
 
 		dt16 = Res_mesg[COM_SLV_VERSION_H];
 		dt16 <<= 8;
@@ -851,11 +851,11 @@ void RSrespons_proc( CMD_MSG	*rt_task )
 
 		break;
 	case RS485_CMD_MESUR:
-		SKprintf("RS485_CMD_MESUR\r\n");
+		Set_logInfo2("RS485_CMD_MESUR\r\n");
 
 		break;
 	case RS485_CMD_MESUR_DATA:
-		SKprintf("RS485_CMD_MESUR_DATA\r\n");
+		Set_logInfo2("RS485_CMD_MESUR_DATA\r\n");
 
 		pt = (uint8_t *)&dtf;
 		pt[3] = Res_mesg[COM_MESUR_DATA_H];
@@ -876,7 +876,7 @@ void RSrespons_proc( CMD_MSG	*rt_task )
 		break;
 	default:
 		status = RET_FALSE;
-		//SKprintf("ERROR Recive Command None \r\n");
+		Set_logInfo2("ERROR Recive Command None \r\n");
 		break;
 	}
 

@@ -7,5 +7,5 @@
 ../Core/Src/Src/usr_vl53_main.c:296:6:print_range_status	56	static
 ../Core/Src/Src/usr_vl53_main.c:317:15:WaitMeasurementDataReady	32	static
 ../Core/Src/Src/usr_vl53_main.c:374:15:SK_RangingTest	88	static
-../Core/Src/Src/usr_vl53_main.c:748:6:vl53l0x_Racing_test	176	static
-../Core/Src/Src/usr_vl53_main.c:847:6:vl53data_disp	16	static
+../Core/Src/Src/usr_vl53_main.c:749:6:vl53l0x_Racing_test	176	static
+../Core/Src/Src/usr_vl53_main.c:848:6:vl53data_disp	16	static

@@ -6,6 +6,6 @@ usr_vl53_main.c:255:6:vl53_LogDisp	1
 usr_vl53_main.c:265:15:WaitStopCompleted	6
 usr_vl53_main.c:296:6:print_range_status	1
 usr_vl53_main.c:317:15:WaitMeasurementDataReady	6
-usr_vl53_main.c:374:15:SK_RangingTest	45
-usr_vl53_main.c:748:6:vl53l0x_Racing_test	13
-usr_vl53_main.c:847:6:vl53data_disp	9
+usr_vl53_main.c:374:15:SK_RangingTest	47
+usr_vl53_main.c:749:6:vl53l0x_Racing_test	13
+usr_vl53_main.c:848:6:vl53data_disp	9

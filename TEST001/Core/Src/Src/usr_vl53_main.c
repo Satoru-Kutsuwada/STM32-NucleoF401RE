@@ -715,6 +715,7 @@ VL53L0X_Error SK_RangingTest(VL53L0X_Dev_t *pMyDevice, RASING_MODE sel)
                     SKprintf(",RANGE IGNORE THRESHOLD: %f\r\n", (float)LimitCheckCurrent/65536.0);
                     break;
                case RASING_MODE_SINGLE_LR:
+            	   SKprintf("\r\n");
                 default:
                     break;
                 }

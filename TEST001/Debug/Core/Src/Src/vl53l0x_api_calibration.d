@@ -6,8 +6,7 @@ Core/Src/Src/vl53l0x_api_calibration.o: \
  D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_device.h \
  D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_types.h \
  D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_platform.h \
- D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_platform_log.h \
- ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
+ ../Core/Inc/main.h ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h \
  ../Core/Inc/stm32f4xx_hal_conf.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_def.h \
@@ -39,15 +38,14 @@ Core/Src/Src/vl53l0x_api_calibration.o: \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h \
  ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h \
- D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_api_core.h \
- D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_api_calibration.h
+ D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_platform_log.h
 D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_api.h:
 D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_api_strings.h:
 D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_def.h:
 D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_device.h:
 D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_types.h:
 D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_platform.h:
-D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_platform_log.h:
+../Core/Inc/main.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:
 ../Core/Inc/stm32f4xx_hal_conf.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_rcc.h:
@@ -80,5 +78,4 @@ D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_platform_log.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h:
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:
-D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_api_core.h:
-D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_api_calibration.h:
+D:/ST/git/STM32-NucleoF401RE/TEST001/Core/Inc/Inc/vl53l0x_platform_log.h:
